@@ -14,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-//@Builder
+@Builder
 @Entity
 @Table(name = "member")
 public class MemberEntity {
@@ -95,6 +95,12 @@ public class MemberEntity {
 
 
 
+
+
+// FK=> 게시판 쓸수 있게 Member:Board -> 1:N 관계
+//    @OneToMany(mappedBy = "memberEntity" , cascade = CascadeType.REMOVE, orphanRemoval = true)
+//    @Builder.Default
+//    private List<BoardEntity> boardEntities = new ArrayList<>();
 
 
 }
