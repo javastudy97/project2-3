@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
+//@Builder
 @ToString
 @Entity
 @Table(name="profile")

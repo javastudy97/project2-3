@@ -14,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-@Builder
+//@Builder
 @Entity
 @Table(name = "member")
 public class MemberEntity {
@@ -80,6 +80,7 @@ public class MemberEntity {
 // 프로필 사진 유무 (1 : o , 0 : x)
     @Column(name = "m_attach")
     private int mAttach;
+
 // 프로필 사진
     @OneToMany(mappedBy = "memberEntity",cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<ProfileEntity> profileEntities =new ArrayList<>();
@@ -92,8 +93,6 @@ public class MemberEntity {
 // 결재2 - 결재자
     @OneToMany(mappedBy = "memberEntity2",cascade = CascadeType.REMOVE,orphanRemoval = true)
     private List<ApprovalEntity> approvalEntities2 = new ArrayList<>();
-
-
 
 
 

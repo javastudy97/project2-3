@@ -1,6 +1,6 @@
-@import url(common/reset.css);
-@import url(common/adminHeader.css);
-@import url(common/leftMenu.css);
+@import url(../common/reset.css);
+@import url(../common/adminHeader.css);
+@import url(../common/leftMenu.css);
 
 #wrap{
   width: 100%;
