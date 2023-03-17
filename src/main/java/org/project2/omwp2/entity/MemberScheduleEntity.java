@@ -17,24 +17,24 @@ public class MemberScheduleEntity {
     //스케줄 아이디
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Schedule_Id")
+    @Column(name = "schedule_id")
     private Long ScheduleId;
 
     //스케줄 내용
-    @Column(name = "Schedule_board")
+    @Column(name = "schedule_content", nullable = false)
     private String ScheduleBoard;
 
     //스케줄 시작일
-    @Column(name = "Schedule_start")
+    @Column(name = "schedule_start",nullable = false)
     private LocalDateTime ScheduleStart;
 
     //스케줄 종료일
-    @Column(name = "Schedule_end")
+    @Column(name = "schedule_end",nullable = false)
     private LocalDateTime ScheduleEnd;
 
-    //스케줄 완료여부
-    @Column(name = "Schedule_progress",nullable = true)
-    private Long ScheduleProgress;
+    //스케줄 완료여부 - 미완료 : N(기본값), 완료 : Y
+    @Column(name = "schedule_done",nullable = true)
+    private String scheduleDone;
 
     //작성자
     @ManyToOne(fetch = FetchType.LAZY)

@@ -6,6 +6,8 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -19,28 +21,28 @@ public class AccountEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ac_id", unique = true)
+    @Column(name = "ac_id")
     private Long acId;
 
     // 제목
     @Column(name = "ac_title", nullable = false)
     private String acTitle;
 
-    // 수입 지출 항목
-    @Column(name = "ac_item", nullable = false)
-    private String acItem;
+    // 수입 지출 내역(항목)
+    @Column(name = "ac_content", nullable = false)
+    private String acContent;
 
     // 수입 금액
-    @Column(name = "ac_income", nullable = false)
+    @Column(name = "ac_income")
     private int acIncome;
 
     // 지출 금액
-    @Column(name = "ac_expend", nullable = false)
+    @Column(name = "ac_expend")
     private int acExpend;
 
-    // 잔여금(이월금)?
-    @Column(name = "ac_next_money", nullable = false)
-    private int acNextMoney;
+    // 잔여금(이월금)
+    @Column(name = "ac_surplus")
+    private int acSurplus;
 
     // 게시글 등록일
     @CreationTimestamp
@@ -51,4 +53,15 @@ public class AccountEntity {
     @UpdateTimestamp
     @Column(name = "ac_update", insertable = false)
     private LocalDateTime acUpdate;
+
+    // 첨부파일 유무(0,1)
+    @Column(name = "ac_attach",nullable = false)
+    private int acAttach;
+//    작성자
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "m_id")
+    private MemberEntity memberEntity;
+//    첨부파일
+    @OneToMany(mappedBy = "accountEntity",cascade = CascadeType.REMOVE, orphanRemoval = true)
+    private List<DocumentEntity> documentEntities = new ArrayList<>();
 }

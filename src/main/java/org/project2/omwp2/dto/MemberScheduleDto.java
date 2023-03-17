@@ -1,2 +1,4 @@
-package org.project2.omwp2.dto;public class MemberScheduleDto {
+package org.project2.omwp2.dto;
+
+public class MemberScheduleDto {
 }

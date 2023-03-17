@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @Table(name = "attend")
 public class AttendEntity {
 
-    //근태 아이디
+    // 근태 아이디
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "attend_id")
