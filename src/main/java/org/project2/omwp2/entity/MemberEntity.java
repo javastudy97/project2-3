@@ -94,12 +94,20 @@ public class MemberEntity {
     @OneToMany(mappedBy = "memberEntity2",cascade = CascadeType.REMOVE,orphanRemoval = true)
     private List<ApprovalEntity> approvalEntities2 = new ArrayList<>();
 
+    //    공지사항 게시판
+    @OneToMany(mappedBy = "memberEntity",cascade = CascadeType.REMOVE,orphanRemoval = true)
+    private List<NoticeEntity> noticeEntities = new ArrayList<>();
+
+    //   커뮤니티 게시판
+    @OneToMany(mappedBy = "memberEntity",cascade = CascadeType.REMOVE,orphanRemoval = true)
+    private List<BoardEntity> boardEntities = new ArrayList<>();
+
+//  댓글
+    @OneToMany(mappedBy = "memberEntity",cascade = CascadeType.REMOVE,orphanRemoval = true)
+    private List<CommentEntity> commentEntities = new ArrayList<>();
 
 
-// FK=> 게시판 쓸수 있게 Member:Board -> 1:N 관계
-//    @OneToMany(mappedBy = "memberEntity" , cascade = CascadeType.REMOVE, orphanRemoval = true)
-//    @Builder.Default
-//    private List<BoardEntity> boardEntities = new ArrayList<>();
+
 
 
 }

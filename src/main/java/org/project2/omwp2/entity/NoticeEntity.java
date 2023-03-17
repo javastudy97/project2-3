@@ -7,15 +7,18 @@ import org.hibernate.annotations.UpdateTimestamp;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Builder
+
 @Entity
 @Getter
 @Setter
 @ToString
+//@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "notice")
 public class NoticeEntity {
+    
+//    공지게시판 (파일첨부, 댓글 불가능) >> 관리자만 작성,수정,삭제 가능
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,13 +27,13 @@ public class NoticeEntity {
 
     //등록일
     @CreationTimestamp
-    @Column(name = "notice_create_day", updatable = false)
-    private LocalDateTime noticeCreateDay;
+    @Column(name = "notice_create", updatable = false)
+    private LocalDateTime noticeCreate;
 
     //수정일
     @UpdateTimestamp
-    @Column(name = "notice_update_day", insertable = false)
-    private LocalDateTime noticeUpdateDay;
+    @Column(name = "notice_update", insertable = false)
+    private LocalDateTime noticeUpdate;
 
     //공지사항 제목
     @Column(name = "notice_title", nullable = false)
@@ -43,5 +46,10 @@ public class NoticeEntity {
     //공지사항 조회 수
     @Column(name = "notice_hit")
     private int noticeHit;
+
+    //    작성자 ID >> 관리자만
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "m_id")
+    private MemberEntity memberEntity;
 
 }

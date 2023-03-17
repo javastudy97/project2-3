@@ -7,15 +7,17 @@ import org.hibernate.annotations.UpdateTimestamp;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Builder
 @Entity
 @Getter
 @Setter
 @ToString
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "comment")
 public class CommentEntity {
+    
+//    커뮤니티 게시판 댓글
 
     //댓글 ID
     @Id
@@ -25,17 +27,27 @@ public class CommentEntity {
 
     //등록일
     @CreationTimestamp
-    @Column(name = "comment_create_day", updatable = false)
-    private LocalDateTime commentCreateDay;
+    @Column(name = "comment_create", updatable = false)
+    private LocalDateTime commentCreate;
 
     //수정일
     @UpdateTimestamp
-    @Column(name = "comment_update_day", insertable = false)
-    private LocalDateTime commentUpdateDay;
+    @Column(name = "comment_update", insertable = false)
+    private LocalDateTime commentUpdate;
 
     //내용
     @Column(name = "comment_content", nullable = false)
     private String commentContent;
+
+//    게시글 ID
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "board_id")
+    private BoardEntity boardEntity;
+
+//    댓글작성자 ID
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "m_id")
+    private MemberEntity memberEntity;
 
 
 }
