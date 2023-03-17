@@ -11,8 +11,8 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @ToString
 @Entity
-@Table(name = "IndiSchedule")
-public class IndiScheduleEntity {
+@Table(name = "memberSchedule")
+public class MemberScheduleEntity {
 
     //스케줄 아이디
     @Id
