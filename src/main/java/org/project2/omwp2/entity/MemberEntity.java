@@ -6,13 +6,15 @@ import org.project2.omwp2.member.constant.Role;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-//@Builder
+@Builder
 @Entity
 @Table(name = "member")
 public class MemberEntity {
@@ -60,5 +62,11 @@ public class MemberEntity {
 // 프로필 사진 유무 (1 : o , 0 : x)
     @Column(name = "m_attach")
     private int mAttach;
+
+// FK=> 게시판 쓸수 있게 Member:Board -> 1:N 관계
+//    @OneToMany(mappedBy = "memberEntity" , cascade = CascadeType.REMOVE, orphanRemoval = true)
+//    @Builder.Default
+//    private List<BoardEntity> boardEntities = new ArrayList<>();
+
 
 }
