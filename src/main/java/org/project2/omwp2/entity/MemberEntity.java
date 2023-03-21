@@ -4,6 +4,7 @@ import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.project2.omwp2.dto.MemberDto;
 import org.project2.omwp2.member.constant.Role;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -15,7 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-@Builder
+//@Builder
 @Entity
 @Table(name = "member")
 public class MemberEntity {
@@ -104,12 +105,12 @@ public class MemberEntity {
     private List<CommentEntity> commentEntities = new ArrayList<>();
 
 
-    public static MemberEntity toMemberEntity(MemberDto memberDto) {
+    public static MemberEntity toMemberEntity(MemberDto memberDto, PasswordEncoder passwordEncoder) {
 
         MemberEntity memberEntity = new MemberEntity();
 
         memberEntity.mEmail = memberDto.getMEmail();
-        memberEntity.mPw = memberDto.getMPw();
+        memberEntity.mPw = passwordEncoder.encode(memberDto.getMPw());
         memberEntity.mName = memberDto.getMName();
         memberEntity.mZipcode = memberDto.getMZipcode();
         memberEntity.mAddr1 = memberDto.getMAddr1();

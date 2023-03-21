@@ -6,6 +6,7 @@ import org.project2.omwp2.entity.MemberEntity;
 import org.project2.omwp2.entity.ProfileEntity;
 import org.project2.omwp2.member.repository.MemberRepository;
 import org.project2.omwp2.member.repository.ProfileRepository;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -20,6 +21,7 @@ public class MemberService {
 
     private final MemberRepository memberRepository;
     private final ProfileRepository profileRepository;
+    private final PasswordEncoder passwordEncoder;
 
 //    회원가입
     @Transactional
@@ -27,7 +29,7 @@ public class MemberService {
 
         if(memberDto.getProfileImg().isEmpty()){
 //            파일이 없을때
-            Long id = memberRepository.save(MemberEntity.toMemberEntity(memberDto)).getMId();
+            Long id = memberRepository.save(MemberEntity.toMemberEntity(memberDto,passwordEncoder)).getMId();
 
             if (memberRepository.findById(id).isEmpty()){
                 return 0;
@@ -51,7 +53,7 @@ public class MemberService {
             
 //            2. DB에 파일 정보 저장 (회원정보 저장 후, 그 id를 받아서 file entity에도 저장)
 
-            Long id = memberRepository.save(MemberEntity.toMemberEntity(memberDto)).getMId();
+            Long id = memberRepository.save(MemberEntity.toMemberEntity(memberDto,passwordEncoder)).getMId();
             MemberEntity memberEntity = memberRepository.findById(id).get();
 
             Long profileId = profileRepository.save(ProfileEntity.toProfileEntity(memberEntity,originName,saveName)).getProfileId();
