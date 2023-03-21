@@ -1,0 +1,23 @@
+@import url(common/reset.css);
+
+.wrap{
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url(../img/login.jpg) no-repeat 50%/cover;
+
+}
+
+
+.wrap .login{
+  flex: 0 1 400px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  background-color: #ffffff80;
+}

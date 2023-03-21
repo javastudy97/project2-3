@@ -2,6 +2,7 @@ package org.project2.omwp2.entity;
 
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
+import org.project2.omwp2.dto.MemberDto;
 import org.project2.omwp2.member.constant.Role;
 
 import javax.persistence.*;
@@ -14,7 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-//@Builder
+@Builder
 @Entity
 @Table(name = "member")
 public class MemberEntity {
@@ -52,10 +53,6 @@ public class MemberEntity {
     @Column(name = "m_tel", nullable = false)
     private String mTel;
 
-//    계정상태(0: 승인대기- 기본값, 1 : 정상, 2 : 이용정지)
-    @Column(name = "m_status")
-    private int mStatus;
-
 //    자기소개
     @Column(name = "m_intro")
     private String mIntro;
@@ -65,9 +62,9 @@ public class MemberEntity {
     @Column(name = "m_create",updatable = false)
     private LocalDateTime mCreate;
 
-//  관리자 권한 (Y : 관리자, N : 일반회원- 기본값)
+//  권한 - GUEST(승인필요), MEMBER(일반회원), ADMIN(관리자), BLACK(정지된 회원)
     @Enumerated(EnumType.STRING)
-    private Role mAdmin;
+    private Role mRole;
 
 //    회원구분 - MEMBER(일반회원, 기본), MANAGER(매니저), GA(총무), VP(부회장), CP(회장)
     @Column(name = "m_dept",nullable = false)
@@ -107,7 +104,27 @@ public class MemberEntity {
     private List<CommentEntity> commentEntities = new ArrayList<>();
 
 
+    public static MemberEntity toMemberEntity(MemberDto memberDto) {
 
+        MemberEntity memberEntity = new MemberEntity();
 
+        memberEntity.mEmail = memberDto.getMEmail();
+        memberEntity.mPw = memberDto.getMPw();
+        memberEntity.mName = memberDto.getMName();
+        memberEntity.mZipcode = memberDto.getMZipcode();
+        memberEntity.mAddr1 = memberDto.getMAddr1();
+        memberEntity.mAddr2 = memberDto.getMAddr2();
+        memberEntity.mTel = memberDto.getMTel();
+        memberEntity.mIntro = memberDto.getMIntro();
+        memberEntity.mRole = Role.GUEST;
+        memberEntity.mDept = "MEMBER";
+        memberEntity.mPosition = memberDto.getMPosition();
+        if(memberDto.getProfileImg().isEmpty()){
+            memberEntity.mAttach = 0;
+        } else {
+            memberEntity.mAttach = 1;
+        }
 
+        return memberEntity;
+    }
 }
