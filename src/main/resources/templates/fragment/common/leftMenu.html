@@ -17,7 +17,7 @@
                                     <a th:href="@{/member/update}">회원수정</a>
                                 </li>
                                 <li>
-                                    <a href="#">게시글 관리</a>
+                                    <a href="#">작성글 관리</a>
                                 </li>
                             </ul>
                         </li>
@@ -111,6 +111,23 @@
                                 </li>
                                 <li>
                                     <a href="">Naver Mail</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li sec:authorize="hasRole('ADMIN')">
+                            <a href="#">관리자 메뉴</a>
+                            <ul class="sub">
+                                <li>
+                                    <a href="#">회원관리</a>
+                                </li>
+                                <li>
+                                    <a href="#">공지사항관리</a>
+                                </li>
+                                <li>
+                                    <a href="#">게시판관리</a>
+                                </li>
+                                <li>
+                                    <a href="#">공식일정관리</a>
                                 </li>
                             </ul>
                         </li>
