@@ -1,0 +1,48 @@
+@import url(../common/header.css);
+@import url(../common/leftMenu.css);
+@import url(../common/reset.css);
+
+
+
+
+#wrap{
+  width: 100%;
+  /* border: 5px solid #000000; */
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  /* gap: 5px; */
+}
+
+.right-menu{
+  flex: 1;
+  min-height: 120vh;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  border-top: 1px solid #000000;
+  /* border: 1px solid #ffff00; */
+  padding: 30px;
+}
+
+.right-menu .right-con{
+  /* border: 1px solid purple; */
+  height: 800px;
+  padding: 100px 100px;
+  display: block;
+}
+
+
+
+
+
+#wrap .right-menu .right-con .MyAttendance .paging{
+ box-shadow: 1px 2px 5px #555555;
+ padding: 5px;
+ box-sizing: border-box;
+}
+
+
+#wrap .right-menu .right-con .MyAttendance .paging ul{
+  display: flex;
+  justify-content: center;
+}
