@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/calendar/test.css}">
+</head>
+<body>
+<div th:replace="~{calendar/common/header :: headerFragment}"></div>
+
+<div id="wrap">
+
+<div th:replace="~{calendar/common/leftMenu :: leftMenuFragment}"></div>
+
+<div class="right-menu">
+
+    <div class="right-con">
+
+        <div class="attendance"><a href="/attend/attend">근태 페이지</a></div>
+
+        <div class="MemberSchedule"><a href="/memberSchedule/mySchedulePlus">개인 일정 추가</a></div>
+        <div class="MemberSchedule"><a href="/memberSchedule/myScheduleView">개인 일정 조회</a></div>
+
+        <div class="TeamSchedule"><a href="/teamSchedule/teamSchedulePlus">팀 일정 추가</a></div>
+        <div class="TeamSchedule"><a href="/teamSchedule/teamScheduleView">팀 일정 조회</a></div>
+
+        <div class="AdminSchedule"><a href="/memberSchedule/myScheduleList">개인 일정 관리</a></div>
+        <div class="AdminSchedule"><a href="/teamSchedule/myScheduleList">팀 일정 관리</a></div>
+
+    </div>
+
+</div>
+</div>
+
+</body>
+</html>
