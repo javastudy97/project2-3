@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>결재 리스트</title>
+    <link rel="stylesheet" th:href="@{/css/approval/listDetail.css}">
+</head>
+
+<body>
+    <div th:replace="~{fragment/common/adminHeader :: adminHeaderFragment}"></div>
+    <div class="container">
+        <div th:replace="~{fragment/common/leftMenu :: leftMenuFragment}"></div>
+        <div class="approvalList">
+            <h2>결재문서 상세</h2>
+            <div class="conform">
+                <h3>결재선</h3>
+                <div class="conformMain">
+                    <div class="sub1">
+                        <tr>
+                            <th>
+                                <div>결재</div>
+                            </th>
+                        </tr>
+                    </div>
+                    <div class="sub2">
+                        <tr>
+                            <th>
+                                <div class="sub2-1">결재</div>
+                                <div class="sub2-2">결재자 이름</div>
+                            </th>
+                        </tr>
+                    </div>
+                    <div class="sub3">
+                        <tr>
+                            <th>
+                                <div class="sub3-1"><label for="">결재자: 결재자 이름</label> <br><br></div>
+                                <div class="sub3-2"></div><textarea name="appContent" id="appContent" cols="40" rows="7"
+                                    placeholder="결재의견을 입력할 수 있습니다."></textarea>
+                    </div>
+                    </th>
+                    </tr>
+                </div>
+            </div>
+        </div>
+        <div class="approvalListDetail">
+            <ul>
+                <li>
+                    <span>구분 :</span>
+                    <span th:text="${approval.appDivision}"></span>
+                </li>
+                <li>
+                    <!-- <span>제목 :</span> -->
+                    <span th:text="${approval.appTitle}"></span>
+                </li>
+                <li>
+                    <span>내용 :</span>
+                    <span th:text="${approval.appContent}"></span>
+                </li>
+                <li>
+                    <span>첨부파일</span>
+                    <div th:if="${approval.appAttach==1}"></div>
+                    <a href="C:/saveFiles/" download="1b18096a-0626-4c81-9438-e37d72d5f6d9_프로젝트2차_DB-4.xlsx">다운로드</a>
+                    <!-- <a href="javascript:;" onclick="downFile(this)">다운로드</a>
+
+                        <script type="text/javascript">
+                        function downFile(obj){
+                        $(obj).attr('href' , 'C:/saveFiles/');
+                        $(obj).attr('download' , '1b18096a-0626-4c81-9438-e37d72d5f6d9_프로젝트2차_DB-4');
+                        }
+                        </script> -->
+                    <div th:if="${approval.appAttach==0}"></div>
+                </li>
+                <li>
+                    <span>등록일 :</span>
+                    <span th:text="*{#temporals.format(approval.appCreate, 'yyyy년MM월dd일 HH시mm분ss초')}"></span>
+                </li>
+                <!--                    <li>-->
+                <!--                        <span>결재상태 :</span>-->
+                <!--                        <span th:text="${approval.app_status}"></span>-->
+                <!--                    </li>-->
+                <!--                    <li>-->
+                <!--                        <span>반려사유 :</span>-->
+                <!--                        <span th:text="${approval.app_reason}"></span>-->
+                <!--                    </li>-->
+            </ul>
+        </div>
+    </div>
+    </div>
+</body>
+
+</html>
