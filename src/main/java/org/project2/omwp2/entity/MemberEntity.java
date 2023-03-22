@@ -27,7 +27,7 @@ public class MemberEntity {
     private Long mId;
 
 //    이메일
-    @Column(name = "m_email",nullable = false)
+    @Column(name = "m_email",nullable = false, unique = true)
     private String mEmail;
 
 //    비밀번호
@@ -105,6 +105,7 @@ public class MemberEntity {
     private List<CommentEntity> commentEntities = new ArrayList<>();
 
 
+//    회원가입용
     public static MemberEntity toMemberEntity(MemberDto memberDto, PasswordEncoder passwordEncoder) {
 
         MemberEntity memberEntity = new MemberEntity();
@@ -128,4 +129,27 @@ public class MemberEntity {
 
         return memberEntity;
     }
+
+//    회원수정용
+public static MemberEntity toMemberEntity2(MemberDto memberDto, PasswordEncoder passwordEncoder) {
+
+    MemberEntity memberEntity = new MemberEntity();
+
+    memberEntity.mId = memberDto.getMId();
+    memberEntity.mEmail = memberDto.getMEmail();
+    memberEntity.mPw = passwordEncoder.encode(memberDto.getMPw());
+    memberEntity.mName = memberDto.getMName();
+    memberEntity.mZipcode = memberDto.getMZipcode();
+    memberEntity.mAddr1 = memberDto.getMAddr1();
+    memberEntity.mAddr2 = memberDto.getMAddr2();
+    memberEntity.mTel = memberDto.getMTel();
+    memberEntity.mIntro = memberDto.getMIntro();
+    memberEntity.mRole = memberDto.getMRole();
+    memberEntity.mDept = memberDto.getMDept();
+    memberEntity.mCreate = memberDto.getMCreate();
+    memberEntity.mPosition = memberDto.getMPosition();
+    memberEntity.mAttach = 1;
+
+    return memberEntity;
+}
 }

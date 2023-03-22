@@ -18,6 +18,36 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 10px;
   padding: 10px;
   background-color: #ffffff80;
+}
+
+.wrap .login form{
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.wrap .login form .login-form{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+}
+
+.wrap .login form .login-form .submit{
+  width: 52px;
+  height: 52px;
+}
+
+.wrap .login form .login-form>ul .s1{
+  padding-top: 10px;
+}
+
+.wrap .login form .login-form>ul>li{
+display: flex;
+justify-content: space-between;
+gap: 10px;
 }
