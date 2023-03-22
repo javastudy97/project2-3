@@ -21,3 +21,9 @@
   padding: 10px;
   background-color: #ffffff80;
 }
+
+.error{
+  font-size: 12px;
+  color: red;
+  font-weight: bold;
+}

@@ -5,11 +5,13 @@ import org.project2.omwp2.dto.MemberDto;
 import org.project2.omwp2.member.service.MemberService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.validation.Valid;
 import java.io.IOException;
 
 @Controller
@@ -31,7 +33,11 @@ public class MainController {
 
 //    회원가입
     @PostMapping("/joinOk")
-    public String joinOk(@RequestParam("profileImg") MultipartFile files, MemberDto memberDto) throws IOException {
+    public String joinOk(@Valid MemberDto memberDto, BindingResult bindingResult) throws IOException {
+
+        if(bindingResult.hasErrors()){
+            return "join";
+        }
 
         int rs = memberService.memberJoin(memberDto);
 

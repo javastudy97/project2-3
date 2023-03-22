@@ -3,7 +3,9 @@
   <link rel="stylesheet" href="/static/css/common/adminHeader.css">
 <div class="header" th:fragment="adminHeaderFragment">
   <div class="logo">
-    <img th:src="@{#}" alt="logo"> 
+    <a th:href="@{/}">
+      <img th:src="@{#}" alt="logo"> 
+    </a>
   </div>
     <div class="gnb">
       <ul>

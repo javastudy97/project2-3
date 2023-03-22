@@ -31,7 +31,7 @@ public class WebSecurityConfig{
         http.authorizeHttpRequests()
                 .antMatchers("/login","/join").permitAll()  // 모든 유저 접근 가능
                 .antMatchers("/css/**", "/js/**", "/img/**").permitAll()
-                .antMatchers("/","index").hasAnyRole("ADMIN","MEMBER")
+                .antMatchers("/","/index").hasAnyRole("ADMIN","MEMBER")
                 .antMatchers("/admin/**").hasAnyRole("ADMIN")
                 .antMatchers("/member/**").hasAnyRole("ADMIN","MEMBER")
                 .antMatchers("/wish/**").hasAnyRole("ADMIN","MEMBER")
