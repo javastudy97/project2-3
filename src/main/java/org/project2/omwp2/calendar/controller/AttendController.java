@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -20,8 +21,7 @@ import java.util.List;
 public class AttendController {
 
     private final AttendService attendService;
-
-    // 수정
+    
     @GetMapping("")
     public String test(){
 
@@ -31,16 +31,15 @@ public class AttendController {
 
     // 근태 페이지
     @GetMapping("/attend")
-    public String attend(Model model){
+    public String attend(Principal principal, Model model){
 
         // 수정
-        
-        //세큐리티 m_id 가져와서
-        // 쿼리문에 추가하기
-        Long id = 1L;
-        
-        int check = attendService.CheckAttend(id);
-        
+
+        String name = principal.getName();
+
+        int check = attendService.CheckAttend(name);
+
+
         //1이면 출근보이기, 0이면 퇴근 보이기
         model.addAttribute("check", check);
 
@@ -51,12 +50,13 @@ public class AttendController {
 
     // 회원 출석(insert)
     @GetMapping("/goWork")
-    public String goWork(){
+    public String goWork(Principal principal){
 
         // 수정
+        
+        String name = principal.getName();
 
-        //세큐리티 m_id 가져와서
-        Long id = 1L;
+        Long id = attendService.bringLongid(name);
 
         AttendDto attendDto = new AttendDto();
 
@@ -70,11 +70,13 @@ public class AttendController {
 
     // 회원 퇴근(수정)
     @GetMapping("/goHome")
-    public String goHome(){
+    public String goHome(Principal principal){
 
         // 수정
-        //세큐리티 m_id 가져와서
-        Long id = 1L;
+
+        String name = principal.getName();
+
+        Long id = attendService.bringLongid(name);
 
         LocalDateTime goHome = LocalDateTime.now();
 
@@ -85,10 +87,12 @@ public class AttendController {
 
     // 회원 근태 조회
     @GetMapping("/myAttendanceList")
-    public String myAttend(Model model){
+    public String myAttend(Principal principal,Model model){
 
         // 수정
-        Long userId = 1L;
+        String name = principal.getName();
+
+        Long userId = attendService.bringLongid(name);
 
         List<AttendDto> attendDtoList = attendService.attendListById(userId);
 
@@ -102,12 +106,14 @@ public class AttendController {
     // 회원 근태 조회 페이징
     @GetMapping("/myAttendancePaging")
     public String myAttendance(@PageableDefault(page = 0,size = 4,sort = "attend_id",
-            direction = Sort.Direction.DESC)Pageable pageable, Model model,
+            direction = Sort.Direction.DESC)Pageable pageable, Model model, Principal principal,
             @RequestParam(required = false, defaultValue = "") Long id ){
 
-        //security 유저 아이디값
+        //수정
 
-        id = 1L;
+        String name = principal.getName();
+
+        id = attendService.bringLongid(name);
 
         Page<AttendDto> attendDtoPage = attendService.attendListSearchPaging(pageable, id);
 

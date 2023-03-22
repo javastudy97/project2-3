@@ -5,6 +5,7 @@ import org.project2.omwp2.calendar.repository.MemberScheduleRepository;
 import org.project2.omwp2.dto.MemberScheduleDto;
 import org.project2.omwp2.entity.MemberEntity;
 import org.project2.omwp2.entity.MemberScheduleEntity;
+import org.project2.omwp2.member.repository.MemberRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -20,16 +21,29 @@ public class MemberScheduleService {
 
     private final MemberScheduleRepository memberScheduleRepository;
 
+    private final MemberRepository memberRepository;
+
+    // 회원 이메일로 아이디값 찾아오기
+    public Long bringLongid(String name) {
+
+        Optional<MemberEntity> optionalMemberEntity = memberRepository.findBymEmail(name);
+
+        MemberEntity memberEntity = optionalMemberEntity.get();
+
+        Long id = memberEntity.getMId();
+
+        return id;
+    }
 
     // 개인 스케줄 추가
     @Transactional
-    public void insertMySchedule(MemberScheduleDto memberScheduleDto,Long mId) {
+    public void insertMySchedule(MemberScheduleDto memberScheduleDto,Long id) {
 
         MemberScheduleEntity memberScheduleEntity = MemberScheduleEntity.toMemberScheduleEntity(memberScheduleDto);
 
         MemberEntity memberEntity = new MemberEntity();
 
-        memberEntity.setMId(mId);
+        memberEntity.setMId(id);
 
         memberScheduleEntity.setMemberEntity(memberEntity);
 
@@ -38,11 +52,11 @@ public class MemberScheduleService {
     }
 
     // 개인 스케줄 조회
-    public List<MemberScheduleDto> selectMemberSchedule(Long userId) {
+    public List<MemberScheduleDto> selectMemberSchedule(Long id) {
 
         List<MemberScheduleDto> memberScheduleDtoList = new ArrayList<>();
 
-        List<MemberScheduleEntity> memberScheduleEntityList = memberScheduleRepository.findAllByMId(userId);
+        List<MemberScheduleEntity> memberScheduleEntityList = memberScheduleRepository.findAllByMId(id);
 
         for(MemberScheduleEntity memberScheduleEntity : memberScheduleEntityList){
 
@@ -114,9 +128,6 @@ public class MemberScheduleService {
         return memberScheduleDto;
 
     }
-
-
-
 
 
 

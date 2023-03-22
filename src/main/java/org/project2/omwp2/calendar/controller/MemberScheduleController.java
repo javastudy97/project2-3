@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -22,7 +23,7 @@ public class MemberScheduleController {
 
     //개인 일정 추가
     @GetMapping("/mySchedulePlus")
-    public String mySchedulePlus(){
+    public String mySchedulePlus(Principal principal){
         
         //수정
         //풀캘린더 api로 받아오기
@@ -31,7 +32,10 @@ public class MemberScheduleController {
         LocalDateTime scheduleStart = LocalDateTime.now();
         LocalDateTime scheduleEnd = LocalDateTime.now();
         String scheduleDone = "미완료";
-        Long mId = 1L;
+
+        String name = principal.getName();
+
+        Long id = memberScheduleService.bringLongid(name);
 
         MemberScheduleDto memberScheduleDto = new MemberScheduleDto();
 
@@ -40,7 +44,7 @@ public class MemberScheduleController {
         memberScheduleDto.setScheduleEnd(scheduleEnd);
         memberScheduleDto.setScheduleDone(scheduleDone);
 
-        memberScheduleService.insertMySchedule(memberScheduleDto,mId);
+        memberScheduleService.insertMySchedule(memberScheduleDto,id);
 
         return "redirect:/memberSchedule/myScheduleView";
 
@@ -49,12 +53,14 @@ public class MemberScheduleController {
 
     // 개인 일정 조회
     @GetMapping("/myScheduleView")
-    public String MyScheduleView(Model model){
+    public String MyScheduleView(Principal principal, Model model){
         
-        // 수정 security 값 가져오기
-        Long userId = 1L;
+        // 수정
+        String name = principal.getName();
 
-        List<MemberScheduleDto> memberScheduleDtoList = memberScheduleService.selectMemberSchedule(userId);
+        Long id = memberScheduleService.bringLongid(name);
+
+        List<MemberScheduleDto> memberScheduleDtoList = memberScheduleService.selectMemberSchedule(id);
 
         model.addAttribute("memberScheduleDtoList", memberScheduleDtoList);
 
@@ -141,10 +147,12 @@ public class MemberScheduleController {
 
 //     어드민 개인 일괄 일정 보기(페이징)
     @GetMapping("/myScheduleList")
-    public String myScheduleList(@PageableDefault(page = 0, size = 4) Pageable pageable, Model model,
+    public String myScheduleList(@PageableDefault(page = 0, size = 4) Pageable pageable, Model model, Principal principal,
                                  @RequestParam(required = false,defaultValue = "") Long id ){
 
-        id = 1L;
+        String name = principal.getName();
+
+        id = memberScheduleService.bringLongid(name);
 
         Page<MemberScheduleDto> memberScheduleDtoPage = memberScheduleService.memberScheduleList(pageable);
 

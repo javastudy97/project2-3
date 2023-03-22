@@ -6,13 +6,13 @@
     <link rel="stylesheet" th:href="@{/css/calendar/teamSchedule/teamScheduleCheck.css}">
 </head>
 <body>
-<div th:replace="~{calendar/common/header :: headerFragment}"></div>
-
+<div th:replace="~{fragment/common/adminHeader :: adminHeaderFragment}"></div>
 <div id="wrap">
-
-    <div th:replace="~{calendar/common/leftMenu :: leftMenuFragment}"></div>
+    <div th:replace="~{fragment/common/leftMenu :: leftMenuFragment}"></div>
 
 <div class="right-menu">
+    <div class="con">
+        <h2>index</h2>
 
     <div class="right-con">
 
@@ -58,6 +58,6 @@
 
 
 
-
+</div>
 </body>
 </html>

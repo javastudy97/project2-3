@@ -12,7 +12,7 @@ import java.util.List;
 public interface MemberScheduleRepository extends JpaRepository<MemberScheduleEntity, Long> {
 
     @Query(value = "select * from member_schedule where m_id=:id", nativeQuery = true)
-    List<MemberScheduleEntity> findAllByMId(@Param("id") Long userId);
+    List<MemberScheduleEntity> findAllByMId(@Param("id") Long id);
 
 
     // 관리자 일정 조회
