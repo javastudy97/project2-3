@@ -13,7 +13,7 @@ public interface TeamScheduleRepository extends JpaRepository<TeamScheduleEntity
 
 
     @Query(value = "select * from team_schedule where m_id=:id",nativeQuery = true)
-    List<TeamScheduleEntity> findAllByMId(@Param("id") Long userId);
+    List<TeamScheduleEntity> findAllByMId(@Param("id") Long id);
 
 
 

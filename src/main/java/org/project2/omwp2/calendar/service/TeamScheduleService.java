@@ -5,6 +5,7 @@ import org.project2.omwp2.calendar.repository.TeamScheduleRepository;
 import org.project2.omwp2.dto.TeamScheduleDto;
 import org.project2.omwp2.entity.MemberEntity;
 import org.project2.omwp2.entity.TeamScheduleEntity;
+import org.project2.omwp2.member.repository.MemberRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -20,16 +21,31 @@ public class TeamScheduleService {
 
     private final TeamScheduleRepository teamScheduleRepository;
 
+    private final MemberRepository memberRepository;
+
+    // 회원 이메일로 아이디값 찾아오기
+    public Long bringLongid(String name) {
+
+        Optional<MemberEntity> optionalMemberEntity = memberRepository.findBymEmail(name);
+
+        MemberEntity memberEntity = optionalMemberEntity.get();
+
+        Long id = memberEntity.getMId();
+
+        return id;
+    }
+
+
 
     // 팀 스케줄 추가
     @Transactional
-    public void insertTeamSchedule(TeamScheduleDto teamScheduleDto, Long mId) {
+    public void insertTeamSchedule(TeamScheduleDto teamScheduleDto, Long id) {
 
         TeamScheduleEntity teamScheduleEntity = TeamScheduleEntity.toTeamScheduleEntity(teamScheduleDto);
 
         MemberEntity memberEntity = new MemberEntity();
 
-        memberEntity.setMId(mId);
+        memberEntity.setMId(id);
 
         teamScheduleEntity.setMemberEntity(memberEntity);
 
@@ -39,11 +55,11 @@ public class TeamScheduleService {
 
 
     //개인 일정 조회
-    public List<TeamScheduleDto> selectTeamSchedule(Long userId) {
+    public List<TeamScheduleDto> selectTeamSchedule(Long id) {
 
         List<TeamScheduleDto> teamScheduleDtoList = new ArrayList<>();
 
-        List<TeamScheduleEntity> teamScheduleEntityList = teamScheduleRepository.findAllByMId(userId);
+        List<TeamScheduleEntity> teamScheduleEntityList = teamScheduleRepository.findAllByMId(id);
 
         for(TeamScheduleEntity teamScheduleEntity : teamScheduleEntityList){
 
@@ -100,4 +116,6 @@ public class TeamScheduleService {
 
 
     }
+
+
 }

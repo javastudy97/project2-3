@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -23,7 +24,7 @@ public class TeamScheduleController {
 
     //팀 일정 추가
     @GetMapping("/teamSchedulePlus")
-    public String teamSchedulePlus(){
+    public String teamSchedulePlus(Principal principal){
 
         //수정
         //풀캘린더 api로 받아오기
@@ -32,7 +33,10 @@ public class TeamScheduleController {
         LocalDateTime scheduleStart = LocalDateTime.now();
         LocalDateTime scheduleEnd = LocalDateTime.now();
         String scheduleDone = "미완료";
-        Long mId = 1L;
+
+        String name = principal.getName();
+
+        Long id = teamScheduleService.bringLongid(name);
 
         TeamScheduleDto teamScheduleDto = new TeamScheduleDto();
 
@@ -41,7 +45,7 @@ public class TeamScheduleController {
         teamScheduleDto.setScheduleEnd(scheduleEnd);
         teamScheduleDto.setScheduleDone(scheduleDone);
 
-        teamScheduleService.insertTeamSchedule(teamScheduleDto,mId);
+        teamScheduleService.insertTeamSchedule(teamScheduleDto,id);
 
         return "redirect:/teamSchedule/teamScheduleView";
 
@@ -50,12 +54,14 @@ public class TeamScheduleController {
     
     //팀 일정 조회
     @GetMapping("/teamScheduleView")
-    public String teamScheduleView(Model model){
+    public String teamScheduleView(Principal principal, Model model){
 
         // 수정 security 값 가져오기
-        Long userId = 1L;
+        String name = principal.getName();
 
-        List<TeamScheduleDto> teamScheduleDtoList = teamScheduleService.selectTeamSchedule(userId);
+        Long id = teamScheduleService.bringLongid(name);
+
+        List<TeamScheduleDto> teamScheduleDtoList = teamScheduleService.selectTeamSchedule(id);
 
         model.addAttribute("teamScheduleDtoList",teamScheduleDtoList);
 
@@ -104,10 +110,12 @@ public class TeamScheduleController {
 
     //관리자 팀 일정 리스트
     @GetMapping("/myScheduleList")
-    public String teamScheduleList(@PageableDefault(page = 0, size = 4) Pageable pageable, Model model,
+    public String teamScheduleList(@PageableDefault(page = 0, size = 4) Pageable pageable, Model model, Principal principal,
                                    @RequestParam(required = false,defaultValue = "") Long id ){
 
-        id = 1L;
+        String name = principal.getName();
+
+        id = teamScheduleService.bringLongid(name);
 
         Page<TeamScheduleDto> teamScheduleDtoPage = teamScheduleService.teamScheduleList(pageable);
 

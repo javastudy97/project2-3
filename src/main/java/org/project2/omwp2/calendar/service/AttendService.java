@@ -5,6 +5,7 @@ import org.project2.omwp2.calendar.repository.AttendRepository;
 import org.project2.omwp2.dto.AttendDto;
 import org.project2.omwp2.entity.AttendEntity;
 import org.project2.omwp2.entity.MemberEntity;
+import org.project2.omwp2.member.repository.MemberRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -21,9 +22,29 @@ public class AttendService {
 
     private final AttendRepository attendRepository;
 
+    private final MemberRepository memberRepository;
+
+
+    // 회원 이메일로 아이디값 찾아오기
+    public Long bringLongid(String name) {
+
+        Optional<MemberEntity> optionalMemberEntity = memberRepository.findBymEmail(name);
+
+        MemberEntity memberEntity = optionalMemberEntity.get();
+
+        Long id = memberEntity.getMId();
+
+        return id;
+    }
 
     //출퇴근 찍기
-    public int CheckAttend(Long id) {
+    public int CheckAttend(String name) {
+
+        Optional<MemberEntity> optionalMemberEntity = memberRepository.findBymEmail(name);
+
+        MemberEntity memberEntity = optionalMemberEntity.get();
+
+        Long id = memberEntity.getMId();
 
         AttendEntity attendEntity = attendRepository.findByLastLine(id);
 
@@ -102,6 +123,7 @@ public class AttendService {
 
         return attendDtoPage;
     }
+
 
 
 }
