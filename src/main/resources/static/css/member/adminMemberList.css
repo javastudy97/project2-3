@@ -1,0 +1,96 @@
+@import url(/css/common/reset.css);
+@import url(/css/common/adminHeader.css);
+@import url(/css/common/leftMenu.css);
+
+#wrap{
+  width: 100%;
+  /* border: 5px solid #000000; */
+  padding-top: 50px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  /* gap: 5px; */
+}
+
+.right-menu{
+  flex: 1;
+  height: auto;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  /* border-top: 1px solid #000000; */
+  /* border: 1px solid #ffff00; */
+  padding: 30px;
+  padding-left: 330px;
+}
+
+.right-menu .con{
+  box-shadow: 5px 5px 5px 1px grey;
+}
+
+h2{
+  background-color: #000000;
+  color: #ffffff;
+  padding: 5px;
+}
+
+.right-menu .right-con{
+  height: auto;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+/* 회원목록 */
+
+.right-menu .right-con .adminMemberList{
+  display: grid;
+  grid-template-columns: 300px 300px 300px 300px;
+  grid-template-rows: 380px;
+  grid-auto-rows: minmax(380px,auto);
+  gap: 10px 10px;
+
+}
+
+.right-menu .right-con .adminMemberList .memberInfo{
+  border: 1px solid red;
+  padding: 5px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.right-menu .right-con .adminMemberList .memberInfo .top-menu{
+  width: inherit;
+  height: 300px;
+}
+
+.right-menu .right-con .adminMemberList .memberInfo .top-menu img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover; 
+}
+
+/* 검색 및 페이징 */
+
+.tools{
+  width: 1230px;
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid red;
+}
+
+.tools .page{
+  padding: 5px 10px;
+  box-sizing: border-box;
+}
+
+.tools .page>ul{
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+

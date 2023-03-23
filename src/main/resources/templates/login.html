@@ -28,6 +28,11 @@
                     <button><a th:href="@{/join}">회원가입</a></button>
                     <button><a th:href="@{#}">이메일찾기</a></button>
                 </div>
+                <div class="oauth">
+                    <a th:href="@{/oauth2/authorization/google}"><img th:src=@{/img/google.png} alt="google" class="google-img" style="border-radius: 20px;"></a>
+                    <a th:href="@{/oauth2/authorization/naver}"><img th:src=@{/img/naver.png} alt="naver" class="naver-img"></a>
+                    <a th:href="@{/oauth2/authorization/kakao}"><img th:src=@{/img/kakao.png} alt="kakao" class="kakao-img"></a>
+                </div>
             </form>
         </div>
     </div>

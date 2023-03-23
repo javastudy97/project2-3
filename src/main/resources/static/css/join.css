@@ -19,7 +19,9 @@
   justify-content: center;
   align-items: center;
   padding: 10px;
-  background-color: #ffffff80;
+  background-color: #00000080;
+  text-shadow: 1px 1px 2px black;
+  color: white;
 }
 
 .error{

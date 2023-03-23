@@ -49,9 +49,9 @@ public class WebSecurityConfig{
 //              .failureForwardUrl("/login?login_error=1")    // 실패시 로그인페이지로 다시 이동
               .failureUrl("/login")
                 .defaultSuccessUrl("/index", true)   // 성공시 URL
-//                .and()
-//                .oauth2Login()
-//                .loginPage("/login")
+                .and()
+                .oauth2Login()
+                .loginPage("/login")
         ;
 
 

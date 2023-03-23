@@ -111,5 +111,13 @@
   gap: 5px;
 }
 
+.btn{
+  padding-top: 20px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
 
 

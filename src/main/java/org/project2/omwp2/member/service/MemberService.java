@@ -6,6 +6,8 @@ import org.project2.omwp2.entity.MemberEntity;
 import org.project2.omwp2.entity.ProfileEntity;
 import org.project2.omwp2.member.repository.MemberRepository;
 import org.project2.omwp2.member.repository.ProfileRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -137,5 +139,13 @@ public class MemberService {
             System.out.println("member delete fail !");
             return 0;
         }
+    }
+
+    public Page<MemberDto> getMemberList(Pageable pageable) {
+
+        Page<MemberEntity> memberEntityPage = memberRepository.findAll(pageable);
+
+        return memberEntityPage.map(MemberDto::toMemberDto);
+
     }
 }

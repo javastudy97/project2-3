@@ -118,7 +118,7 @@ public class MemberEntity {
         memberEntity.mAddr2 = memberDto.getMAddr2();
         memberEntity.mTel = memberDto.getMTel();
         memberEntity.mIntro = memberDto.getMIntro();
-        memberEntity.mRole = Role.GUEST;
+        memberEntity.mRole = Role.MEMBER;
         memberEntity.mDept = "MEMBER";
         memberEntity.mPosition = memberDto.getMPosition();
         if(memberDto.getProfileImg().isEmpty()){
