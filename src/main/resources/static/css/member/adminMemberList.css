@@ -47,8 +47,8 @@ h2{
 .right-menu .right-con .adminMemberList{
   display: grid;
   grid-template-columns: 300px 300px 300px 300px;
-  grid-template-rows: 380px;
-  grid-auto-rows: minmax(380px,auto);
+  grid-template-rows: auto;
+  grid-auto-rows: minmax(auto,auto);
   gap: 10px 10px;
 
 }
@@ -64,13 +64,24 @@ h2{
 
 .right-menu .right-con .adminMemberList .memberInfo .top-menu{
   width: inherit;
-  height: 300px;
+  height: 280px;
 }
 
 .right-menu .right-con .adminMemberList .memberInfo .top-menu img{
   width: 100%;
   height: 100%;
   object-fit: cover; 
+}
+
+.right-menu .right-con .adminMemberList .memberInfo .bottom-menu>ul>li{
+  padding: 3px 0;
+}
+
+.right-menu .right-con .adminMemberList .memberInfo label{
+  background-color: black;
+  color: white;
+  font-weight: bold;
+  padding: 0 3px;
 }
 
 /* 검색 및 페이징 */
@@ -92,5 +103,4 @@ h2{
   justify-content: center;
   gap: 10px;
 }
-
 

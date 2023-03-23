@@ -27,10 +27,23 @@
                                         </th:block>
                                     </div>
                                     <div class="bottom-menu">
-                                        <h3 th:text="${member.mName}"></h3>
-                                        <span th:text="${member.mPosition}"></span>
-                                        <span th:text="${member.mEmail}"></span>
-                                        <span th:text="${member.mTel}"></span>
+                                        <ul>
+                                            <li>
+                                                <h3 th:text="${member.mName}"></h3>
+                                            </li>
+                                            <li>
+                                                <label for="mPosition">포지션</label>
+                                                <span th:text="${member.mPosition}"></span>
+                                            </li>
+                                            <li>
+                                                <label for="mEmail">이메일</label>
+                                                <span th:text="${member.mEmail}"></span>
+                                            </li>
+                                            <li>
+                                                <label for="mTel">연락처</label>
+                                                <span th:text="${member.mTel}"></span>
+                                            </li>
+                                        </ul>
                                     </div>
                                 </div>
                             </th:block>

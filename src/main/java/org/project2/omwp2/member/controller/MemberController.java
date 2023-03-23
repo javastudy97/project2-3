@@ -9,8 +9,10 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.io.IOException;
 import java.security.Principal;
 
@@ -51,7 +53,20 @@ public class MemberController {
 
 //    회원수정 실행
     @PostMapping("/updateOk")
-    public String memberUpdateDo(@ModelAttribute MemberDto memberDto) throws IOException {
+    public String memberUpdateDo(@Valid MemberDto memberDto, BindingResult bindingResult,
+                                 Principal principal, Model model) throws IOException {
+
+        if(bindingResult.hasErrors()){
+//            유효성 검사 에러 발생시
+            String mEmail = principal.getName();
+
+            MemberDto memberDto2 = memberService.getMemberDetail(mEmail);
+            memberDto.setMAttach(1);
+            memberDto.setSaveName(memberDto2.getSaveName());
+            model.addAttribute("memberDto",memberDto);
+
+            return "member/memberUpdate";
+        }
 
         int rs = memberService.memberUpdate(memberDto);
 

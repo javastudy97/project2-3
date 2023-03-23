@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>memberUpdate</title>
+    <script th:src="@{/js/telCheck.js}" defer></script>
     <link rel="stylesheet" th:href="@{/css/member/memberUpdate.css}">
 </head>
 
@@ -34,11 +35,17 @@
                                         <ul>
                                             <li>
                                                 <label th:for="mEmail">Email</label>
-                                                <input type="text" name="mEmail" th:value="${memberDto.mEmail}">
+                                                <div class="values">
+                                                    <input type="text" th:field="*{mEmail}" th:value="${memberDto.mEmail}">
+                                                    <p th:if="${#fields.hasErrors('mEmail')}" th:errorclass="error" th:errors="*{mEmail}"></p>
+                                                </div>
                                             </li>
                                             <li>
                                                 <label th:for="mPw">Password</label>
-                                                <input type="password" name="mPw">
+                                                <div class="values">
+                                                    <input type="password" th:field="*{mPw}" placeholder="변경할 비밀번호 입력">
+                                                    <p th:if="${#fields.hasErrors('mPw')}" th:errorclass="error" th:errors="*{mPw}"></p>
+                                                </div>
                                             </li>
                                             <li>
                                                 <label th:for="mName">Name</label>
@@ -46,7 +53,10 @@
                                             </li>
                                             <li>
                                                 <label th:for="mTel">Tel</label>
-                                                <input type="text" name="mTel" th:value="${memberDto.mTel}">
+                                                <div class="values">
+                                                    <input type="text" th:field="*{mTel}" maxlength="13" oninput="autoHyphen(this)" th:value="${memberDto.mTel}">
+                                                    <p th:if="${#fields.hasErrors('mTel')}" th:errorclass="error" th:errors="*{mTel}"></p>
+                                                </div>
                                             </li>
                                             <li>
                                                 <label>Address</label>
