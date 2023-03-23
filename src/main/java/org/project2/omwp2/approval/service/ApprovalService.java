@@ -27,6 +27,8 @@ public class ApprovalService {
     // 결재문서 파일 업로드시
     private final DocumentRepository documentRepository;
 
+
+
     // 결재문서 작성
     @Transactional
     public void insertApproval(ApprovalDto approvalDto) throws IOException{
@@ -63,10 +65,9 @@ public class ApprovalService {
 
             DocumentEntity documentEntity = DocumentEntity.toDocumentEntity(approvalEntity2,originalFilename, newFilename);
             documentRepository.save(documentEntity); // 파일 저장
-
-            System.out.println("확인");
         }
     }
+
 
     // 결재문서 목록
     public List<ApprovalDto> approvalList(){
@@ -91,4 +92,23 @@ public class ApprovalService {
             return null;
         }
     }
+    
+    // 결재서류 수정
+    @Transactional
+    public void updateApproval(ApprovalDto approvalDto)throws IOException{
+
+        if (approvalDto.getAppContainer().isEmpty()){
+            ApprovalEntity approvalEntity = ApprovalEntity.toNoUpdateApprovalEntity(approvalDto);
+            approvalRepository.save(approvalEntity);
+        }else {
+            ApprovalEntity approvalEntity = ApprovalEntity.toYesUpdateApprovalEntity(approvalDto);
+            approvalRepository.save(approvalEntity);
+        }
+    }
+
+    // 결재서류 삭제
+    @Transactional
+    public void deleteApproval(Long appId){ approvalRepository.deleteById(appId);
+    }
+
 }

@@ -27,63 +27,89 @@
                         <tr>
                             <th>
                                 <div class="sub2-1">결재</div>
-                                <div class="sub2-2">결재자 이름</div>
+                                <div class="sub2-2">반려/승인 도장img</div>
+                                <div class="sub2-3">결재자 이름</div>
                             </th>
                         </tr>
                     </div>
                     <div class="sub3">
                         <tr>
                             <th>
-                                <div class="sub3-1"><label for="">결재자: 결재자 이름</label> <br><br></div>
-                                <div class="sub3-2"></div><textarea name="appContent" id="appContent" cols="40" rows="7"
-                                    placeholder="결재의견을 입력할 수 있습니다."></textarea>
+                                <div class="sub3-1"><label for="">결재자img : 결재자 이름</label> <br><br></div>
+                                <div class="sub3-2"><textarea name="appContent" id="appContent" cols="40" rows="5"
+                                        placeholder="결재의견을 입력할 수 있습니다."></textarea></div>
+                                <div class="sub3-3">
+                                    <button>반려</button>
+                                    <button>승인</button>
+                                </div>
+                            </th>
+                        </tr>
                     </div>
-                    </th>
-                    </tr>
                 </div>
             </div>
-        </div>
-        <div class="approvalListDetail">
-            <ul>
-                <li>
-                    <span>구분 :</span>
-                    <span th:text="${approval.appDivision}"></span>
-                </li>
-                <li>
-                    <!-- <span>제목 :</span> -->
-                    <span th:text="${approval.appTitle}"></span>
-                </li>
-                <li>
-                    <span>내용 :</span>
-                    <span th:text="${approval.appContent}"></span>
-                </li>
-                <li>
-                    <span>첨부파일</span>
-                    <div th:if="${approval.appAttach==1}"></div>
-                    <a href="C:/saveFiles/" download="1b18096a-0626-4c81-9438-e37d72d5f6d9_프로젝트2차_DB-4.xlsx">다운로드</a>
-                    <!-- <a href="javascript:;" onclick="downFile(this)">다운로드</a>
+            <div class="approvalListDetail">
+                <ul>
+                    <li class="division">
+                        <span>구분 :</span>
+                        <span th:text="${approval.appDivision}"></span>
+                    </li>
+                    <li class="title">
+                        <!-- <span>제목 :</span> -->
+                        <span th:text="${approval.appTitle}"></span>
+                    </li>
 
-                        <script type="text/javascript">
-                        function downFile(obj){
-                        $(obj).attr('href' , 'C:/saveFiles/');
-                        $(obj).attr('download' , '1b18096a-0626-4c81-9438-e37d72d5f6d9_프로젝트2차_DB-4');
-                        }
-                        </script> -->
-                    <div th:if="${approval.appAttach==0}"></div>
-                </li>
-                <li>
-                    <span>등록일 :</span>
-                    <span th:text="*{#temporals.format(approval.appCreate, 'yyyy년MM월dd일 HH시mm분ss초')}"></span>
-                </li>
-                <!--                    <li>-->
-                <!--                        <span>결재상태 :</span>-->
-                <!--                        <span th:text="${approval.app_status}"></span>-->
-                <!--                    </li>-->
-                <!--                    <li>-->
-                <!--                        <span>반려사유 :</span>-->
-                <!--                        <span th:text="${approval.app_reason}"></span>-->
-                <!--                    </li>-->
-            </ul>
+                    <div class="sub1">
+                        <!-- 나중에 member와 조인시에 기안자 나타낼 예정 -->
+                        <li class="id">
+                            <span>작성자img ·</span>
+                            <span>작성자 : 000 ·</span>
+                            <!-- <span th:text="${member.mId}"></span> -->
+                        </li>
+
+                        <li class="time">
+                            <!-- <span>등록일 :</span> -->
+                            <span th:text="*{#temporals.format(approval.appCreate, 'yyyy.MM.dd HH:mm')}"></span>
+                        </li>
+                    </div>
+
+                    <div class="line">
+                        <!-- -------------------------------------------------------------------------- -->
+                    </div>
+
+                    <li class="content">
+                        <span>기안내용</span>
+                        <span class="sub1" th:text="${approval.appContent}"></span>
+                    </li>
+
+                    <div class="fileparents">
+                        <li class="file">
+                            <span>첨부파일</span>
+                            <div class="filesub" th:if="${approval.appAttach==1}"></div>
+                            <!--                            <a href="C:/saveFiles/newFilename.xlsx" download="originalFilename.xlsx">다운로드</a>-->
+                            <a href="/files/newFilename.xlsx" download="originalFilename.xlsx">다운로드</a>
+
+                            <div th:if="${approval.appAttach==0}"></div>
+                        </li>
+                    </div>
+
+                    <div class="move">
+                        <li>
+                            <button><a th:href="@{|/approval/listUpdate/${approval.appId}|}">수정</a></button>
+                            <button><a th:href="@{|/approval/listDelete/${approval.appId}|}">삭제</a></button>
+                        </li>
+                    </div>
+
+
+                    <!--                    <li>-->
+                    <!--                        <span>결재상태 :</span>-->
+                    <!--                        <span th:text="${approval.app_status}"></span>-->
+                    <!--                    </li>-->
+                    <!--                    <li>-->
+                    <!--                        <span>반려사유 :</span>-->
+                    <!--                        <span th:text="${approval.app_reason}"></span>-->
+                    <!--                    </li>-->
+                </ul>
+            </div>
         </div>
     </div>
     </div>
