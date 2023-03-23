@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>memberUpdate</title>
+    <title>adminMemberUpdate</title>
     <script th:src="@{/js/telCheck.js}" defer></script>
     <link rel="stylesheet" th:href="@{/css/member/memberUpdate.css}">
 </head>
@@ -27,7 +27,7 @@
                                         <img src="https://via.placeholder.com/300" alt="">
                                     </span>
                                 </div>
-                                <form th:action="@{/member/updateOk}" method="post" th:object="${memberDto}" enctype="multipart/form-data">
+                                <form th:action="@{|/member/adminMemberUpdateOk/${memberDto.mId}|}" method="post" th:object="${memberDto}" enctype="multipart/form-data">
                                     <div class="info">
                                         <input type="hidden" name="mId" th:value="${memberDto.mId}">
                                         <input type="hidden" name="mRole" th:value="${memberDto.mRole}">

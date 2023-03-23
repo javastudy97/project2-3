@@ -17,37 +17,38 @@
                 <div class="right-con">
                     <div class="adminMemberList">
                             <th:block th:each="member : ${memberList}">
-                                <div class="memberInfo">
-                                    <div class="top-menu">
-                                        <th:block th:if="${member.mAttach==1}">
-                                            <img th:src="@{|/upload/${member.saveName}|}" alt="">
-                                        </th:block>
-                                        <th:block th:unless="${member.mAttach==1}">
-                                            <img src="https://via.placeholder.com/300" alt="">
-                                        </th:block>
+                                <a th:href="@{|/member/adminMemberDetail/${member.mId}|}">
+                                    <div class="memberInfo">
+                                        <div class="top-menu">
+                                            <th:block th:if="${member.mAttach==1}">
+                                                <img th:src="@{|/upload/${member.saveName}|}" alt="">
+                                            </th:block>
+                                            <th:block th:unless="${member.mAttach==1}">
+                                                <img src="https://via.placeholder.com/300" alt="">
+                                            </th:block>
+                                        </div>
+                                        <div class="bottom-menu">
+                                            <ul>
+                                                <li>
+                                                    <h3 th:text="${member.mName}"></h3>
+                                                </li>
+                                                <li>
+                                                    <label for="mPosition">포지션</label>
+                                                    <span th:text="${member.mPosition}"></span>
+                                                </li>
+                                                <li>
+                                                    <label for="mEmail">이메일</label>
+                                                    <span th:text="${member.mEmail}"></span>
+                                                </li>
+                                                <li>
+                                                    <label for="mTel">연락처</label>
+                                                    <span th:text="${member.mTel}"></span>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </div>
-                                    <div class="bottom-menu">
-                                        <ul>
-                                            <li>
-                                                <h3 th:text="${member.mName}"></h3>
-                                            </li>
-                                            <li>
-                                                <label for="mPosition">포지션</label>
-                                                <span th:text="${member.mPosition}"></span>
-                                            </li>
-                                            <li>
-                                                <label for="mEmail">이메일</label>
-                                                <span th:text="${member.mEmail}"></span>
-                                            </li>
-                                            <li>
-                                                <label for="mTel">연락처</label>
-                                                <span th:text="${member.mTel}"></span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
+                                </a>
                             </th:block>
-                        </ul>
                     </div>
                     <div class="tools">
                         <!-- 검색 -->

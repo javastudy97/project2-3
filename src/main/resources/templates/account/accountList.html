@@ -18,7 +18,7 @@
                     <div class="account-list">
                         <!-- 등록 (관리자만 가능) -->
                         <div class="btnZone">
-                            <a th:href="@{/account/insert}" class="insertBtn">등록</a>
+                            <a th:href="@{/account/insert}" class="insertBtn" sec:authorize="hasRole('ADMIN')">등록</a>
                         </div>
             
                         <!-- 지출, 수입 작성 글 리스트 -->

@@ -2,6 +2,7 @@ package org.project2.omwp2.member.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.project2.omwp2.dto.MemberDto;
+import org.project2.omwp2.member.repository.MemberRepository;
 import org.project2.omwp2.member.service.MemberService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -22,8 +23,9 @@ import java.security.Principal;
 public class MemberController {
 
     private final MemberService memberService;
+    private final MemberRepository memberRepository;
 
-//    회원정보 상세
+//    회원정보 상세 (로그인 회원)
     @GetMapping("/detail")
     public String memberDetail(Model model, Principal principal){
 
@@ -41,9 +43,7 @@ public class MemberController {
     @GetMapping("/update")
     public String memberUpdate(Model model, Principal principal){
 
-        String mEmail = principal.getName();
-        System.out.println(mEmail+"<<<< member Email");
-
+        String mEmail = principal.getName();  // 로그인한 회원 이메일
         MemberDto memberDto = memberService.getMemberDetail(mEmail);
 
         model.addAttribute("memberDto",memberDto);
@@ -105,7 +105,7 @@ public class MemberController {
         return "login";
     }
 
-//    관리자메뉴 - 회원관리 (전체 회원리스트)
+//    관리자메뉴 - 전체 회원목록
     @GetMapping("/memberList")
     public String memberList(Model model, @PageableDefault(page = 0, size = 8, sort = "mId", direction = Sort.Direction.DESC)
                              Pageable pageable) {
@@ -131,4 +131,75 @@ public class MemberController {
 
         return "member/adminMemberList";
     }
+
+    //    관리자메뉴 - 특정 회원상세
+    @GetMapping("/adminMemberDetail/{id}")
+    public String memberDetail2(@PathVariable(name = "id") Long id, Model model){
+
+        MemberDto memberDto = memberService.getMemberDetail2(id);
+        model.addAttribute("memberDto",memberDto);
+
+        return "member/adminMemberDetail";
+    }
+
+    //    관리자메뉴 - 특정 회원수정 페이지
+    @GetMapping("/adminMemberUpdate/{id}")
+    public String memberUpdate2(@PathVariable(name = "id") Long id, Model model){
+
+        MemberDto memberDto = memberService.getMemberDetail2(id);
+        model.addAttribute("memberDto",memberDto);
+
+        return "member/adminMemberUpdate";
+    }
+
+    //    관리자메뉴 - 특정 회원수정 실행
+    @PostMapping("/adminMemberUpdateOk/{id}")
+    public String memberUpdateDo2(@PathVariable(name = "id") Long id, @Valid MemberDto memberDto,
+                                  BindingResult bindingResult, Model model) throws IOException {
+
+        if(bindingResult.hasErrors()){
+//            유효성 검사 에러 발생시
+            MemberDto memberDto2 = memberService.getMemberDetail2(id);
+            memberDto.setMAttach(1);
+            memberDto.setSaveName(memberDto2.getSaveName());
+            model.addAttribute("memberDto",memberDto);
+
+            return "member/adminMemberUpdate";
+        }
+
+        int rs = memberService.memberUpdate(memberDto);
+
+        if(rs!=1){
+            System.out.println("member update fail !");
+            return null;
+        }
+        return "redirect:/member/adminMemberDetail/"+id;
+    }
+
+    //    관리자메뉴 - 특정 회원삭제
+    @GetMapping("/adminMemberDelete/{id}")
+    public String memberDelete2(@PathVariable(name = "id") Long id, Model model){
+
+        MemberDto memberDto = memberService.getMemberDetail2(id);
+        model.addAttribute("memberDto",memberDto);
+
+        return "member/adminMemberDelete";
+
+    }
+
+    //    관리자메뉴 - 특정 회원삭제 실행 => 삭제 성공시 회원목록으로 이동
+    @GetMapping("/adminMemberDeleteOk/{id}")
+    public String memberDeleteOk2(@PathVariable(name = "id") Long id) {
+        MemberDto memberDto = memberService.getMemberDetail2(id);
+
+        int rs = memberService.memberDeleteDo2(id);
+        if(rs!=1){
+            System.out.println("member update fail !");
+            return null;
+        }
+
+        return "redirect:/member/memberList";
+    }
+    
+    
 }

@@ -21,10 +21,10 @@
                     <div class="account-list">
                         <!-- 등록 (관리자만 가능) -->
                         <div class="btnZone">
-                            <a th:href="@{|/account/update/${acId}|}" class="updateBtn">수정</a>
+                            <a th:href="@{|/account/update/${acId}|}" class="updateBtn" sec:authorize="hasRole('ADMIN')">수정</a>
                             <form th:action="@{|/account/delete/${acId}|}" method="post" id="deleteForm">
                                 <input type="hidden" th:field="*{acId}" th:value="${acId}">
-                                <input type="submit" value="삭제" class="deleteBtn">
+                                <input type="submit" value="삭제" class="deleteBtn" sec:authorize="hasRole('ADMIN')">
                             </form>
                         </div> <!-- btnZone 끝 -->
 

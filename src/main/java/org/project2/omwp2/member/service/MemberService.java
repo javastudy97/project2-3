@@ -148,4 +148,31 @@ public class MemberService {
         return memberEntityPage.map(MemberDto::toMemberDto);
 
     }
+
+    public MemberDto getMemberDetail2(Long id) {
+
+       if(memberRepository.findById(id).isEmpty()){
+//           해당 회원정보가 없으면 null
+           return null;
+       }
+
+       return MemberDto.toMemberDto(memberRepository.findById(id).get());
+
+    }
+
+    public int memberDeleteDo2(Long id) {
+
+        MemberEntity memberEntity =
+                memberRepository.findById(id).get();
+
+        memberRepository.delete(memberEntity);
+
+        if(memberRepository.findById(memberEntity.getMId()).isEmpty()){
+            System.out.println("member delete Success !");
+            return 1;
+        } else {
+            System.out.println("member delete fail !");
+            return 0;
+        }
+    }
 }
