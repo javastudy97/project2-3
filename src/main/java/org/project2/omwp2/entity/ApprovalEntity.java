@@ -98,5 +98,29 @@ public class ApprovalEntity {
         return approvalEntity;
     }
 
+    // ↓
+    // 결재문서 수정
+    public static ApprovalEntity toNoUpdateApprovalEntity(ApprovalDto approvalDto){
+        ApprovalEntity approvalEntity = new ApprovalEntity();
+        approvalEntity.setAppId(approvalDto.getAppId());
+        approvalEntity.setAppDivision(approvalDto.getAppDivision());
+        approvalEntity.setAppTitle(approvalDto.getAppTitle());
+        approvalEntity.setAppContent(approvalDto.getAppContent());
+        approvalEntity.setAppStatus(approvalDto.getAppStatus());
+        approvalEntity.setAppReason(approvalDto.getAppReason());
+        approvalEntity.setAppAttach(0); //첨부 파일 없을 때
+        return approvalEntity;
+    }
 
+    public static ApprovalEntity toYesUpdateApprovalEntity(ApprovalDto approvalDto){
+        ApprovalEntity approvalEntity = new ApprovalEntity();
+        approvalEntity.setAppId(approvalDto.getAppId());
+        approvalEntity.setAppDivision(approvalDto.getAppDivision());
+        approvalEntity.setAppTitle(approvalDto.getAppTitle());
+        approvalEntity.setAppContent(approvalDto.getAppContent());
+        approvalEntity.setAppStatus(approvalDto.getAppStatus());
+        approvalEntity.setAppReason(approvalDto.getAppReason());
+        approvalEntity.setAppAttach(1); //첨부 파일 있을 때
+        return approvalEntity;
+    }
 }
