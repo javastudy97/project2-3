@@ -17,13 +17,13 @@ import java.util.Date;
 public class TeamScheduleDto {
 
     private Long ScheduleId;
-    private String ScheduleBoard;
+    private String content;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
-    private Date ScheduleStart;
+    private Date start;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
-    private Date ScheduleEnd;
+    private Date end;
 
     private String scheduleDone;
 
@@ -35,9 +35,9 @@ public class TeamScheduleDto {
         TeamScheduleDto teamScheduleDto = new TeamScheduleDto();
 
         teamScheduleDto.setScheduleId(teamScheduleEntity.getScheduleId());
-        teamScheduleDto.setScheduleBoard(teamScheduleEntity.getScheduleBoard());
-        teamScheduleDto.setScheduleStart(teamScheduleEntity.getScheduleStart());
-        teamScheduleDto.setScheduleEnd(teamScheduleEntity.getScheduleEnd());
+        teamScheduleDto.setContent(teamScheduleEntity.getContent());
+        teamScheduleDto.setStart(teamScheduleEntity.getStart());
+        teamScheduleDto.setEnd(teamScheduleEntity.getEnd());
         teamScheduleDto.setScheduleDone(teamScheduleEntity.getScheduleDone());
         teamScheduleDto.setMId(teamScheduleEntity.getMemberEntity().getMId());
 

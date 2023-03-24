@@ -24,19 +24,19 @@ public class TeamScheduleEntity {
     private Long ScheduleId;
 
     //스케줄 내용
-    @Column(name = "schedule_content", nullable = false)
-    private String ScheduleBoard;
+    @Column(nullable = false)
+    private String content;
 
     //스케줄 시작일
-    @Column(name = "schedule_start",nullable = false)
-    private Date ScheduleStart;
+    @Column(nullable = false)
+    private Date start;
 
     //스케줄 종료일
-    @Column(name = "schedule_end",nullable = false)
-    private Date ScheduleEnd;
+    @Column(nullable = false)
+    private Date end;
 
     //스케줄 완료여부 - 미완료 : N(기본값), 완료 : Y
-    @Column(name = "schedule_done",nullable = true)
+    @Column(name = "schedule_done",nullable = false)
     private String scheduleDone;
 
     // 작성자(관리자만 작성가능)
@@ -50,10 +50,11 @@ public class TeamScheduleEntity {
         TeamScheduleEntity teamScheduleEntity = new TeamScheduleEntity();
 
         teamScheduleEntity.setScheduleId(teamScheduleDto.getScheduleId());
-        teamScheduleEntity.setScheduleBoard(teamScheduleDto.getScheduleBoard());
-        teamScheduleEntity.setScheduleStart(teamScheduleDto.getScheduleStart());
-        teamScheduleEntity.setScheduleEnd(teamScheduleDto.getScheduleEnd());
+        teamScheduleEntity.setContent(teamScheduleDto.getContent());
+        teamScheduleEntity.setStart(teamScheduleDto.getStart());
+        teamScheduleEntity.setEnd(teamScheduleDto.getEnd());
         teamScheduleEntity.setScheduleDone(teamScheduleDto.getScheduleDone());
+
 
         return teamScheduleEntity;
 
