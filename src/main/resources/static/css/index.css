@@ -42,6 +42,9 @@
   padding: 10px;
   border: 1px solid black;
   box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .right-menu .con .right-con .con2 table{
