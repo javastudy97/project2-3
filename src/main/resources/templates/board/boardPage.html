@@ -17,7 +17,7 @@
                 <div class="boardzone">
                         <span>커뮤니티 게시판</span>
                     <div class="search">
-                        <form th:action="@{/admin/boardSearch}" method="get">
+                        <form th:action="@{/board/boardSearch}" method="get">
                             <select name="type" id="type">
                                 <option value="" selected>::검색기준::</option>
                                 <option value="boardId">게시글번호</option>
@@ -49,8 +49,8 @@
                                 <td th:text="${board.boardHit}"></td>
                                 <td th:text="${#temporals.format(board.boardCreate, 'yyyy년MM월dd일')}"></td>
                                 <td th:text="${board.boardCmcount}"></td>
-                                <td th:text="${board.memberId}"></td>
-                                <td><a th:href="@{|/admin/boardDetail/${board.boardId}|}">보기</a></td>
+                                <td th:text="${board.mName}"></td>
+                                <td><a th:href="@{|/board/boardDetail/${board.boardId}|}">보기</a></td>
                             </tr>
 
                         </tbody>
@@ -60,14 +60,14 @@
 
                         <div class="page">
                             <div class="paging">
-                                <a th:href="${boardList.first} ? '#' : @{/admin/boardList(page=${boardList.number-1})}">이전</a>
+                                <a th:href="${boardList.first} ? '#' : @{/board/boardList(page=${boardList.number-1})}">이전</a>
                                 <th:block th:each="page : ${#numbers.sequence(startPage,endPage)}">
                                     <span th:if="${page == nowPage}" th:text="${page}" style="background-color: yellow;"></span>
                                     <span th:unless="${page == nowPage}">
-                                    <a th:href="@{/admin/boardList(page=${page-1})}" th:text="${page}"></a>
+                                    <a th:href="@{/board/boardList(page=${page-1})}" th:text="${page}"></a>
                                 </span>
                                 </th:block>
-                                <a th:href="${boardList.last} ? '#' : @{/admin/boardList(page=${boardList.number+1})}">다음</a>
+                                <a th:href="${boardList.last} ? '#' : @{/board/boardList(page=${boardList.number+1})}">다음</a>
                             </div>
                         </div>
                     </div>

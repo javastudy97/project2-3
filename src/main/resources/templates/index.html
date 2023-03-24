@@ -29,7 +29,7 @@
                         <div class="board">
                             <div class="notice">
                                 <h2>공지사항</h2>
-                                <a th:href="@{#}">
+                                <a th:href="@{notice/noticeList}">
                                     <div class="con2">
                                         <th:block th:if="${noticeList.size() == 0}">
                                             <h1 style="color: red;">작성된 게시물이 없습니다!</h1>
@@ -59,7 +59,7 @@
                             </div>
                             <div class="community">
                                 <h2>게시판</h2>
-                                <a th:href="@{/admin/boardList}">
+                                <a th:href="@{/board/boardList}">
                                     <div class="con2">
                                         <th:block th:if="${boardList.size() == 0}">
                                             <h1 style="color: red;">작성된 게시물이 없습니다!</h1>
