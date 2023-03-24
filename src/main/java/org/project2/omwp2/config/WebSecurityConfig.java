@@ -32,10 +32,10 @@ public class WebSecurityConfig{
                 .antMatchers("/login","/join").permitAll()  // 모든 유저 접근 가능
                 .antMatchers("/css/**", "/js/**", "/img/**").permitAll()
                 .antMatchers("/","/index").hasAnyRole("ADMIN","MEMBER")
+                .antMatchers("/board/**").hasAnyRole("ADMIN","MEMBER")
                 .antMatchers("/admin/**").hasAnyRole("ADMIN")
                 .antMatchers("/member/**").hasAnyRole("ADMIN","MEMBER")
-                .antMatchers("/wish/**").hasAnyRole("ADMIN","MEMBER")
-                .antMatchers("/review/**").hasAnyRole("ADMIN","MEMBER")
+                .antMatchers("/approval/**").hasAnyRole("ADMIN","MEMBER")
         ;
 
 

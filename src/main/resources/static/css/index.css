@@ -44,6 +44,12 @@
   box-sizing: border-box;
 }
 
+.right-menu .con .right-con .con2 table{
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+
 h2{
   background-color: #000000;
   color: #ffffff;
@@ -69,21 +75,5 @@ h2{
 .right-menu .con .right-con .con-box .board .con2{
   height: 300px;
 }
-
-.right-menu .con .right-con .con-box .board .notice{
-
-}
-
-.right-menu .con .right-con .con-box .board .notice .con2{
-
-}
-
-.right-menu .con .right-con .con-box .board .community{
-}
-
-.right-menu .con .right-con .con-box .board .community .con2{
-
-}
-
 
 
