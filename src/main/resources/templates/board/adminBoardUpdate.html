@@ -16,24 +16,22 @@
             <div class="right-con">
                 <div class="boardUpdate">
                     <span>게시글수정</span>
-                    <form th:action="@{admin/boardUpdate}" method="post" enctype="multipart/form-data">
+                    <form th:action="@{/board/boardUpdate}" method="post" enctype="multipart/form-data">
                         <ul>
-                            <li class="s2">
-                                <label th:for="boardFile">파일</label> <br>
-                                <input type="text" name="bfileNewName" th:value="${board.bfileNewName}" readonly> <br>
-                                <input type="file" name="boardFile">
-                            </li>
+<!--                                <label th:for="boardFile">파일</label> <br>-->
+                                <input type="hidden" name="bfileNewName" th:value="${board.bfileNewName}" readonly> <br>
+                                <input type="hidden" name="boardId" th:value="${board.boardId}">
                             <li class="s2">
                                 <label th:for="boardTitle">제목</label>
                                 <input type="text" name="boardTitle" th:value="${board.boardTitle}">
                             </li>
                             <li class="s2">
                                 <label th:for="boardContent">내용</label>
-                                <textarea name="boardContent" th:value="${board.boardContent}" cols="100" rows="10"></textarea>
+                                <textarea name="boardContent" th:text="${board.boardContent}" cols="100" rows="10"></textarea>
                             </li>
                             <li class="s3">
                                 <input type="submit" value="게시글수정">
-                                <a th:href="@{/admin/boardList}" class="s3sub">게시글조회</a>
+                                <a th:href="@{/board/boardList}" class="s3sub">게시글조회</a>
                             </li>
                         </ul>
                     </form>

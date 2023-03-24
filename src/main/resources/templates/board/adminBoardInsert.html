@@ -16,7 +16,7 @@
             <div class="right-con">
                 <div class="boardInsert">
                     <span>게시글추가</span>
-                    <form th:action="@{/admin/boardInsert}" method="post" th:object="${boardDto}" enctype="multipart/form-data">
+                    <form th:action="@{/board/boardInsert}" method="post" th:object="${boardDto}" enctype="multipart/form-data">
                         <ul>
                             <li class="s2">
                                 <label th:for="boardFile">파일첨부</label> <br>

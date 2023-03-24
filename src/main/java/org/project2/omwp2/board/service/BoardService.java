@@ -16,7 +16,6 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.transaction.Transactional;
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -117,12 +116,6 @@ public class BoardService {
         return boardDtoPage;
     }
 
-//    public int upcount(Long boardId) {
-//
-//        return boardReposistory.Count(boardId);
-//
-//    }
-
     @Transactional
     public void upHit(Long boardId) {
         boardReposistory.upHitGo(boardId);
@@ -133,21 +126,26 @@ public class BoardService {
         boardReposistory.upCmcountCount1(boardId);
     }
 
-//    public void commentCountUp() {
-//
-//        boardReposistory.upCount();
-//
-//    }
+    @Transactional
+    public void boardUpdateDo(BoardDto boardDto, String mEmail) {
+        Optional<MemberEntity> optionalMemberEntity =
+                memberRepository.findBymEmail(mEmail);
 
-//    @Transactional
-//    public void commentCountUp(Long boardId) {
-//
-//        System.out.println(boardId+" <<  boardId");
-//        boardReposistory.upCount1(boardId);
-//    }
+        MemberEntity memberEntity = optionalMemberEntity.get();
 
+        if (boardDto.getBfileNewName().isEmpty()) {
+            BoardEntity boardEntity = BoardEntity.toBoardUpdateEntity(boardDto, memberEntity);
+            boardReposistory.save(boardEntity);
+        }else {
+            BoardEntity boardEntity = BoardEntity.toBoardUpdateEntity2(boardDto, memberEntity);
+            boardReposistory.save(boardEntity);
 
+        }
 
-//    public Optional<BoardEntity> findByBoardId(long l) {
-//    }
+    }
+
+    @Transactional
+    public void boardDeleteDo(Long productId) {
+        boardReposistory.deleteById(productId);
+    }
 }

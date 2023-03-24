@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" , xmlns:sec="http://www.thymeleaf.org/extras/spring-security5">
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <head>
     <meta charset="UTF-8">
     <title>footballAdmin</title>
-    <link rel="stylesheet" th:href="@{/css/board/adminBoardDetail.css}">
+    <link rel="stylesheet" th:href="@{/css/commentUpdate.css}">
 </head>
 
 <body>
@@ -17,13 +16,12 @@
         <div class="right-con">
             <div class="boardUpdate">
                 <span>게시글내역</span>
-                <form th:action="@{admin/boardUpdate}" method="post" th:object="${boardDto}">
+                <form th:action="@{comment/commentUpdate}" method="post" th:object="${boardDto}">
                     <ul>
                         <li class="s2">
                             <label th:for="boardFile">파일</label>
                             <div class="s4" th:if="${board.boardAttach==1}">
-                                <a th:href="@{|/upload/${board.bfileNewName}|}" download=""
-                                   th:text="${board.bfileNewName}"></a>
+                                <a th:href="@{|/admin/download/${board.bfileId}|}" th:text="${board.bfileNewName}"></a>
                             </div>
                             <div class="s4" th:unless="${board.boardAttach==1}">
                                 <span>없음</span>
@@ -51,50 +49,23 @@
                     </ul>
                 </form>
             </div>
-            <span>리뷰</span>
-            <div class="comment">
-                <table>
-                    <tr>
-                        <th>번호</th>
-                        <th>작성자</th>
-                        <th>내용</th>
-                        <th>작성시간</th>
-                        <th>button</th>
-                    </tr>
-                    <tr th:each="comment: ${commentDtoList}">
-                        <td th:text="${comment.commentId}"></td>
-                        <td th:text="${comment.mName}"></td>
-                        <td th:text="${comment.commentContent}"></td>
-                        <td th:text="${#temporals.format(comment.commentCreate, 'yyyy:MM-dd HH:mm:ss')}"></td>
-                        <!-- 해당 리뷰를 쓴 사람이 수정 삭제 할수 있게 한다. -->
-                        <td th:if="${comment.mEmail.equals(#authentication.getName())}">
-                            <a th:href="@{|/comment/commentUpdate/${comment.commentId}|}">수정</a>
-                            <a th:href="@{|/comment/commentDelete/${comment.commentId}|}">삭제</a>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-            <div class="comment-write">
-                <span>리뷰작성</span>
-                <form th:action="@{/comment/commentWrite}" method="POST">
-
+            <div class="comment-update">
+                <span>리뷰수정</span>
+                <form th:action="@{/comment/commentUpdate}" method="POST">
                     <input type="hidden" readonly name="boardId" th:value="${board.boardId}">
-                    <ul>
-                        <li>
-                                <textarea style="line-height:20px; padding:10px; box-sizing: border-box;"
+                        <ul>
+                            <li>
+                                <input type="hidden" readonly name="commentId" th:value="${comment.commentId}">
+                                <textarea th:value=${comment.commentContent}
+                                          style="line-height:20px; padding:10px; box-sizing: border-box;"
                                           name="commentContent" id="commentContent" cols="30" rows="10"></textarea>
-                        </li>
-                        <li>
-                            <input type="submit" value="리뷰작성">
-
-                        </li>
-                        <li>
-                            <a th:href="@{/board/boardList}">전체목록</a>
-                        </li>
-                    </ul>
-
+                            </li>
+                            <li>
+                                <input type="submit" value="리뷰수정">
+                                <a th:href="@{/|/admin/boardDetail/${board.boardId}|}">전체목록</a>
+                            </li>
+                        </ul>
                 </form>
-
             </div>
         </div>
     </div>
