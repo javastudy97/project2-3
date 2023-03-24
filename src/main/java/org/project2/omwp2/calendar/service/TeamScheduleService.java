@@ -20,7 +20,6 @@ import java.util.Optional;
 public class TeamScheduleService {
 
     private final TeamScheduleRepository teamScheduleRepository;
-
     private final MemberRepository memberRepository;
 
     // 회원 이메일로 아이디값 찾아오기
@@ -117,5 +116,52 @@ public class TeamScheduleService {
 
     }
 
+//    fullCalender
+    public List<TeamScheduleDto> getEvents() {
 
+        List<TeamScheduleDto> teamScheduleDtoList = new ArrayList<>();
+        List<TeamScheduleEntity> teamScheduleEntityList = teamScheduleRepository.findAll();
+
+        for(TeamScheduleEntity teamScheduleEntity: teamScheduleEntityList) {
+            teamScheduleDtoList.add(TeamScheduleDto.builder()
+                            .ScheduleId(teamScheduleEntity.getScheduleId())
+                            .ScheduleBoard(teamScheduleEntity.getScheduleBoard())
+                            .ScheduleStart(teamScheduleEntity.getScheduleStart())
+                            .ScheduleEnd(teamScheduleEntity.getScheduleEnd())
+                            .build());
+        }
+
+        return teamScheduleDtoList;
+
+    }
+
+    public void setCalender(TeamScheduleDto teamScheduleDto, String mEmail) {
+
+        teamScheduleRepository.save(TeamScheduleEntity.builder()
+                        .ScheduleId(teamScheduleDto.getScheduleId())
+                        .ScheduleBoard(teamScheduleDto.getScheduleBoard())
+                        .ScheduleStart(teamScheduleDto.getScheduleStart())
+                        .ScheduleEnd(teamScheduleDto.getScheduleEnd())
+                        .memberEntity(memberRepository.findBymEmail(mEmail).get())
+                        .build());
+
+    }
+
+    public List<TeamScheduleDto> eventListAll() {
+
+        List<TeamScheduleDto> teamScheduleDtoList = new ArrayList<>();
+        List<TeamScheduleEntity> teamScheduleEntityList = teamScheduleRepository.findAll();
+
+        for(TeamScheduleEntity teamScheduleEntity : teamScheduleEntityList) {
+            teamScheduleDtoList.add(TeamScheduleDto.builder()
+                    .ScheduleId(teamScheduleEntity.getScheduleId())
+                    .ScheduleBoard(teamScheduleEntity.getScheduleBoard())
+                    .ScheduleStart(teamScheduleEntity.getScheduleStart())
+                    .ScheduleEnd(teamScheduleEntity.getScheduleEnd())
+                    .build());
+        }
+
+        return teamScheduleDtoList;
+
+    }
 }

@@ -23,34 +23,34 @@ public class TeamScheduleController {
 
 
     //팀 일정 추가
-    @GetMapping("/teamSchedulePlus")
-    public String teamSchedulePlus(Principal principal){
-
-        //수정
-        //풀캘린더 api로 받아오기
-
-        String scheduleBoard = "내용1";
-        LocalDateTime scheduleStart = LocalDateTime.now();
-        LocalDateTime scheduleEnd = LocalDateTime.now();
-        String scheduleDone = "미완료";
-
-        String name = principal.getName();
-
-        Long id = teamScheduleService.bringLongid(name);
-
-        TeamScheduleDto teamScheduleDto = new TeamScheduleDto();
-
-        teamScheduleDto.setScheduleBoard(scheduleBoard);
-        teamScheduleDto.setScheduleStart(scheduleStart);
-        teamScheduleDto.setScheduleEnd(scheduleEnd);
-        teamScheduleDto.setScheduleDone(scheduleDone);
-
-        teamScheduleService.insertTeamSchedule(teamScheduleDto,id);
-
-        return "redirect:/teamSchedule/teamScheduleView";
-
-
-    }
+//    @GetMapping("/teamSchedulePlus")
+//    public String teamSchedulePlus(Principal principal){
+//
+//        //수정
+//        //풀캘린더 api로 받아오기
+//
+//        String scheduleBoard = "내용1";
+//        LocalDateTime scheduleStart = LocalDateTime.now();
+//        LocalDateTime scheduleEnd = LocalDateTime.now();
+//        String scheduleDone = "미완료";
+//
+//        String name = principal.getName();
+//
+//        Long id = teamScheduleService.bringLongid(name);
+//
+//        TeamScheduleDto teamScheduleDto = new TeamScheduleDto();
+//
+//        teamScheduleDto.setScheduleBoard(scheduleBoard);
+//        teamScheduleDto.setScheduleStart(scheduleStart);
+//        teamScheduleDto.setScheduleEnd(scheduleEnd);
+//        teamScheduleDto.setScheduleDone(scheduleDone);
+//
+//        teamScheduleService.insertTeamSchedule(teamScheduleDto,id);
+//
+//        return "redirect:/teamSchedule/teamScheduleView";
+//
+//
+//    }
     
     //팀 일정 조회
     @GetMapping("/teamScheduleView")
@@ -71,32 +71,32 @@ public class TeamScheduleController {
     }
 
     //팀 일정 변경
-    @PostMapping("/teamScheduleChange")
-    public String teamScheduleChange(@ModelAttribute("teamScheduleDto")TeamScheduleDto teamScheduleDto){
-
-        Long scheduleId = teamScheduleDto.getScheduleId();
-        Long userId = teamScheduleDto.getMId();
-
-        //풀캘린더 api로 가져오기
-        String scheduleBoard = "내용2";
-        LocalDateTime scheduleStart = LocalDateTime.now();
-        LocalDateTime scheduleEnd = LocalDateTime.now();
-        String scheduleDone = "완료";
-
-        TeamScheduleDto teamScheduleDto1 = new TeamScheduleDto();
-
-        teamScheduleDto1.setScheduleId(scheduleId);
-        teamScheduleDto1.setScheduleBoard(scheduleBoard);
-        teamScheduleDto1.setScheduleStart(scheduleStart);
-        teamScheduleDto1.setScheduleEnd(scheduleEnd);
-        teamScheduleDto1.setScheduleDone(scheduleDone);
-        teamScheduleDto1.setMId(userId);
-
-        teamScheduleService.changeTeamSchedule(teamScheduleDto1);
-
-        return "redirect:/teamSchedule/teamScheduleView";
-
-    }
+//    @PostMapping("/teamScheduleChange")
+//    public String teamScheduleChange(@ModelAttribute("teamScheduleDto")TeamScheduleDto teamScheduleDto){
+//
+//        Long scheduleId = teamScheduleDto.getScheduleId();
+//        Long userId = teamScheduleDto.getMId();
+//
+//        //풀캘린더 api로 가져오기
+//        String scheduleBoard = "내용2";
+//        LocalDateTime scheduleStart = LocalDateTime.now();
+//        LocalDateTime scheduleEnd = LocalDateTime.now();
+//        String scheduleDone = "완료";
+//
+//        TeamScheduleDto teamScheduleDto1 = new TeamScheduleDto();
+//
+//        teamScheduleDto1.setScheduleId(scheduleId);
+//        teamScheduleDto1.setScheduleBoard(scheduleBoard);
+//        teamScheduleDto1.setScheduleStart(scheduleStart);
+//        teamScheduleDto1.setScheduleEnd(scheduleEnd);
+//        teamScheduleDto1.setScheduleDone(scheduleDone);
+//        teamScheduleDto1.setMId(userId);
+//
+//        teamScheduleService.changeTeamSchedule(teamScheduleDto1);
+//
+//        return "redirect:/teamSchedule/teamScheduleView";
+//
+//    }
 
     //팀 일정 삭제
     @GetMapping("/deleteTeamSchedule/{id}")

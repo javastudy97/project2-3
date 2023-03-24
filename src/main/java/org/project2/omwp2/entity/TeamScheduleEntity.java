@@ -5,6 +5,7 @@ import org.project2.omwp2.dto.TeamScheduleDto;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -12,6 +13,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @ToString
 @Entity
+@Builder
 @Table(name = "teamSchedule")
 public class TeamScheduleEntity {
 
@@ -27,11 +29,11 @@ public class TeamScheduleEntity {
 
     //스케줄 시작일
     @Column(name = "schedule_start",nullable = false)
-    private LocalDateTime ScheduleStart;
+    private Date ScheduleStart;
 
     //스케줄 종료일
     @Column(name = "schedule_end",nullable = false)
-    private LocalDateTime ScheduleEnd;
+    private Date ScheduleEnd;
 
     //스케줄 완료여부 - 미완료 : N(기본값), 완료 : Y
     @Column(name = "schedule_done",nullable = true)
