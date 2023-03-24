@@ -125,9 +125,7 @@
                         <li class="file">
                             <span>첨부파일</span>
                             <div class="filesub" th:if="${approval.appAttach==1}"></div>
-                            <!--                            <a href="C:/saveFiles/newFilename.xlsx" download="originalFilename.xlsx">다운로드</a>-->
-                            <a href="/files/newFilename.xlsx" download="originalFilename.xlsx">다운로드</a>
-
+                            <a th:href="@{|/upload/${approval.docSave}|}" download="">다운로드</a>
                             <div th:if="${approval.appAttach==0}"></div>
                         </li>
                     </div>
