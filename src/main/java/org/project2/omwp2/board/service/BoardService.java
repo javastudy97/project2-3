@@ -148,4 +148,12 @@ public class BoardService {
     public void boardDeleteDo(Long productId) {
         boardReposistory.deleteById(productId);
     }
+
+    public Page<BoardDto> myBoardListDo(Long mId, Pageable pageable) {
+
+        Page<BoardEntity> boardEntityPage = boardReposistory.findAllBymId(mId,pageable);
+        Page<BoardDto> boardDtoPage = boardEntityPage.map(BoardDto::toBoardDto);
+
+        return boardDtoPage;
+    }
 }

@@ -1,6 +1,8 @@
 package org.project2.omwp2.member.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.project2.omwp2.board.service.BoardService;
+import org.project2.omwp2.dto.BoardDto;
 import org.project2.omwp2.dto.MemberDto;
 import org.project2.omwp2.member.repository.MemberRepository;
 import org.project2.omwp2.member.service.MemberService;
@@ -24,6 +26,7 @@ public class MemberController {
 
     private final MemberService memberService;
     private final MemberRepository memberRepository;
+    private final BoardService boardService;
 
 //    회원정보 상세 (로그인 회원)
     @GetMapping("/detail")
@@ -226,6 +229,37 @@ public class MemberController {
         model.addAttribute("endPage", endPage);
 
         return "member/management";
+    }
+
+//    작성글 관리 => 해당 회원이 쓴 글 목록
+    @GetMapping("/myBoardList")
+    public String myBoardList(@PageableDefault(page = 0, size = 10, sort = "board_id",
+                            direction = Sort.Direction.DESC) Pageable pageable,
+                            Model model, Principal principal) {
+
+            String mEmail = principal.getName();
+            Long mId = memberRepository.findBymEmail(mEmail).get().getMId();
+
+            Page<BoardDto> boardList = null;
+
+            boardList = boardService.myBoardListDo(mId, pageable);
+
+            int totalPage = boardList.getTotalPages();  // 총 페이지 수
+            int blockNum = 3;                            // 화면에 표시할 페이지 수
+            int nowPage = boardList.getNumber();        // 현재페이지
+            int startPage = (int) ((Math.floor(nowPage / blockNum) * blockNum) + 1 <= totalPage ? (Math.floor(nowPage / blockNum) * blockNum) + 1 : totalPage);
+            // 블록의 첫페지이지
+            // 블록이 3일 경우     123 -> 1, 456  -> 4 , 789 -> 7
+            // Math.floor -> 올림
+
+            int endPage = (startPage + blockNum - 1 < totalPage ? startPage + blockNum - 1 : totalPage);
+
+            model.addAttribute("boardList", boardList);
+            model.addAttribute("nowPage", nowPage);
+            model.addAttribute("startPage", startPage);
+            model.addAttribute("endPage", endPage);
+
+            return "member/myBoardList";
     }
     
 }
