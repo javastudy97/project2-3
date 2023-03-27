@@ -61,7 +61,8 @@ h2{
 }
 
 .right-menu .con .right-con .con-box .team-schedule{
-  width: 800px;
+  /* width: 800px; */
+  width: 53%;
 }
 
 .right-menu .con .right-con .con-box .team-schedule .con2{
@@ -69,7 +70,8 @@ h2{
 }
 
 .right-menu .con .right-con .con-box .board{
-  width: 690px;
+  /* width: 690px; */
+  width: 46%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
