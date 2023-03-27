@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.security.Principal;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -201,7 +202,7 @@ public class MemberController {
         return "redirect:/member/memberList";
     }
 
-    //    조직관리 - 팀조회
+    //    조직관리 - 팀 조회
     @GetMapping("/management")
     public String management(Model model, @PageableDefault(page = 0, size = 8, sort = "mId", direction = Sort.Direction.DESC)
     Pageable pageable) {
@@ -211,12 +212,12 @@ public class MemberController {
         int totalPage = memberList.getTotalPages();  // 총 페이지 수
         int blockNum = 3;                            // 화면에 표시할 페이지 수 => 2페이지씩 표시
         int nowPage = memberList.getNumber();        // 현재페이지
-        int startPage = (int)((Math.floor(nowPage/blockNum)*blockNum)+1 <= totalPage ? (Math.floor(nowPage/blockNum)*blockNum)+1 : totalPage);
-        // 블록의 첫페지이지
+        int startPage = (int) ((Math.floor(nowPage / blockNum) * blockNum) + 1 <= totalPage ? (Math.floor(nowPage / blockNum) * blockNum) + 1 : totalPage);
+        // 블록의 첫 페이지
         // 블록이 3일 경우     123 -> 1, 456  -> 4 , 789 -> 7
         // Math.floor -> 올림
 
-        int endPage = (startPage + blockNum-1 < totalPage ? startPage + blockNum-1 : totalPage);
+        int endPage = (startPage + blockNum - 1 < totalPage ? startPage + blockNum - 1 : totalPage);
         // 블록의 마지막 페이지
         // 블록이 3일 경우      123 -> 3, 456  -> 5 , 789 -> 9
         // 시작페이지+블록-1> 전체 페이지 -> 마지막페이지숫자(시작페이지+블록-1)
@@ -227,5 +228,287 @@ public class MemberController {
 
         return "member/management";
     }
-    
+
+    //    조직관리 - 포지션별 조회
+    @GetMapping("/position")
+    public String position(Model model,
+                           @RequestParam("mPosition") String mPosition,
+                           @PageableDefault(page = 0, size = 8, sort = "mId", direction = Sort.Direction.DESC) Pageable pageable) {
+
+        // 상관없음(MULTI)
+        if (mPosition.equals("MULTI") || mPosition.equals("multi")) {
+            List<MemberDto> memberDtoList = memberService.MultiMemberList(mPosition);
+            model.addAttribute("memberList", memberDtoList);
+
+            Page<MemberDto> memberList = memberService.getMemberPositionList(mPosition, pageable);
+
+            int totalPage = memberList.getTotalPages();  // 총 페이지 수
+            int blockNum = 3;                            // 화면에 표시할 페이지 수 => 2페이지씩 표시
+            int nowPage = memberList.getNumber();        // 현재페이지
+            int startPage = (int) ((Math.floor(nowPage / blockNum) * blockNum) + 1 <= totalPage ? (Math.floor(nowPage / blockNum) * blockNum) + 1 : totalPage);
+            // 블록의 첫 페이지
+            // 블록이 3일 경우     123 -> 1, 456  -> 4 , 789 -> 7
+            // Math.floor -> 올림
+
+            int endPage = (startPage + blockNum - 1 < totalPage ? startPage + blockNum - 1 : totalPage);
+            // 블록의 마지막 페이지
+            // 블록이 3일 경우      123 -> 3, 456  -> 5 , 789 -> 9
+            // 시작페이지+블록-1> 전체 페이지 -> 마지막페이지숫자(시작페이지+블록-1)
+
+            model.addAttribute("memberList", memberList);
+            model.addAttribute("startPage", startPage);
+            model.addAttribute("endPage", endPage);
+
+            return "member/positionMulti";
+        }
+        // 공격수(ST)
+        if (mPosition.equals("ST") || mPosition.equals("st")) {
+            List<MemberDto> memberDtoList = memberService.StMemberList(mPosition);
+            model.addAttribute("memberList", memberDtoList);
+
+            Page<MemberDto> memberList = memberService.getMemberPositionList(mPosition, pageable);
+
+            int totalPage = memberList.getTotalPages();  // 총 페이지 수
+            int blockNum = 3;                            // 화면에 표시할 페이지 수 => 2페이지씩 표시
+            int nowPage = memberList.getNumber();        // 현재페이지
+            int startPage = (int) ((Math.floor(nowPage / blockNum) * blockNum) + 1 <= totalPage ? (Math.floor(nowPage / blockNum) * blockNum) + 1 : totalPage);
+            // 블록의 첫 페이지
+            // 블록이 3일 경우     123 -> 1, 456  -> 4 , 789 -> 7
+            // Math.floor -> 올림
+
+            int endPage = (startPage + blockNum - 1 < totalPage ? startPage + blockNum - 1 : totalPage);
+            // 블록의 마지막 페이지
+            // 블록이 3일 경우      123 -> 3, 456  -> 5 , 789 -> 9
+            // 시작페이지+블록-1> 전체 페이지 -> 마지막페이지숫자(시작페이지+블록-1)
+
+            model.addAttribute("memberList", memberList);
+            model.addAttribute("startPage", startPage);
+            model.addAttribute("endPage", endPage);
+
+            return "member/positionSt";
+        }
+        // 미드필더(MF)
+        if (mPosition.equals("MF") || mPosition.equals("mf")) {
+            List<MemberDto> memberDtoList = memberService.MfMemberList(mPosition);
+            model.addAttribute("memberList", memberDtoList);
+
+            Page<MemberDto> memberList = memberService.getMemberPositionList(mPosition, pageable);
+
+            int totalPage = memberList.getTotalPages();  // 총 페이지 수
+            int blockNum = 3;                            // 화면에 표시할 페이지 수 => 2페이지씩 표시
+            int nowPage = memberList.getNumber();        // 현재페이지
+            int startPage = (int) ((Math.floor(nowPage / blockNum) * blockNum) + 1 <= totalPage ? (Math.floor(nowPage / blockNum) * blockNum) + 1 : totalPage);
+            // 블록의 첫 페이지
+            // 블록이 3일 경우     123 -> 1, 456  -> 4 , 789 -> 7
+            // Math.floor -> 올림
+
+            int endPage = (startPage + blockNum - 1 < totalPage ? startPage + blockNum - 1 : totalPage);
+            // 블록의 마지막 페이지
+            // 블록이 3일 경우      123 -> 3, 456  -> 5 , 789 -> 9
+            // 시작페이지+블록-1> 전체 페이지 -> 마지막페이지숫자(시작페이지+블록-1)
+
+            model.addAttribute("memberList", memberList);
+            model.addAttribute("startPage", startPage);
+            model.addAttribute("endPage", endPage);
+
+            return "member/positionMf";
+        }
+        // 수비수(DF)
+        if (mPosition.equals("DF") || mPosition.equals("df")) {
+            List<MemberDto> memberDtoList = memberService.DfMemberList(mPosition);
+            model.addAttribute("memberList", memberDtoList);
+
+            Page<MemberDto> memberList = memberService.getMemberPositionList(mPosition, pageable);
+
+            int totalPage = memberList.getTotalPages();  // 총 페이지 수
+            int blockNum = 3;                            // 화면에 표시할 페이지 수 => 2페이지씩 표시
+            int nowPage = memberList.getNumber();        // 현재페이지
+            int startPage = (int) ((Math.floor(nowPage / blockNum) * blockNum) + 1 <= totalPage ? (Math.floor(nowPage / blockNum) * blockNum) + 1 : totalPage);
+            // 블록의 첫 페이지
+            // 블록이 3일 경우     123 -> 1, 456  -> 4 , 789 -> 7
+            // Math.floor -> 올림
+
+            int endPage = (startPage + blockNum - 1 < totalPage ? startPage + blockNum - 1 : totalPage);
+            // 블록의 마지막 페이지
+            // 블록이 3일 경우      123 -> 3, 456  -> 5 , 789 -> 9
+            // 시작페이지+블록-1> 전체 페이지 -> 마지막페이지숫자(시작페이지+블록-1)
+
+            model.addAttribute("memberList", memberList);
+            model.addAttribute("startPage", startPage);
+            model.addAttribute("endPage", endPage);
+
+            return "member/positionDf";
+        }
+        // 골키퍼(GK)
+        if (mPosition.equals("GK") || mPosition.equals("gk")) {
+            List<MemberDto> memberDtoList = memberService.GkMemberList(mPosition);
+            model.addAttribute("memberList", memberDtoList);
+
+            Page<MemberDto> memberList = memberService.getMemberPositionList(mPosition, pageable);
+
+            int totalPage = memberList.getTotalPages();  // 총 페이지 수
+            int blockNum = 3;                            // 화면에 표시할 페이지 수 => 2페이지씩 표시
+            int nowPage = memberList.getNumber();        // 현재페이지
+            int startPage = (int) ((Math.floor(nowPage / blockNum) * blockNum) + 1 <= totalPage ? (Math.floor(nowPage / blockNum) * blockNum) + 1 : totalPage);
+            // 블록의 첫 페이지
+            // 블록이 3일 경우     123 -> 1, 456  -> 4 , 789 -> 7
+            // Math.floor -> 올림
+
+            int endPage = (startPage + blockNum - 1 < totalPage ? startPage + blockNum - 1 : totalPage);
+            // 블록의 마지막 페이지
+            // 블록이 3일 경우      123 -> 3, 456  -> 5 , 789 -> 9
+            // 시작페이지+블록-1> 전체 페이지 -> 마지막페이지숫자(시작페이지+블록-1)
+
+            model.addAttribute("memberList", memberList);
+            model.addAttribute("startPage", startPage);
+            model.addAttribute("endPage", endPage);
+
+            return "member/positionGk";
+        }
+        return null;
+
+    }
+
+    //    조직관리 - 회원구분별 조회
+    @GetMapping("/dept")
+    public String dept(Model model,
+                       @RequestParam("mDept") String mDept,
+                       @PageableDefault(page = 0, size = 8, sort = "mId", direction = Sort.Direction.DESC) Pageable pageable) {
+
+        // 회장(CP)
+        if (mDept.equals("CP") || mDept.equals("cp")) {
+            List<MemberDto> memberDtoList = memberService.CpMemberList(mDept);
+            model.addAttribute("memberList", memberDtoList);
+
+            Page<MemberDto> memberList = memberService.getMemberDeptList(mDept, pageable);
+
+            int totalPage = memberList.getTotalPages();  // 총 페이지 수
+            int blockNum = 3;                            // 화면에 표시할 페이지 수 => 2페이지씩 표시
+            int nowPage = memberList.getNumber();        // 현재페이지
+            int startPage = (int) ((Math.floor(nowPage / blockNum) * blockNum) + 1 <= totalPage ? (Math.floor(nowPage / blockNum) * blockNum) + 1 : totalPage);
+            // 블록의 첫 페이지
+            // 블록이 3일 경우     123 -> 1, 456  -> 4 , 789 -> 7
+            // Math.floor -> 올림
+
+            int endPage = (startPage + blockNum - 1 < totalPage ? startPage + blockNum - 1 : totalPage);
+            // 블록의 마지막 페이지
+            // 블록이 3일 경우      123 -> 3, 456  -> 5 , 789 -> 9
+            // 시작페이지+블록-1> 전체 페이지 -> 마지막페이지숫자(시작페이지+블록-1)
+
+            model.addAttribute("memberList", memberList);
+            model.addAttribute("startPage", startPage);
+            model.addAttribute("endPage", endPage);
+
+            return "member/deptCp";
+        }
+
+        // 부회장(VP)
+        if (mDept.equals("VP") || mDept.equals("vp")) {
+            List<MemberDto> memberDtoList = memberService.VpMemberList(mDept);
+            model.addAttribute("memberList", memberDtoList);
+
+            Page<MemberDto> memberList = memberService.getMemberDeptList(mDept, pageable);
+
+            int totalPage = memberList.getTotalPages();  // 총 페이지 수
+            int blockNum = 3;                            // 화면에 표시할 페이지 수 => 2페이지씩 표시
+            int nowPage = memberList.getNumber();        // 현재페이지
+            int startPage = (int) ((Math.floor(nowPage / blockNum) * blockNum) + 1 <= totalPage ? (Math.floor(nowPage / blockNum) * blockNum) + 1 : totalPage);
+            // 블록의 첫 페이지
+            // 블록이 3일 경우     123 -> 1, 456  -> 4 , 789 -> 7
+            // Math.floor -> 올림
+
+            int endPage = (startPage + blockNum - 1 < totalPage ? startPage + blockNum - 1 : totalPage);
+            // 블록의 마지막 페이지
+            // 블록이 3일 경우      123 -> 3, 456  -> 5 , 789 -> 9
+            // 시작페이지+블록-1> 전체 페이지 -> 마지막페이지숫자(시작페이지+블록-1)
+
+            model.addAttribute("memberList", memberList);
+            model.addAttribute("startPage", startPage);
+            model.addAttribute("endPage", endPage);
+
+            return "member/deptVp";
+        }
+
+        // 총무(GA)
+        if (mDept.equals("GA") || mDept.equals("ga")) {
+            List<MemberDto> memberDtoList = memberService.GaMemberList(mDept);
+            model.addAttribute("memberList", memberDtoList);
+
+            Page<MemberDto> memberList = memberService.getMemberDeptList(mDept, pageable);
+
+            int totalPage = memberList.getTotalPages();  // 총 페이지 수
+            int blockNum = 3;                            // 화면에 표시할 페이지 수 => 2페이지씩 표시
+            int nowPage = memberList.getNumber();        // 현재페이지
+            int startPage = (int) ((Math.floor(nowPage / blockNum) * blockNum) + 1 <= totalPage ? (Math.floor(nowPage / blockNum) * blockNum) + 1 : totalPage);
+            // 블록의 첫 페이지
+            // 블록이 3일 경우     123 -> 1, 456  -> 4 , 789 -> 7
+            // Math.floor -> 올림
+
+            int endPage = (startPage + blockNum - 1 < totalPage ? startPage + blockNum - 1 : totalPage);
+            // 블록의 마지막 페이지
+            // 블록이 3일 경우      123 -> 3, 456  -> 5 , 789 -> 9
+            // 시작페이지+블록-1> 전체 페이지 -> 마지막페이지숫자(시작페이지+블록-1)
+
+            model.addAttribute("memberList", memberList);
+            model.addAttribute("startPage", startPage);
+            model.addAttribute("endPage", endPage);
+
+            return "member/deptGa";
+        }
+
+        // 매니저(MANAGER)
+        if (mDept.equals("MANAGER") || mDept.equals("manager")) {
+            List<MemberDto> memberDtoList = memberService.ManagerMemberList(mDept);
+            model.addAttribute("memberList", memberDtoList);
+
+            Page<MemberDto> memberList = memberService.getMemberDeptList(mDept, pageable);
+
+            int totalPage = memberList.getTotalPages();  // 총 페이지 수
+            int blockNum = 3;                            // 화면에 표시할 페이지 수 => 2페이지씩 표시
+            int nowPage = memberList.getNumber();        // 현재페이지
+            int startPage = (int) ((Math.floor(nowPage / blockNum) * blockNum) + 1 <= totalPage ? (Math.floor(nowPage / blockNum) * blockNum) + 1 : totalPage);
+            // 블록의 첫 페이지
+            // 블록이 3일 경우     123 -> 1, 456  -> 4 , 789 -> 7
+            // Math.floor -> 올림
+
+            int endPage = (startPage + blockNum - 1 < totalPage ? startPage + blockNum - 1 : totalPage);
+            // 블록의 마지막 페이지
+            // 블록이 3일 경우      123 -> 3, 456  -> 5 , 789 -> 9
+            // 시작페이지+블록-1> 전체 페이지 -> 마지막페이지숫자(시작페이지+블록-1)
+
+            model.addAttribute("memberList", memberList);
+            model.addAttribute("startPage", startPage);
+            model.addAttribute("endPage", endPage);
+
+            return "member/deptManager";
+        }
+
+        // 일반회원, 기본(MEMBER)
+//        if (mDept.equals("MEMBER") || mDept.equals("member")) {
+//            List<MemberDto> memberDtoList = memberService.MemberMemberList(mDept);
+//            model.addAttribute("memberList", memberDtoList);
+//
+//            Page<MemberDto> memberList = memberService.getMemberDeptList(mDept, pageable);
+//
+//            int totalPage = memberList.getTotalPages();  // 총 페이지 수
+//            int blockNum = 3;                            // 화면에 표시할 페이지 수 => 2페이지씩 표시
+//            int nowPage = memberList.getNumber();        // 현재페이지
+//            int startPage = (int) ((Math.floor(nowPage / blockNum) * blockNum) + 1 <= totalPage ? (Math.floor(nowPage / blockNum) * blockNum) + 1 : totalPage);
+//            // 블록의 첫 페이지
+//            // 블록이 3일 경우     123 -> 1, 456  -> 4 , 789 -> 7
+//            // Math.floor -> 올림
+//
+//            int endPage = (startPage + blockNum - 1 < totalPage ? startPage + blockNum - 1 : totalPage);
+//            // 블록의 마지막 페이지
+//            // 블록이 3일 경우      123 -> 3, 456  -> 5 , 789 -> 9
+//            // 시작페이지+블록-1> 전체 페이지 -> 마지막페이지숫자(시작페이지+블록-1)
+//
+//            model.addAttribute("memberList", memberList);
+//            model.addAttribute("startPage", startPage);
+//            model.addAttribute("endPage", endPage);
+//
+//            return "member/deptMember";
+//        }
+        return null;
+    }
 }
