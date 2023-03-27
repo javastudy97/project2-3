@@ -87,7 +87,7 @@ h2{
 /* 검색 및 페이징 */
 
 .tools{
-  width: 1230px;
+  width: 83%;
   display: flex;
   justify-content: space-between;
   border: 1px solid #b9b9b9;

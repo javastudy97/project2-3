@@ -34,9 +34,17 @@
 }
 
 .right-menu .con .right-con .con-box{
+  height: 40vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: center;
+}
+
+.right-menu .con .right-con .con-box table {
+  width: 100%;
+  text-align: center;
+  border-collapse: collapse;
 }
 
 h2{
@@ -44,4 +52,28 @@ h2{
   color: #ffffff;
   padding: 5px;
   /* border: 1px solid #000000; */
+}
+
+/* 검색 및 페이징 */
+
+.tools{
+  width: 83%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #b9b9b9;
+  box-shadow: 5px 5px 5px 1px grey;
+  padding: 0px 20px;
+  box-sizing: border-box;
+}
+
+.tools .page{
+  padding: 5px 10px;
+  box-sizing: border-box;
+}
+
+.tools .page>ul{
+  display: flex;
+  justify-content: center;
+  gap: 10px;
 }

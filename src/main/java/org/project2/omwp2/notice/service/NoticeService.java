@@ -2,7 +2,9 @@ package org.project2.omwp2.notice.service;
 
 
 import lombok.RequiredArgsConstructor;
+import org.project2.omwp2.dto.BoardDto;
 import org.project2.omwp2.dto.NoticeDto;
+import org.project2.omwp2.entity.BoardEntity;
 import org.project2.omwp2.entity.MemberEntity;
 import org.project2.omwp2.entity.NoticeEntity;
 import org.project2.omwp2.member.repository.MemberRepository;
@@ -66,5 +68,35 @@ public class NoticeService {
         NoticeEntity noticeEntity = NoticeEntity.toNoticeInsertEntity(noticeDto,memberEntity);
         noticeRepository.save(noticeEntity);
 
+    }
+
+    public Page<NoticeDto> optionNoticeIdSearchPaging(Long noticeId, Pageable pageable) {
+
+        Page<NoticeEntity> noticeEntityPage = noticeRepository.findByNoticeId(noticeId,pageable);
+        Page<NoticeDto> noticeDtoPage = noticeEntityPage.map(NoticeDto::toNoticeDto);
+
+        return  noticeDtoPage;
+
+    }
+
+    public Page<NoticeDto> optionNoticeTitleSearchPaging(String search, Pageable pageable) {
+        Page<NoticeEntity> noticeEntityPage = noticeRepository.findByNoticeTitleContaining(search, pageable);
+        Page<NoticeDto> noticeDtoPage = noticeEntityPage.map(NoticeDto::toNoticeDto);
+
+        return noticeDtoPage;
+    }
+
+    public Page<NoticeDto> optionNoticeContentSearchPaging(String search, Pageable pageable) {
+        Page<NoticeEntity> noticeEntityPage = noticeRepository.findByNoticeContentContaining(search, pageable);
+        Page<NoticeDto> noticeDtoPage = noticeEntityPage.map(NoticeDto::toNoticeDto);
+
+        return noticeDtoPage;
+    }
+
+    public Page<NoticeDto> NoticeAllPagingList(Pageable pageable) {
+        Page<NoticeEntity> noticeEntityPage = noticeRepository.findAll(pageable);
+        Page<NoticeDto> noticeDtoPage = noticeEntityPage.map(NoticeDto::toNoticeDto);
+
+        return noticeDtoPage;
     }
 }
