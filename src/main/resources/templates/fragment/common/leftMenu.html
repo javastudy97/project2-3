@@ -28,10 +28,7 @@
                                     <a th:href="@{/attend/attend}">근태 관리</a>
                                 </li>
                                 <li>
-                                    <a th:href="@{/teamSchedule/teamSchedule}">공식 일정</a>
-                                </li>
-                                <li>
-                                    <a th:href="@{/memberSchedule/memberSchedule}">개인 일정</a>
+                                    <a th:href="@{/memberSchedule/memberSchedule}">개인일정 관리</a>
                                 </li>
                             </ul>
                         </li>
@@ -130,13 +127,16 @@
                             <a href="#">관리자 메뉴</a>
                             <ul class="sub">
                                 <li>
-                                    <a th:href="@{/member/memberList}">회원관리</a>
+                                    <a th:href="@{/member/memberList}">회원 관리</a>
                                 </li>
                                 <li>
-                                    <a th:href="@{/board/adminNoticeList}">공지사항관리</a>
+                                    <a th:href="@{/teamSchedule/teamSchedule}">공식일정 관리</a>
                                 </li>
                                 <li>
-                                    <a th:href="@{/board/adminBoardList}">게시판관리</a>
+                                    <a th:href="@{/board/adminNoticeList}">공지사항 관리</a>
+                                </li>
+                                <li>
+                                    <a th:href="@{/board/adminBoardList}">게시판 관리</a>
                                 </li>
                             </ul>
                         </li>
