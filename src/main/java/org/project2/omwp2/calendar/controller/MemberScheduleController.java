@@ -46,9 +46,9 @@ public class MemberScheduleController {
 
         MemberScheduleDto memberScheduleDto = new MemberScheduleDto();
 
-        memberScheduleDto.setScheduleBoard(scheduleBoard);
-        memberScheduleDto.setScheduleStart(scheduleStart);
-        memberScheduleDto.setScheduleEnd(scheduleEnd);
+//        memberScheduleDto.setScheduleBoard(scheduleBoard);
+//        memberScheduleDto.setScheduleStart(scheduleStart);
+//        memberScheduleDto.setScheduleEnd(scheduleEnd);
         memberScheduleDto.setScheduleDone(scheduleDone);
 
         memberScheduleService.insertMySchedule(memberScheduleDto,id);
@@ -104,9 +104,9 @@ public class MemberScheduleController {
         MemberScheduleDto memberScheduleDto1 = new MemberScheduleDto();
 
         memberScheduleDto1.setScheduleId(scheduleId);
-        memberScheduleDto1.setScheduleBoard(scheduleBoard);
-        memberScheduleDto1.setScheduleStart(scheduleStart);
-        memberScheduleDto1.setScheduleEnd(scheduleEnd);
+//        memberScheduleDto1.setScheduleBoard(scheduleBoard);
+//        memberScheduleDto1.setScheduleStart(scheduleStart);
+//        memberScheduleDto1.setScheduleEnd(scheduleEnd);
         memberScheduleDto1.setScheduleDone(scheduleDone);
         memberScheduleDto1.setMId(userId);
 
@@ -180,7 +180,8 @@ public class MemberScheduleController {
         return "/calendar/memberSchedule/memberScheduleList";
     }
 
-    @GetMapping("/memberCalendar")
+    //개인 일정 달력
+    @GetMapping("/memberSchedule")
     public String memberCalendar(){
 
         return "/calendar/memberSchedule/memberCalendar";

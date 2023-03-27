@@ -164,4 +164,10 @@ public class TeamScheduleController {
 //        return "/calendar/teamSchedule/teamSchedule";
 //    }
 
+    @GetMapping("/teamSchedule")
+    public String memberCalendar(){
+
+        return "/calendar/teamSchedule/teamCalendar";
+    }
+
 }
