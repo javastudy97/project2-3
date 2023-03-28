@@ -49,11 +49,9 @@
 
 /* 등록 영역 */
 #wrap .right-menu .container .right-con .account-list .btnZone{
-    border-bottom: 4px solid #878784;
     box-sizing: border-box;
     display: flex;
     justify-content: right;
-    padding-bottom: 10px;
     gap: 10px;
 }
 
@@ -81,6 +79,17 @@
     text-align: center;
     cursor: pointer;
 }
+
+/* 작성일, 수정일 */
+.time li span{
+    display: flex;
+    justify-content: right;
+    border-bottom: 4px solid #878784;
+    padding-bottom: 3px;
+    box-sizing: border-box;
+    font-size: 12px;
+}
+
 
 /* 제목, 이월금 */
 #wrap .right-menu .container .right-con .account-list .title-zone{
@@ -220,7 +229,7 @@ table tr:nth-child(2){
 }
 
 /* 소제목 */
-span{
+.title-sub{
     color: #ff0000;
     font-weight: bold;
     font-size: 14px;

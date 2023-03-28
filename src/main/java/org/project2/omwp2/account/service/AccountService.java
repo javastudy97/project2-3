@@ -6,11 +6,11 @@ import org.project2.omwp2.dto.AccountDto;
 import org.project2.omwp2.entity.AccountEntity;
 import org.project2.omwp2.entity.MemberEntity;
 import org.project2.omwp2.member.repository.MemberRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -32,20 +32,20 @@ public class AccountService {
                 .acContent(accountDto.getAcContent())
                 .acIncome(accountDto.getAcIncome())
                 .acExpend(accountDto.getAcExpend())
+                .acTotalIncome(accountDto.getAcTotalIncome())
+                .acTotalExpend(accountDto.getAcTotalExpend())
+                .acTotalPay(accountDto.getAcTotalPay())
                 .build();
 
         accountRepository.save(accountEntity);
+
     }
 
     // 게시글 목록
-    public List<AccountDto> accountList() {
-        List<AccountDto> accountDtoList = new ArrayList<>();
-        // DB를 가져온다
-        List<AccountEntity> accountEntityList = accountRepository.findAll();
-        for(AccountEntity accountEntity : accountEntityList){
-            accountDtoList.add(AccountDto.toAccountDto(accountEntity));
-        }
-        return accountDtoList;
+    public Page<AccountDto> accountList(Pageable pageable) {
+        Page<AccountEntity> accountEntityPage = accountRepository.findAll(pageable);
+
+        return accountEntityPage.map(AccountDto::toAccountDto);
     }
 
     // 게시글 상세페이지
@@ -72,8 +72,11 @@ public class AccountService {
 
     // 게시글 수정 실행
     @Transactional
-    public int accountUpdateOk(AccountDto accountDto) {
-        Long id = accountRepository.save(AccountEntity.toAccountEntity(accountDto)).getAcId();
+    public int accountUpdateOk(AccountDto accountDto, String mEmail) {
+
+        MemberEntity memberEntity = memberRepository.findBymEmail(mEmail).get();
+
+        Long id = accountRepository.save(AccountEntity.toAccountEntity(accountDto, memberEntity)).getAcId();
 
         if (id == null) {
             return 0;

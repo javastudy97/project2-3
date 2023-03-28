@@ -32,7 +32,7 @@
                                     <th width="15%">현재 잔액</th>
                                 </tr>
             
-                                <tr th:each="list: ${accountDtoList}">
+                                <tr th:each="list: ${accountList}">
                                     <td th:text="${list.acId}"></td>
                                     <td>
                                         <a th:href="@{|/account/detail/${list.acId}|}" th:text="${list.acTitle}"></a>
@@ -46,9 +46,38 @@
                         
                         <!-- 페이징 영역 -->
                         <div class="account-page">
-                            <span><</span>
-                            <span>1</span>
-                            <span>></span>
+                            <ul>
+                                <li>
+                                  <span th:if="${1 == accountList.pageable.pageNumber+1}" style="color:#cdcdcd">≪</span>
+                                  <a th:unless="${1 == accountList.pageable.pageNumber+1}"
+                                     style="color:#000000" th:href="@{/account/list(page=0)}">≪</a>
+                                </li>
+                    
+                                <li>
+                                   <span th:if="${1 == accountList.pageable.pageNumber+1}"  style="color:#cdcdcd">＜</span>
+                                  <a th:unless="${1 == accountList.pageable.pageNumber+1}"   style="color:#000000"
+                                     th:href="@{/account/list(page=${ accountList.pageable.pageNumber - 1})}">＜</a>
+                                </li>
+                    
+                    
+                                <!-- 페이지 번호 -->
+                                <li th:each="i: ${#numbers.sequence(startPage, endPage)}">
+                                  <span th:if="${i == accountList.pageable.pageNumber+1}"  style="color:#cdcdcd" th:text="${i}"></span>
+                                  <a th:unless="${i == accountList.pageable.pageNumber+1}" style="color:#000000"
+                                     th:href="@{/account/list(page=${ i - 1})}" th:text="${i}"></a>
+                                </li>
+                                <li>
+                                   <span th:if="${accountList.totalPages == accountList.pageable.pageNumber+1}"  style="color:#cdcdcd">＞</span>
+                                  <a th:unless="${accountList.totalPages == accountList.pageable.pageNumber+1}"  style="color:#000000"
+                                     th:href="@{/account/list(page=${ accountList.pageable.pageNumber + 1})}">＞</a>
+                                </li>
+                    
+                                <li>
+                               <span th:if="${accountList.totalPages == accountList.pageable.pageNumber+1}"  style="color:#cdcdcd">≫</span>
+                                  <a th:unless="${accountList.totalPages == accountList.pageable.pageNumber+1}"
+                                     style="color:#000000" th:href="@{/account/list(page=${accountList.totalPages-1})}">≫</a>
+                                </li>
+                              </ul>
                         </div><!-- account-page -->
                     </div><!-- right-con -->
                 </div><!-- account-list" -->
