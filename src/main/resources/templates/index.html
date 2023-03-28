@@ -122,6 +122,7 @@
                                                     <th>No</th>
                                                     <th>제목</th>
                                                     <th>내용</th>
+                                                    <!-- <th>작성자</th> -->
                                                     <th>조회수</th>
                                                     <th>작성일</th>
                                                 </tr>
@@ -130,6 +131,7 @@
                                                         <td th:text="${notice.noticeId}"></td>
                                                         <td th:text="${notice.noticeTitle}"></td>
                                                         <td th:text="${notice.noticeContent}"></td>
+                                                        <!-- <td th:text="${notice.mName}"></td> -->
                                                         <td th:text="${notice.noticeHit}"></td>
                                                         <td th:text="${#temporals.format(notice.noticeCreate, 'yyyy-MM-dd HH:mm:ss')}"></td>
                                                     </tr>

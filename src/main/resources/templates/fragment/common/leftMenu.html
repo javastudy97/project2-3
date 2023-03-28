@@ -2,14 +2,29 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <link rel="stylesheet" href="/static/css/common/leftMenu.css">
 
-    <!-- 날씨 -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-    <script th:src="@{/js/weather.js}" defer></script>
 
-    <div class="left-menu" th:fragment="leftMenuFragment">
+<div class="left-menu" th:fragment="leftMenuFragment">
+        <!-- 날씨 -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+        <script th:src="@{/js/weather.js}" defer></script>
         <div class="left-con">
             <div class="dash-board">
-                <h1 class="title">대시보드</a></h1>
+                <!-- <h1 class="title">대시보드</a></h1> -->
+                <div class="weather">
+                    <div class="title">
+                        <span class="nowtime"></span>
+                        <span>현재날씨(Seoul)</span>
+                    </div>
+                    <div class="desc">
+                        <h3 class="SeoulIcon"></h3>
+                        <h3 class="SeoulWeatherDesc"></h3>
+                    </div>
+                    <div class="temp">
+                        <h4 class="SeoulNowtemp" style="font-weight: bold;">현재기온 : </h4>
+                        <h4 class="SeoulLowtemp">최저기온 : </h4>
+                        <h4 class="SeoulHightemp">최고기온 : </h4>
+                    </div>
+                </div>
                 <div class="menu">
                     <ul>
                         <li>
@@ -63,6 +78,19 @@
                             </ul>
                         </li>
                         <li>
+                            <a th:href="@{/account/list}">회계관리</a>
+                            <ul class="sub">
+                                <li>
+                                    <a th:href="@{/account/list}">게시글</a>
+                                </li>
+
+                                <li>
+                                    <a href="#">잔여금</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li>
                             <a href="#">동호회게시판</a>
                             <ul class="sub">
                                 <li>
@@ -79,20 +107,7 @@
                                 </li>
                             </ul>
                         </li>
-
-                        <li>
-                            <a th:href="@{/account/list}">회계관리</a>
-                            <ul class="sub">
-                                <li>
-                                    <a th:href="@{/account/list}">게시글</a>
-                                </li>
-
-                                <li>
-                                    <a href="#">잔여금</a>
-                                </li>
-                            </ul>
-                        </li>
-
+                        
                         <li>
                             <a href="">공지사항</a>
                             <ul class="sub">
