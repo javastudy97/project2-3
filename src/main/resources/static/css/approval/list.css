@@ -8,19 +8,23 @@
   padding-top: 50px;
   box-sizing: border-box;
   display: flex;
-  /* justify-content:center; */
+  justify-content: space-between;
   /* gap: 5px; */
-
-  margin-left: 320px
 }
 
 .container .approvalListGrid {
-  width: 1000px;
-  gap: 20px;
-  padding: 10px 10px;
+  flex: 1;
+  height: auto;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  /* border-top: 1px solid #000000; */
+  /* border: 1px solid #ffff00; */
+  padding: 30px;
+  padding-left: 330px;
 
-  border: 1px solid #4d4d4d3a;
+  box-shadow: 5px 5px 5px 1px grey;
 }
+
 
 .container .approvalListGrid h2{
   display: flex;
@@ -29,13 +33,29 @@
   background-color: #000000;
   color: #ffffff;
 
-  padding: 30px 20px;
-  margin: 20px 20px;
+  /* padding: 30px 20px; */
+  padding: 5px;
+  /* margin: 20px 20px; */
 }
+
+/* Page--------------------------------- */
+.container .approvalListGrid .page{
+  text-align: center;
+
+}
+
+.container .approvalListGrid .page ul{
+  display: flex;
+  justify-content: center;
+}
+
+.container .approvalListGrid .page ul li{
+  margin: 5px;
+}
+/* Page--------------------------------- */
 
 .container .approvalListGrid .approvalList{
   width: 100%;
-  /* border: 1px solid #ff0000; */
   box-sizing: border-box;
 
   display: grid;
