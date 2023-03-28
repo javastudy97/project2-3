@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.io.IOException;
@@ -111,10 +112,28 @@ public class MemberController {
 
 //    관리자메뉴 - 전체 회원목록
     @GetMapping("/memberList")
-    public String memberList(Model model, @PageableDefault(page = 0, size = 8, sort = "mId", direction = Sort.Direction.DESC)
-                             Pageable pageable) {
+    public String memberList(@PageableDefault(page = 0, size = 8, sort = "mId", direction = Sort.Direction.DESC)
+                             Pageable pageable, Model model,
+                             @RequestParam(value = "type",required = false) String type,
+                             @RequestParam(value = "search",required = false) String search) {
 
         Page<MemberDto> memberList = memberService.getMemberList(pageable);
+
+//        검색조회
+        if(type != null && search != null) {
+
+            if(type.equals("mName")) {
+//                이름으로 검색
+                memberList = memberService.findMemberName(search,pageable);
+            } else if (type.equals("mEmail")) {
+//                이메일로 검색
+                memberList = memberService.findMemberEmail(search,pageable);
+            } else if (type.equals("mTel")) {
+//                연락처로 검색
+                memberList = memberService.findMemberTel(search,pageable);
+            }
+
+        }
 
         int totalPage = memberList.getTotalPages();  // 총 페이지 수
         int blockNum = 3;                            // 화면에 표시할 페이지 수 => 2페이지씩 표시
@@ -135,6 +154,20 @@ public class MemberController {
 
         return "member/adminMemberList";
     }
+
+    //    관리자메뉴 - 회워목록 내 검색
+    @GetMapping("/adminMemberSearch")
+    public String adminMemberSearch(@RequestParam(value = "type",required = false) String type,
+                                    @RequestParam(value = "search",required = false) String search,
+                                    RedirectAttributes redirectAttributes){
+
+        redirectAttributes.addAttribute("type",type);
+        redirectAttributes.addAttribute("search",search);
+
+        return "redirect:/member/memberList";
+    }
+
+
 
     //    관리자메뉴 - 특정 회원상세
     @GetMapping("/adminMemberDetail/{id}")
@@ -160,6 +193,9 @@ public class MemberController {
     @PostMapping("/adminMemberUpdateOk/{id}")
     public String memberUpdateDo2(@PathVariable(name = "id") Long id, @Valid MemberDto memberDto,
                                   BindingResult bindingResult, Model model) throws IOException {
+
+        System.out.println(memberDto.getMRole()+"<<< Role");
+        System.out.println(memberDto.getMDept()+"<<< Dept");
 
         if(bindingResult.hasErrors()){
 //            유효성 검사 에러 발생시

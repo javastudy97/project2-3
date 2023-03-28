@@ -35,7 +35,7 @@ public class AdminBoardController {
 //        boardDto.setBoardCmcount(boardService.upcount(boardDto.getBoardId()));
 
 
-        Page<BoardDto> boardList = null;
+        Page<BoardDto> boardList = boardService.BoardAllPagingList(pageable);
 
         Long boardId = 0L;
 
@@ -52,8 +52,6 @@ public class AdminBoardController {
 
             }
 
-        } else {
-            boardList = boardService.BoardAllPagingList(pageable);
         }
 
         int totalPage = boardList.getTotalPages();  // 총 페이지 수
@@ -96,7 +94,7 @@ public class AdminBoardController {
 //        boardDto.setBoardCmcount(boardService.upcount(boardDto.getBoardId()));
 
 
-        Page<NoticeDto> noticeList = null;
+        Page<NoticeDto> noticeList = noticeService.NoticeAllPagingList(pageable);
 
         Long noticeId = 0L;
 
@@ -113,8 +111,6 @@ public class AdminBoardController {
 
             }
 
-        } else {
-            noticeList = noticeService.NoticeAllPagingList(pageable);
         }
 
         int totalPage = noticeList.getTotalPages();  // 총 페이지 수

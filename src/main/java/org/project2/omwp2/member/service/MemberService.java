@@ -311,6 +311,48 @@ public class MemberService {
         return ManagerMemberDtoList;
     }
 
+//    관리자메뉴 내 회원목록 검색 - 이름 기준
+    public Page<MemberDto> findMemberName(String search, Pageable pageable) {
+        
+        Page<MemberEntity> memberEntityPage = memberRepository.findByMName(search,pageable);
+
+        if (memberEntityPage.isEmpty()){
+            return null;
+        }
+
+        Page<MemberDto> memberDtoPage = memberEntityPage.map(MemberDto::toMemberDto);
+
+        return memberDtoPage;
+    }
+
+    //    관리자메뉴 내 회원목록 검색 - 이메일 기준
+    public Page<MemberDto> findMemberEmail(String search, Pageable pageable) {
+
+        Page<MemberEntity> memberEntityPage = memberRepository.findByMEmail(search,pageable);
+
+        if (memberEntityPage.isEmpty()){
+            return null;
+        }
+
+        Page<MemberDto> memberDtoPage = memberEntityPage.map(MemberDto::toMemberDto);
+
+        return memberDtoPage;
+    }
+
+    //    관리자메뉴 내 회원목록 검색 - 연락처 기준
+    public Page<MemberDto> findMemberTel(String search, Pageable pageable) {
+
+        Page<MemberEntity> memberEntityPage = memberRepository.findByMTel(search,pageable);
+
+        if (memberEntityPage.isEmpty()){
+            return null;
+        }
+
+        Page<MemberDto> memberDtoPage = memberEntityPage.map(MemberDto::toMemberDto);
+
+        return memberDtoPage;
+    }
+
     // 회원구분별 목록가져오기(MEMBER) - 일반회원, 기본
 //    public List<MemberDto> MemberMemberList(String mDept) {
 //

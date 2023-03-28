@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-  <link rel="stylesheet" href="/static/css/common/leftMenu.css">
+<link rel="stylesheet" href="/static/css/common/leftMenu.css">
+
+    <!-- 날씨 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script th:src="@{/js/weather.js}" defer></script>
+    
     <div class="left-menu" th:fragment="leftMenuFragment">
         <div class="left-con">
             <div class="dash-board">

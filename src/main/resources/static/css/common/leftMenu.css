@@ -71,12 +71,10 @@
 .left-menu .left-con .dash-board .menu>ul>li:hover::after{
   content: "▼";
   color: #000000;
-  transition: all 0.3s;
 }
 
 .left-menu .left-con .dash-board .menu>ul>li:hover ul.sub{
   display: block;
-  transition: all 0.3s;
 }
 
 .left-menu .left-con .dash-board .menu>ul>li ul.sub{

@@ -27,4 +27,13 @@ public interface MemberRepository extends JpaRepository<MemberEntity,Long> {
     List<MemberEntity> findBymDeptDesc(@Param("dept") String mDept);
 
     Page<MemberEntity> findAllBymDept(String mDept, Pageable pageable);
+
+    @Query(value = "select * from member where m_id=:search",nativeQuery = true)
+    Page<MemberEntity> findByMName(@Param("search") String search, Pageable pageable);
+
+    @Query(value = "select * from member where m_email like %:search%",nativeQuery = true)
+    Page<MemberEntity> findByMEmail(@Param("search") String search, Pageable pageable);
+
+    @Query(value = "select * from member where m_tel like %:search%",nativeQuery = true)
+    Page<MemberEntity> findByMTel(@Param("search") String search, Pageable pageable);
 }

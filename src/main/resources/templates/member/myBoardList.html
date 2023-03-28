@@ -25,6 +25,7 @@
                                     <th>내용</th>
                                     <th>조회수</th>
                                     <th>등록일</th>
+                                    <th>수정일</th>
                                     <th>댓글수</th>
                                     <th>작성자</th>
                                     <th>상세</th>
@@ -37,6 +38,7 @@
                                     <td th:text="${board.boardContent}"></td>
                                     <td th:text="${board.boardHit}"></td>
                                     <td th:text="${#temporals.format(board.boardCreate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                                    <td th:text="${#temporals.format(board.boardUpdate, 'yyyy-MM-dd HH:mm:ss')}"></td>
                                     <td th:text="${board.boardCmcount}"></td>
                                     <td th:text="${board.mName}"></td>
                                     <td><a th:href="@{|/board/boardDetail/${board.boardId}|}">보기</a></td>
