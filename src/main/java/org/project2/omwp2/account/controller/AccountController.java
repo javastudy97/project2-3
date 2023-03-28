@@ -3,12 +3,15 @@ package org.project2.omwp2.account.controller;
 import lombok.RequiredArgsConstructor;
 import org.project2.omwp2.account.service.AccountService;
 import org.project2.omwp2.dto.AccountDto;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
-import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -19,14 +22,24 @@ public class AccountController {
 
     // 수입지출 내역 리스트(회계관련 메인페이지)
     @GetMapping("/list")
-    public String accountList(Model model){
+    public String accountList(Model model,
+                              @PageableDefault(page = 0, size = 4, sort = "acId", direction = Sort.Direction.DESC) Pageable pageable){
 
-        List<AccountDto> accountDtoList = accountService.accountList();
+        Page<AccountDto> accountList = accountService.accountList(pageable);
 
-        model.addAttribute("accountDtoList", accountDtoList);
+        int totalPage = accountList.getTotalPages();
+        int blockNum = 5;
+        int nowPage = accountList.getNumber();
+        int startPage = (int)((Math.floor(nowPage/blockNum)*blockNum)+1 <= totalPage ? (Math.floor(nowPage/blockNum)*blockNum)+1 : totalPage);
+        int endPage = (startPage + blockNum-1 < totalPage ? startPage + blockNum-1 : totalPage);
+
+        model.addAttribute("accountList", accountList);
+        model.addAttribute("startPage", startPage);
+        model.addAttribute("endPage", endPage);
 
         return "account/accountList";
     }
+
 
     // 등록페이지 이동
     @GetMapping("/insert")
@@ -78,12 +91,19 @@ public class AccountController {
 
     // 게시글 수정 실행
     @PostMapping("/updateOk")
-    public String acUpdateOk(@ModelAttribute AccountDto accountDto){
+    public String acUpdateOk(@ModelAttribute AccountDto accountDto, Model model, Principal principal){
 
-        int rs = accountService.accountUpdateOk(accountDto);
+        String mEmail = principal.getName();
+
+        int rs = accountService.accountUpdateOk(accountDto,mEmail);
+
         if(rs != 1) {
             return null;
         }
+
+        model.addAttribute("rs",rs);
+        model.addAttribute("accountDto", accountDto);
+
         return "redirect:/account/detail/" + accountDto.getAcId();
     }
 

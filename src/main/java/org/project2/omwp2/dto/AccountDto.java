@@ -38,6 +38,15 @@ public class AccountDto {
     // 잔여금(이월금)?
     private int acSurplus;
 
+    // 총 수입 금액
+    private int acTotalIncome;
+
+    // 총 지출 금액
+    private int  acTotalExpend;
+
+    // 총액
+    private int acTotalPay;
+
     // 게시글 등록일
     @CreationTimestamp
     private LocalDateTime acCreate;
@@ -56,8 +65,11 @@ public class AccountDto {
         accountDto.setAcIncome(accountEntity.getAcIncome());
         accountDto.setAcExpend(accountEntity.getAcExpend());
         accountDto.setAcSurplus(accountEntity.getAcSurplus());
+        accountDto.setAcTotalIncome(accountEntity.getAcTotalIncome());
+        accountDto.setAcTotalExpend(accountEntity.getAcTotalExpend());
+        accountDto.setAcTotalPay(accountEntity.getAcTotalPay());
         accountDto.setAcCreate(accountEntity.getAcCreate());
-        accountDto.setAcUpdate(accountEntity.getAcCreate());
+        accountDto.setAcUpdate(accountEntity.getAcUpdate());
 
         return accountDto;
     }

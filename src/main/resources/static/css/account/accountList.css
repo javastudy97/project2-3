@@ -90,9 +90,13 @@ th, td{
 
 /* 페이징 영역 */
 #wrap .right-menu .container .right-con .account-list .account-page{
-    display: flex;
-    justify-content: center;
     padding-top: 15px;
     box-sizing: border-box;
+}
+
+#wrap .right-menu .container .right-con .account-list .account-page ul{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
 }
 
