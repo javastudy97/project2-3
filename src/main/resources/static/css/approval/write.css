@@ -36,8 +36,10 @@
   padding-left: 330px;
 
   /* margin: 10px 10px; */
+}
+
+.container .approvalWrite .con{
   box-shadow: 5px 5px 5px 1px grey;
-  color: #525252;
 }
 
 .container .approvalWrite form{

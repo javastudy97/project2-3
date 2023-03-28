@@ -21,8 +21,6 @@
   /* border: 1px solid #ffff00; */
   padding: 30px;
   padding-left: 330px;
-
-  box-shadow: 5px 5px 5px 1px grey;
 }
 
 
@@ -54,15 +52,21 @@
 }
 /* Page--------------------------------- */
 
+.container .approvalListGrid .con{
+  box-shadow: 5px 5px 5px 1px grey;
+}
+
 .container .approvalListGrid .approvalList{
   width: 100%;
   box-sizing: border-box;
 
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 100px 100px;
-  grid-auto-rows: minmax(0, 500px);
-  gap: 40px;
+  grid-template-rows: 100px;
+  grid-auto-rows: minmax(auto, 100px);
+  gap: 20px;
+  padding: 30px;
+  box-sizing: border-box;
 }
 
 
@@ -73,7 +77,6 @@
   
   /* box-shadow: 1px 1px 5px #4d4d4d; */
   color: 525252;
-  margin: 10px 10px;
 }
 
 .container .approvalList ul li{
