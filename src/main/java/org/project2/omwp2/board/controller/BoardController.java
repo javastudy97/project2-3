@@ -11,10 +11,12 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.validation.Valid;
 import java.io.IOException;
 import java.security.Principal;
 import java.util.List;
@@ -77,12 +79,18 @@ public class BoardController {
     public String boardInsert(Model model) {
 
         model.addAttribute("boardDto", new BoardDto());
-        return "board/adminBoardInsert";
+        return "board/BoardInsert";
 
     }
 
     @PostMapping("/boardInsert")
-    public String boardInsert(@RequestParam("boardFile") MultipartFile files, BoardDto boardDto, Principal principal) throws IOException {
+    public String boardInsert(@RequestParam("boardFile") MultipartFile files,
+                              @Valid BoardDto boardDto, BindingResult bindingResult,
+                              Principal principal) throws IOException {
+
+        if(bindingResult.hasErrors()){
+            return "board/BoardInsert";
+        }
 
         String mEmail = principal.getName();
         boardService.insertBoard(boardDto, mEmail);
@@ -110,7 +118,7 @@ public class BoardController {
 //            model.addAttribute("cmcount",cmcount);
             System.out.println("???????????");
 
-            return "board/adminBoardDetail";
+            return "board/BoardDetail";
         } else {
             return "redirect:/board/boardInsert";
         }
@@ -123,14 +131,17 @@ public class BoardController {
         BoardDto boardDto = boardService.findByBoard(boardId);
         model.addAttribute("board", boardDto);
 
-        return "board/adminBoardUpdate";
+        return "board/BoardUpdate";
 
     }
 
     @PostMapping("/boardUpdate")
-    public String boardUpdateDo(@RequestParam(value = "bfileNewName") String bfileNewName, @ModelAttribute BoardDto boardDto, Principal principal) {
+    public String boardUpdateDo(@RequestParam(value = "bfileNewName", required = false) String bfileNewName,
+                                @ModelAttribute BoardDto boardDto, Principal principal) {
 
         String mEmail = principal.getName();
+        System.out.println("boardContent "+boardDto.getBoardContent());
+
         boardService.boardUpdateDo(boardDto, mEmail);
 
         return "redirect:/board/boardList";

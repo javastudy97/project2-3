@@ -4,39 +4,38 @@
 
 
 #wrap{
-  width: 100%;
-  /* border: 5px solid #000000; */
-  box-sizing: border-box;
-  display: flex;
-  justify-content: space-between;
-  padding-top: 50px;
-  /* gap: 5px; */
-}
+    width: 100%;
+    /* border: 5px solid #000000; */
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 50px;
+    /* gap: 5px; */
+  }
 
 .right-menu{
-      flex: 1;
-      height: auto;
-      box-sizing: border-box;
-      background-color: #ffffff;
-      border-top: 1px solid #000000;
-      /* border: 1px solid #ffff00; */
-      padding: 30px;
-      padding-left: 330px;
-
+    flex: 1;
+    height: auto;
+    box-sizing: border-box;
+    background-color: #ffffff;
+    border-top: 1px solid #000000;
+    /* border: 1px solid #ffff00; */
+    padding: 30px;
+    padding-left: 330px;
 }
 .right-menu h1{
-  padding-bottom: 35px;
-  background-color: #000000;
-  color: #ffffff;
-  font-size: 25px;
-  padding: 5px;
-  /* border: 1px solid #000000; */
+padding-bottom: 35px;
+background-color: #000000;
+color: #ffffff;
+font-size: 25px;
+padding: 5px;
+/* border: 1px solid #000000; */
 }
 .right-menu .right-con{
-  /* border: 1px solid purple; */
-  height: 800px;
-  padding: 100px 100px;
-  display: block;
+/* border: 1px solid purple; */
+height: 800px;
+padding: 100px 100px;
+display: block;
 }
 
 .error{
@@ -45,13 +44,7 @@
   font-weight: bold;
 }
 
-.error{
-  font-size: 12px;
-  color: red;
-  font-weight: bold;
-}
-
-.right-menu .right-con .noticeInsert{
+.right-menu .right-con .noticeUpdate{
   width: 100%;
   padding: 20px;
   box-sizing: border-box;
@@ -59,7 +52,7 @@
   display: block;
 }
 
-.right-menu .right-con .noticeInsert h2{
+.right-menu .right-con .noticeUpdate h2{
   padding-left: 20px;
   font-size: 40px;
   font-weight: bolder;
@@ -67,12 +60,11 @@
   background-color: #000000;
 }
 
-.right-menu .right-con .noticeInsert form {
+.right-menu .right-con .noticeUpdate form {
   padding: 20px;
-
 }
 
-.right-menu .right-con .noticeInsert ul{
+.right-menu .right-con .noticeUpdate ul{
   display: flex;
   flex-direction: column;
   border: 0px solid #000000;
@@ -80,7 +72,7 @@
   gap: 10px;  
 }
 
-.right-menu .right-con .noticeInsert ul li.s2{
+.right-menu .right-con .noticeUpdate ul li.s2{
   padding: 5px 10px;
   box-sizing: border-box;
   display: flex;
@@ -88,7 +80,7 @@
   gap:5px;
 }
 
-.right-menu .right-con .noticeInsert ul li.s2 label{
+.right-menu .right-con .noticeUpdate ul li.s2 label{
   background-color: black;
   color: #ffffff;
   padding: 12px 20px;
@@ -97,7 +89,7 @@
   width: 150px;
 }
 
-.right-menu .right-con .noticeInsert ul li.s2 input{
+.right-menu .right-con .noticeUpdate ul li.s2 input{
 
   flex: 4;
   padding: 5px 10px;
@@ -106,7 +98,7 @@
   line-height: 20px;
 }
 
-.right-menu .right-con .noticeInsert ul li.s3 {
+.right-menu .right-con .noticeUpdate ul li.s3 {
   padding: 5px 10px;
   box-sizing: border-box;
   display: flex;
@@ -114,7 +106,7 @@
   gap: 5px;
 }
 
-.right-menu .right-con .noticeInsert ul li.s3 .s3sub{
+.right-menu .right-con .noticeUpdate ul li.s3 .s3sub{
   flex: 0 0 250px;
   text-align: center;
   border: 0;

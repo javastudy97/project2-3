@@ -63,4 +63,17 @@ public class NoticeEntity {
         return noticeEntity;
     }
 
+    public static NoticeEntity toNoticeUpdateEntity(NoticeDto noticeDto, MemberEntity memberEntity) {
+        NoticeEntity noticeEntity = new NoticeEntity();
+
+        noticeEntity.setNoticeId(noticeDto.getNoticeId());
+        noticeEntity.setNoticeTitle(noticeDto.getNoticeTitle());
+        noticeEntity.setNoticeContent(noticeDto.getNoticeContent());
+        noticeEntity.setNoticeUpdate(noticeDto.getNoticeUpdate());
+        noticeEntity.setNoticeHit(noticeDto.getNoticeHit());
+        noticeEntity.setMemberEntity(memberEntity);
+
+        return noticeEntity;
+    }
+
 }

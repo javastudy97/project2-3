@@ -15,7 +15,7 @@
             <h1>게시판조회</h1>
             <div class="right-con">
                 <div class="boardzone">
-                        <span>커뮤니티 게시판</span>
+                        <h2>커뮤니티 게시판</h2>
                     <div class="search">
                         <form th:action="@{/board/boardSearch}" method="get">
                             <select name="type" id="type">
@@ -25,29 +25,31 @@
                                 <option value="boardContent">게시글내용</option>
                             </select>
                             <input type="text" name="search" id="search">
-                            <input type="submit" value="검색">
+                            <input type="submit" value="검색" class="button1">
                         </form>
                     </div>
                     <table>
                         <thead>
                             <tr>
-                                <th>게시글번호</th>
-                                <th>게시글제목</th>
-                                <th>게시글내용</th>
-                                <th>조회수</th>
-                                <th>등록일</th>
-                                <th>댓글수</th>
-                                 <th>작성자</th>
-                                <th>상세</th>
+                                <th width="15%">게시글번호</th>
+                                <th width="25%">게시글제목</th>
+                                <!-- <th>게시글내용</th> -->
+                                <th width="10%">조회수</th>
+                                <th width="12%">등록일</th>
+                                <th width="12%">수정일</th>
+                                <th width="10%">댓글수</th>
+                                <th width="9%">작성자</th>
+                                <th width="10%">상세</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr th:each="board : ${boardList}">
                                 <td th:text="${board.boardId}"></td>
                                 <td th:text="${board.boardTitle}"></td>
-                                <td th:text="${board.boardContent}"></td>
+                                <!-- <td th:text="${board.boardContent}"></td> -->
                                 <td th:text="${board.boardHit}"></td>
                                 <td th:text="${#temporals.format(board.boardCreate, 'yyyy년MM월dd일')}"></td>
+                                <td th:text="${#temporals.format(board.boardUpdate, 'yyyy년MM월dd일')}"></td>
                                 <td th:text="${board.boardCmcount}"></td>
                                 <td th:text="${board.mName}"></td>
                                 <td><a th:href="@{|/board/boardDetail/${board.boardId}|}">보기</a></td>
