@@ -8,6 +8,8 @@ import org.project2.omwp2.entity.ApprovalEntity;
 import org.project2.omwp2.entity.DocumentEntity;
 import org.project2.omwp2.entity.MemberEntity;
 import org.project2.omwp2.member.repository.MemberRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -81,15 +83,11 @@ public class ApprovalService {
 
 
     // 결재문서 목록
-    public List<ApprovalDto> approvalList(){
+    public Page<ApprovalDto> getApprovalList(Pageable pageable) {
 
-        List<ApprovalEntity> approvalEntityList = approvalRepository.findAll();
-        List<ApprovalDto> approvalDtoList = new ArrayList<>();
+        Page<ApprovalEntity> approvalEntityPage = approvalRepository.findAll(pageable);
 
-        for (ApprovalEntity approvalEntity : approvalEntityList){
-            approvalDtoList.add(ApprovalDto.toApprovalDto(approvalEntity));
-        }
-        return approvalDtoList;
+        return approvalEntityPage.map(ApprovalDto::toApprovalDto);
     }
 
     // 결재문서 상세페이지
