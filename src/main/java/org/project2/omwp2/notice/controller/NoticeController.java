@@ -9,9 +9,11 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.validation.Valid;
 import java.security.Principal;
 
 @Controller
@@ -31,7 +33,11 @@ public class NoticeController {
     }
 
     @PostMapping("/noticeInsert")
-    public String noticeInsert(@ModelAttribute NoticeDto noticeDto, Principal principal){
+    public String noticeInsert(@Valid NoticeDto noticeDto, BindingResult bindingResult , Principal principal){
+
+        if(bindingResult.hasErrors()){
+            return "notice/noticeInsert";
+        }
 
         String mEmail = principal.getName();
 
@@ -63,10 +69,11 @@ public class NoticeController {
             }
             else if (type.equals("noticeContent")){
                 noticeDtoPage = noticeService.optionNoticeContentSearch(search, pageable);
+            }else {
+                noticeDtoPage = noticeService.noticeAll(pageable);
             }
         }else {
             noticeDtoPage = noticeService.noticeAll(pageable);
-
         }
 
         int bockNum = 100;
@@ -92,6 +99,52 @@ public class NoticeController {
 
         redirect.addAttribute("type",type);
         redirect.addAttribute("search",search);
+
+        return "redirect:/notice/noticePage";
+    }
+
+    @GetMapping("/noticeDetail/{id}")
+    public String noticeDetail(@PathVariable Long id ,
+                               Model model ){
+        noticeService.upHit(id);
+
+        NoticeDto noticeDto = noticeService.findByNotice(id);
+
+
+        if (noticeDto != null){
+
+            model.addAttribute("notice", noticeDto);
+
+            System.out.println("공지사항 번호: "+noticeDto.getNoticeId()+ " !!!!! ");
+
+        return "notice/noticeDetail";
+        }else{
+            return "redirect:/notice/noticeInsert";
+        }
+    }
+
+    @GetMapping("/noticeUpdate/{id}")
+    public String noticeUpdate(@PathVariable Long id, Model model){
+
+        NoticeDto noticeDto = noticeService.findByNotice(id);
+        model.addAttribute("notice",noticeDto);
+
+        return "notice/noticeUpdate";
+    }
+
+    @PostMapping("/noticeUpdate")
+    public String noticeUpdateDo(@ModelAttribute NoticeDto noticeDto, Principal principal){
+
+        String mEmail = principal.getName();
+        noticeService.noticeUpdateDo(noticeDto, mEmail);
+
+        return "redirect:/notice/noticePage";
+    }
+
+    @GetMapping("/noticeDelete/{id}")
+    public String noticeDelete(@PathVariable Long id){
+
+        noticeService.noticeDeleteDo(id);
 
         return "redirect:/notice/noticePage";
     }

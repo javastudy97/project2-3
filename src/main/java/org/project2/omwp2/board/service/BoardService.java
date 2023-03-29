@@ -133,7 +133,7 @@ public class BoardService {
 
         MemberEntity memberEntity = optionalMemberEntity.get();
 
-        if (boardDto.getBfileNewName().isEmpty()) {
+        if (boardDto.getBfileOldName().isEmpty()) {
             BoardEntity boardEntity = BoardEntity.toBoardUpdateEntity(boardDto, memberEntity);
             boardReposistory.save(boardEntity);
         }else {

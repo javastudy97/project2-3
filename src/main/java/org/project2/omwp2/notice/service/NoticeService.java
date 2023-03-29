@@ -99,4 +99,46 @@ public class NoticeService {
 
         return noticeDtoPage;
     }
+
+    //조회수
+    @Transactional
+    public  void upHit(Long id) {
+
+        noticeRepository.upHitGo(id);
+    }
+
+    //공지사항 수정
+    @Transactional
+    public void noticeUpdateDo(NoticeDto noticeDto, String mEmail) {
+
+        Optional<MemberEntity> optionalMemberEntity
+                = memberRepository.findBymEmail(mEmail);
+
+        MemberEntity memberEntity = optionalMemberEntity.get();
+
+        NoticeEntity noticeEntity =NoticeEntity.toNoticeUpdateEntity(noticeDto, memberEntity);
+        noticeRepository.save(noticeEntity);
+
+
+    }
+
+    //공지사항 삭제
+    @Transactional
+    public void noticeDeleteDo(Long id) {
+        noticeRepository.deleteById(id);
+    }
+
+    //해당 ID의 공지사항 찾기
+    public NoticeDto findByNotice(Long id) {
+        Optional<NoticeEntity> optionalNoticeEntity =
+                noticeRepository.findById(id);
+
+        if(optionalNoticeEntity.isPresent()){
+            return NoticeDto.toNoticeDto(optionalNoticeEntity.get());
+
+        }else {
+            return null;
+        }
+
+    }
 }

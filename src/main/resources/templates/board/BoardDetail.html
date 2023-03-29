@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>footballAdmin</title>
-    <link rel="stylesheet" th:href="@{/css/board/adminBoardDetail.css}">
+    <link rel="stylesheet" th:href="@{/css/board/BoardDetail.css}">
 </head>
 
 <body>
@@ -15,9 +15,8 @@
     <div class="right-menu">
         <h1>게시글</h1>
         <div class="right-con">
-            <div class="boardUpdate">
-                <span>게시글내역</span>
-                <form th:action="@{admin/boardUpdate}" method="post" th:object="${boardDto}">
+            <div class="boardDetail">
+                <h2>게시글내역</h2>
                     <ul>
                         <li class="s2">
                             <label th:for="boardFile">파일</label>
@@ -41,25 +40,26 @@
                             <span th:text="${board.boardCmcount}"></span>
                         <li class="s2">
                             <label th:for="boardContent">내용</label>
-                            <textarea th:text="${board.boardContent}" readonly></textarea>
                         </li>
+                        <textarea th:text="${board.boardContent}"  cols="100" rows="30" style="overflow-y: auto;" readonly></textarea>
                         <li class="s3" th:if="${board.mEmail.equals(#authentication.getName())}">
-                            <a th:href="@{|/board/boardUpdate/${board.boardId}|}">게시글수정</a>
-                            <a th:href="@{|/board/boardDelete/${board.boardId}|}">게시글삭제</a>
+                            <a th:href="@{|/board/boardUpdate/${board.boardId}|}" class="s3sub">게시글수정</a>
+                            <a th:href="@{|/board/boardDelete/${board.boardId}|}" class="s3sub">게시글삭제</a>
+                        </li>
+                        <li class="s3">
                             <a th:href="@{/board/boardList}" class="s3sub">게시글조회</a>
                         </li>
                     </ul>
-                </form>
             </div>
-            <span>리뷰</span>
             <div class="comment">
+                <h3>리뷰</h3>
                 <table>
                     <tr>
-                        <th>번호</th>
-                        <th>작성자</th>
-                        <th>내용</th>
-                        <th>작성시간</th>
-                        <th>button</th>
+                        <th width="15%">번호</th>
+                        <th width="10%">작성자</th>
+                        <th width="25%">내용</th>
+                        <th width="15%">작성시간</th>
+                        <th width="15%">button</th>
                     </tr>
                     <tr th:each="comment: ${commentDtoList}">
                         <td th:text="${comment.commentId}"></td>
@@ -68,28 +68,28 @@
                         <td th:text="${#temporals.format(comment.commentCreate, 'yyyy:MM-dd HH:mm:ss')}"></td>
                         <!-- 해당 리뷰를 쓴 사람이 수정 삭제 할수 있게 한다. -->
                         <td th:if="${comment.mEmail.equals(#authentication.getName())}">
-                            <a th:href="@{|/comment/commentUpdate/${comment.commentId}|}">수정</a>
-                            <a th:href="@{|/comment/commentDelete/${comment.commentId}|}">삭제</a>
+                            <a th:href="@{|/comment/commentUpdate/${comment.commentId}|}" class="button1">수정</a>
+                            <a th:href="@{|/comment/commentDelete/${comment.commentId}|}" class="button1">삭제</a>
                         </td>
                     </tr>
                 </table>
             </div>
             <div class="comment-write">
-                <span>리뷰작성</span>
+                <h3>댓글작성</h3>
                 <form th:action="@{/comment/commentWrite}" method="POST">
 
                     <input type="hidden" readonly name="boardId" th:value="${board.boardId}">
                     <ul>
                         <li>
-                                <textarea style="line-height:20px; padding:10px; box-sizing: border-box;"
-                                          name="commentContent" id="commentContent" cols="30" rows="10"></textarea>
+                            <textarea style="line-height:20px; padding:10px; box-sizing: border-box; font-size: 14pt; font-weight: bold;" 
+                            name="commentContent" id="commentContent" cols="100" rows="3"></textarea>
+                                <!-- <input type="text" name="commentContent" placeholder="댓글을 입력하시오">           -->
+                        </li>
+                        <li class="s3">
+                            <input type="submit" value="댓글작성" class="s3sub">
                         </li>
                         <li>
-                            <input type="submit" value="리뷰작성">
-
-                        </li>
-                        <li>
-                            <a th:href="@{/board/boardList}">전체목록</a>
+                           
                         </li>
                     </ul>
 
