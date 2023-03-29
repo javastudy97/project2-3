@@ -39,14 +39,7 @@
 }
 
 .right-menu .right-con .boardDetail{
-  
   display: flex;
-  border: 1px solid #000000;
-  
-
-}
-
-.right-menu .right-con .boardDetail{
   width: 100%;
   padding: 20px;
   box-sizing: border-box;

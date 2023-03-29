@@ -46,7 +46,7 @@ public class CommentController {
         model.addAttribute("commentDtoList", commentDtoList);
 
 
-        return "redirect:/board/boardDetail/"+commentDto.getBoardId();
+        return "redirect:/board/boardDetail/"+commentDto.getBoardId()+"/"+1;
 
 
     }
@@ -71,7 +71,7 @@ public class CommentController {
         String mEmail = principal.getName();
         commentService.commentUpdateDo(commentDto,mEmail);
 
-        return "redirect:/board/boardDetail/"+commentDto.getBoardId();
+        return "redirect:/board/boardDetail/"+commentDto.getBoardId()+"/"+1;
     }
 
 
@@ -85,7 +85,10 @@ public class CommentController {
         if(result == 0){
             return null;
         }
-        return "redirect:/board/boardDetail/"+boardId;
+
+        boardService.downCommentCount(boardId);
+
+        return "redirect:/board/boardDetail/"+boardId+"/"+1;
     }
 
 
