@@ -43,10 +43,12 @@ public class BoardController {
 
         Long boardId = 0L;
 
+
         if (type != null && search != null) {
             if (type.equals("boardId")) {
                 boardId = Long.parseLong(search);
                 boardList = boardService.optionboardIdSearchPaging(boardId, pageable);
+
 
             } else if (type.equals("boardTitle")) {
                 boardList = boardService.optionboardTitleSearchPaging(search, pageable);
@@ -60,13 +62,14 @@ public class BoardController {
             boardList = boardService.BoardAllPagingList(pageable);
         }
 
+
         int bockNum = 100;
         int nowPage = boardList.getNumber() + 1;
         int startPage = Math.max(1, boardList.getNumber() - bockNum);
         int endPage = boardList.getTotalPages();
 
         model.addAttribute("boardList", boardList);
-//            model.addAttribute("cmcount",cmcount);
+//        model.addAttribute("comment",comment);
         model.addAttribute("nowPage", nowPage);
         model.addAttribute("startPage", startPage);
         model.addAttribute("endPage", endPage);
@@ -97,10 +100,14 @@ public class BoardController {
         return "redirect:/board/boardList";
     }
 
-    @GetMapping("/boardDetail/{boardId}")
-    public String boarddetail(@PathVariable Long boardId, Model model) {
+    @GetMapping("/boardDetail/{boardId}/{cm}")
+    public String boarddetail(@PathVariable Long boardId,
+                              @PathVariable int cm,
+                              Model model) {
 
-        boardService.upHit(boardId);
+        if (cm == 0) {
+            boardService.upHit(boardId);
+        }
 
         BoardDto board = boardService.findByBoard(boardId);
 

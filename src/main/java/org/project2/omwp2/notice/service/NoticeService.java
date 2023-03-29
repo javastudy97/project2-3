@@ -2,9 +2,7 @@ package org.project2.omwp2.notice.service;
 
 
 import lombok.RequiredArgsConstructor;
-import org.project2.omwp2.dto.BoardDto;
 import org.project2.omwp2.dto.NoticeDto;
-import org.project2.omwp2.entity.BoardEntity;
 import org.project2.omwp2.entity.MemberEntity;
 import org.project2.omwp2.entity.NoticeEntity;
 import org.project2.omwp2.member.repository.MemberRepository;

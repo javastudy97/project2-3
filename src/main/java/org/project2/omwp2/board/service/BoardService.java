@@ -84,7 +84,7 @@ public class BoardService {
 
 
         Page<BoardEntity> boardEntityPage = boardReposistory.findByBoardId(boardId,pageable);
-        Page<BoardDto> boardDtoPage = boardEntityPage.map(BoardDto::toBoardDto);
+        Page<BoardDto> boardDtoPage = boardEntityPage.map(boardEntity -> BoardDto.toBoardDto(boardEntity));
 
 
         return  boardDtoPage;
@@ -93,14 +93,14 @@ public class BoardService {
 
     public Page<BoardDto> optionboardTitleSearchPaging(String search, Pageable pageable) {
         Page<BoardEntity> boardEntityPage = boardReposistory.findByBoardTitleContaining(search, pageable);
-        Page<BoardDto> boardDtoPage = boardEntityPage.map(BoardDto::toBoardDto);
+        Page<BoardDto> boardDtoPage = boardEntityPage.map(boardEntity -> BoardDto.toBoardDto(boardEntity));
 
         return boardDtoPage;
     }
 
     public Page<BoardDto> optionboardContentSearchPaging(String search, Pageable pageable) {
         Page<BoardEntity> boardEntityPage = boardReposistory.findByBoardContentContaining(search, pageable);
-        Page<BoardDto> boardDtoPage = boardEntityPage.map(BoardDto::toBoardDto);
+        Page<BoardDto> boardDtoPage = boardEntityPage.map(boardEntity -> BoardDto.toBoardDto(boardEntity));
 
         return boardDtoPage;
 
@@ -111,7 +111,7 @@ public class BoardService {
     public Page<BoardDto> BoardAllPagingList(Pageable pageable) {
 
         Page<BoardEntity> boardEntityPage = boardReposistory.findAll(pageable);
-        Page<BoardDto> boardDtoPage = boardEntityPage.map(BoardDto::toBoardDto);
+        Page<BoardDto> boardDtoPage = boardEntityPage.map(boardEntity -> BoardDto.toBoardDto(boardEntity));
 
         return boardDtoPage;
     }
@@ -152,8 +152,14 @@ public class BoardService {
     public Page<BoardDto> myBoardListDo(Long mId, Pageable pageable) {
 
         Page<BoardEntity> boardEntityPage = boardReposistory.findAllBymId(mId,pageable);
-        Page<BoardDto> boardDtoPage = boardEntityPage.map(BoardDto::toBoardDto);
+        Page<BoardDto> boardDtoPage = boardEntityPage.map(boardEntity -> BoardDto.toBoardDto(boardEntity));
 
         return boardDtoPage;
+    }
+
+
+    @Transactional
+    public void downCommentCount(Long boardId) {
+        boardReposistory.downCmcount(boardId);
     }
 }
