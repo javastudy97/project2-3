@@ -17,15 +17,15 @@
                 <h2>공지사항 관리</h2>
                 <div class="right-con">
                     <div class="con-box">
-                        <table border="1">
+                        <table>
                             <thead>
                                 <tr>
                                     <th>번호</th>
-                                    <th>제목</th>
-                                    <th>내용</th>
+                                    <th style="width: 30%;">제목</th>
+                                    <th>작성자</th>
                                     <th>조회수</th>
-                                    <th>등록일</th>
-                                    <th>수정일</th>
+                                    <th style="width: 15%;">등록일</th>
+                                    <th style="width: 15%;">수정일</th>
                                     <th>상세</th>
                                 </tr>
                             </thead>
@@ -33,7 +33,7 @@
                                 <tr th:each="notice : ${noticeList}">
                                     <td th:text="${notice.noticeId}"></td>
                                     <td th:text="${notice.noticeTitle}"></td>
-                                    <td th:text="${notice.noticeContent}"></td>
+                                    <td th:text="${notice.mName}"></td>
                                     <td th:text="${notice.noticeHit}"></td>
                                     <td th:text="${#temporals.format(notice.noticeCreate, 'yyyy-MM-dd HH:mm:ss')}"></td>
                                     <td th:text="${#temporals.format(notice.noticeUpdate, 'yyyy-MM-dd HH:mm:ss')}"></td>

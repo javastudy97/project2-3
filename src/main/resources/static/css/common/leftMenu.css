@@ -102,7 +102,7 @@
   font-size: 15px;
   padding: 10px;
   box-sizing: border-box;
-  background-color: #ebf6ff;
+  border-bottom: 1px solid #8080804a;
 }
 
 .weather .title{
@@ -111,4 +111,21 @@
 
 .weather .desc {
   text-align: center;
+}
+
+.weather .desc h2{
+  background-color: unset;
+  color: unset;
+}
+
+.weather .desc .today{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.weather .temp{
+  display: flex;
+  justify-content: center;
+  gap: 5px;
 }

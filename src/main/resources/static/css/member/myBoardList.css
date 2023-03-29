@@ -42,9 +42,25 @@
 }
 
 .right-menu .con .right-con .con-box table {
-  width: 100%;
+  width: 83%;
   text-align: center;
   border-collapse: collapse;
+}
+
+table tr{
+  border-bottom: 1px solid grey;
+}
+
+table th{
+  background-color: #a7c2e54d;
+  padding: 5px 0;
+  box-sizing: border-box;
+  font-weight: bold;
+}
+
+table td{
+  padding: 3px 0;
+  box-sizing: border-box;
 }
 
 h2{

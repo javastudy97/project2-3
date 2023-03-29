@@ -36,7 +36,14 @@ public class WebSecurityConfig {
                 .antMatchers("/member/**").hasAnyRole("ADMIN","MEMBER")
                 .antMatchers("/approval/**").hasAnyRole("ADMIN","MEMBER")
                 .antMatchers("/comment/**").hasAnyRole("ADMIN","MEMBER")
+                .antMatchers("/attend/**").authenticated()
+                .antMatchers("/memberSchedule/**").authenticated()
+                .antMatchers("/teamSchedule/**").authenticated()
+                .antMatchers("/notice/**").authenticated()
                 .antMatchers("/notice/noticeInsert").hasAnyRole("ADMIN")
+                .antMatchers("/notice/noticeUpdate").hasAnyRole("ADMIN")
+                .antMatchers("/notice/noticeDelete").hasAnyRole("ADMIN")
+
         ;
 
 

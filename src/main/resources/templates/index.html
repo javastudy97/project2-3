@@ -15,64 +15,7 @@
 
       <!-- 캘린더 css -->
        <style>
-        #content {
-          width: 100%;
-          height: 100%;
-          text-align: center;
-          margin: 0 auto
-        }
-    
-        h1.title {
-          display: none;
-          /* text-align: center;
-          background-color: #3788d8;
-          color: #ffffff;
-          padding: 10px 0; */
-        }
-    
-        #calendar {
-          width: 100%;
-          height: 100%;
-        }
-
-        main{
-            width: 100%;
-            height: 100%;
-        }
-
-        main .content{
-            width: 100%;
-            height: 100%;
-        }
-
-        table.fc-col-header {
-            width: 100% !important;
-        }
-
-        table.fc-scrollgrid-sync-table {
-            width: 100% !important;
-            height: 100% !important;
-        }
-
-        .fc-view-harness.fc-view-harness-active{
-            height: 405px !important;
-        }
-
-        .fc-toolbar-chunk:nth-child(3){
-            display: none;
-        }
-
-        .fc-scroller{
-            overflow: unset !important;
-        }
-
-        .fc-scroller.fc-scroller-liquid-absolute{
-            overflow: unset !important;
-        }
-
-        .fc-daygrid-body.fc-daygrid-body-unbalanced {
-            width: 100% !important;
-        }
+       
 
       </style>
     
@@ -119,23 +62,21 @@
                                         <th:block th:unless="${noticeList.size() == 0}">
                                             <table>
                                                 <tr>
-                                                    <th>No</th>
-                                                    <th>제목</th>
-                                                    <th>내용</th>
-                                                    <!-- <th>작성자</th> -->
-                                                    <th>조회수</th>
-                                                    <th>작성일</th>
+                                                    <th style="width: 5%;">번호</th>
+                                                    <th style="width: 20%;">제목</th>
+                                                    <th style="width: 5%;">작성자</th>
+                                                    <th style="width: 5%;">조회수</th>
+                                                    <th style="width: 15%;">등록일</th>
                                                 </tr>
-                                                <th:block th:each="notice : ${noticeList}">
-                                                    <tr>
-                                                        <td th:text="${notice.noticeId}"></td>
-                                                        <td th:text="${notice.noticeTitle}"></td>
-                                                        <td th:text="${notice.noticeContent}"></td>
-                                                        <!-- <td th:text="${notice.mName}"></td> -->
-                                                        <td th:text="${notice.noticeHit}"></td>
-                                                        <td th:text="${#temporals.format(notice.noticeCreate, 'yyyy-MM-dd HH:mm:ss')}"></td>
-                                                    </tr>
-                                                </th:block>
+                                            <th:block th:each="notice : ${noticeList}">
+                                                <tr>
+                                                    <td th:text="${notice.noticeId}"></td>
+                                                    <td th:text="${notice.noticeTitle}"></td>
+                                                    <td th:text="${notice.mName}"></td>
+                                                    <td th:text="${notice.noticeHit}"></td>
+                                                    <td th:text="${#temporals.format(notice.noticeCreate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                                                </tr>
+                                            </th:block>
                                             </table>
                                         </th:block>
                                     </div>
@@ -151,23 +92,23 @@
                                         <th:block th:unless="${boardList.size() == 0}">
                                             <table>
                                                 <tr>
-                                                    <th>No</th>
-                                                    <th>제목</th>
-                                                    <th>내용</th>
-                                                    <th>작성자</th>
-                                                    <th>조회수</th>
-                                                    <th>작성일</th>
+                                                    <th style="width: 5%;">번호</th>
+                                                    <th style="width: 20%;">제목</th>
+                                                    <th style="width: 5%;">작성자</th>
+                                                    <th style="width: 5%;">조회수</th>
+                                                    <th style="width: 5%;">댓글수</th>
+                                                    <th style="width: 15%;">등록일</th>
                                                 </tr>
-                                                <th:block th:each="board : ${boardList}">
-                                                    <tr>
-                                                        <td th:text="${board.boardId}"></td>
-                                                        <td th:text="${board.boardTitle}"></td>
-                                                        <td th:text="${board.boardContent}"></td>
-                                                        <td th:text="${board.mName}"></td>
-                                                        <td th:text="${board.boardHit}"></td>
-                                                        <td th:text="${#temporals.format(board.boardCreate, 'yyyy-MM-dd HH:mm:ss')}"></td>
-                                                    </tr>
-                                                </th:block>
+                                            <th:block th:each="board : ${boardList}">
+                                                <tr>
+                                                    <td th:text="${board.boardId}"></td>
+                                                    <td th:text="${board.boardTitle}"></td>
+                                                    <td th:text="${board.mName}"></td>
+                                                    <td th:text="${board.boardHit}"></td>
+                                                    <td th:text="${board.boardCmcount}"></td>
+                                                    <td th:text="${#temporals.format(board.boardCreate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                                                </tr>
+                                            </th:block>
                                             </table>
                                         </th:block>
                                     </div>
