@@ -101,16 +101,23 @@ public class ApprovalService {
             return null;
         }
     }
-    
+
     // 결재서류 수정
     @Transactional
-    public void updateApproval(ApprovalDto approvalDto)throws IOException{
+    public void updateApproval(ApprovalDto approvalDto, Principal principal)throws IOException{
+
+        //  작성자(기안자) 정보
+        String mEmail = principal.getName();
+        MemberEntity memberEntity1 = memberRepository.findBymEmail(mEmail).get();
+        //  결재자 정보
+        String mEmail2 = approvalDto.getApproverEmail();
+        MemberEntity memberEntity2 = memberRepository.findBymEmail(mEmail2).get();
 
         if (approvalDto.getAppContainer().isEmpty()){
-            ApprovalEntity approvalEntity = ApprovalEntity.toNoUpdateApprovalEntity(approvalDto);
+            ApprovalEntity approvalEntity = ApprovalEntity.toNoUpdateApprovalEntity(approvalDto, memberEntity1, memberEntity2);
             approvalRepository.save(approvalEntity);
         }else {
-            ApprovalEntity approvalEntity = ApprovalEntity.toYesUpdateApprovalEntity(approvalDto);
+            ApprovalEntity approvalEntity = ApprovalEntity.toYesUpdateApprovalEntity(approvalDto, memberEntity1, memberEntity2);
             approvalRepository.save(approvalEntity);
         }
     }

@@ -86,7 +86,7 @@ public class ApprovalController {
             return "redirect:/approval/list";
         }
     }
-    
+
     // 결재문서 수정 페이지
     @GetMapping("/listUpdate/{id}")
     public String listUpdateGet(@PathVariable("id") Long appId, Model model){
@@ -98,8 +98,8 @@ public class ApprovalController {
 
     // 결재문서 수정 실행
     @PostMapping("/listUpdate")
-    public String listUpdatePost(@RequestParam(value = "appContainer") MultipartFile files, @ModelAttribute ApprovalDto approvalDto) throws IOException {
-        approvalService.updateApproval(approvalDto);
+    public String listUpdatePost(@RequestParam(value = "appContainer") MultipartFile files, @ModelAttribute ApprovalDto approvalDto, Principal principal) throws IOException {
+        approvalService.updateApproval(approvalDto, principal);
 
         return "redirect:/approval/list";
     }
