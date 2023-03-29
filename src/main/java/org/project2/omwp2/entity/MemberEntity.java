@@ -148,7 +148,11 @@ public static MemberEntity toMemberEntity2(MemberDto memberDto, PasswordEncoder 
     memberEntity.setMDept(memberDto.getMDept());
     memberEntity.setMCreate(memberDto.getMCreate());
     memberEntity.setMPosition(memberDto.getMPosition());
-    memberEntity.setMAttach(1);
+    if(memberDto.getProfileImg().isEmpty()){
+        memberEntity.setMAttach(0);
+    } else {
+        memberEntity.setMAttach(1);
+    }
 
     return memberEntity;
 }

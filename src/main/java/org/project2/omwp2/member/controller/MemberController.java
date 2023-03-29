@@ -66,8 +66,6 @@ public class MemberController {
             String mEmail = principal.getName();
 
             MemberDto memberDto2 = memberService.getMemberDetail(mEmail);
-            memberDto.setMAttach(1);
-            memberDto.setSaveName(memberDto2.getSaveName());
             model.addAttribute("memberDto",memberDto);
 
             return "member/memberUpdate";
