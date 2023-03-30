@@ -39,6 +39,7 @@ public class WebSecurityConfig {
                 .antMatchers("/attend/**").authenticated()
                 .antMatchers("/memberSchedule/**").authenticated()
                 .antMatchers("/teamSchedule/**").authenticated()
+                .antMatchers("/account/**").authenticated()
                 .antMatchers("/notice/**").authenticated()
                 .antMatchers("/notice/noticeInsert").hasAnyRole("ADMIN")
                 .antMatchers("/notice/noticeUpdate").hasAnyRole("ADMIN")

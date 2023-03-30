@@ -142,8 +142,10 @@
 
                                 <div class="move">
                                     <li>
-                                        <button><a th:href="@{|/approval/listUpdate/${approval.appId}|}">수정</a></button>
-                                        <button><a th:href="@{|/approval/listDelete/${approval.appId}|}">삭제</a></button>
+                                        <th:block th:if="${approval.appStatus == 0}">
+                                            <button><a th:href="@{|/approval/listUpdate/${approval.appId}|}">수정</a></button>
+                                            <button><a th:href="@{|/approval/listDelete/${approval.appId}|}">삭제</a></button>
+                                        </th:block>
                                     </li>
                                 </div>
                             </ul>

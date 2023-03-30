@@ -9,6 +9,13 @@ window.onload = function(){
           let year = now.getFullYear();
           let month = now.getMonth() + 1;
           let date = now.getDate();
+          let hours = now.getHours();
+          let minutes = now.getMinutes() <= 9 ? '0' + now.getMinutes() : now.getMinutes();
+          // hour(시)가 12 이상이면 오후(pm), 12 미만이면 오전(am)으로 설정
+          let ampm = hours >= 12 ? 'pm' : 'am';
+          // heour(시)를 12시간 단위로 변경 => 13시부터 12로 나눈 나머지(1~12)로, 그 미만은 그대로
+          let hours2 = hours > 12 ? hours % 12 : hours;
+
           let weekday = new Array(7);
           weekday[0] = "일";
           weekday[1] = "월";
@@ -20,7 +27,7 @@ window.onload = function(){
     
           let n = weekday[now.getDay()];
     
-          return year +'년 '+ month + '월 ' + date + '일(' + n + ')';
+          return year +'.'+ month + '.' + date + '(' + n + ') ' + hours2 + ':' + minutes + ampm;
       }
     
       let currentTime = convertTime();
