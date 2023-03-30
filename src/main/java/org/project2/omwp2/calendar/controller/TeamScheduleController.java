@@ -165,7 +165,9 @@ public class TeamScheduleController {
 //    }
 
     @GetMapping("/teamSchedule")
-    public String memberCalendar(){
+    public String memberCalendar(Model model){
+
+        model.addAttribute("key","1");
 
         return "/calendar/teamSchedule/teamCalendar";
     }

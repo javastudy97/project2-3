@@ -182,7 +182,9 @@ public class MemberScheduleController {
 
     //개인 일정 달력
     @GetMapping("/memberSchedule")
-    public String memberCalendar(){
+    public String memberCalendar(Model model){
+
+        model.addAttribute("key","1");
 
         return "/calendar/memberSchedule/memberCalendar";
     }
