@@ -110,7 +110,7 @@ public class MemberController {
 
 //    관리자메뉴 - 전체 회원목록
     @GetMapping("/memberList")
-    public String memberList(@PageableDefault(page = 0, size = 8, sort = "mId", direction = Sort.Direction.DESC)
+    public String memberList(@PageableDefault(page = 0, size = 8, sort = "mCreate", direction = Sort.Direction.DESC)
                              Pageable pageable, Model model,
                              @RequestParam(value = "type",required = false) String type,
                              @RequestParam(value = "search",required = false) String search) {

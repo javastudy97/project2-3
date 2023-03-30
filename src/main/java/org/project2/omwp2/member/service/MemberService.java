@@ -314,7 +314,7 @@ public class MemberService {
 //    관리자메뉴 내 회원목록 검색 - 이름 기준
     public Page<MemberDto> findMemberName(String search, Pageable pageable) {
         
-        Page<MemberEntity> memberEntityPage = memberRepository.findByMName(search,pageable);
+        Page<MemberEntity> memberEntityPage = memberRepository.findBymNameContaining(search,pageable);
 
         if (memberEntityPage.isEmpty()){
             return null;
@@ -328,7 +328,7 @@ public class MemberService {
     //    관리자메뉴 내 회원목록 검색 - 이메일 기준
     public Page<MemberDto> findMemberEmail(String search, Pageable pageable) {
 
-        Page<MemberEntity> memberEntityPage = memberRepository.findByMEmail(search,pageable);
+        Page<MemberEntity> memberEntityPage = memberRepository.findBymEmailContaining(search,pageable);
 
         if (memberEntityPage.isEmpty()){
             return null;
@@ -342,7 +342,7 @@ public class MemberService {
     //    관리자메뉴 내 회원목록 검색 - 연락처 기준
     public Page<MemberDto> findMemberTel(String search, Pageable pageable) {
 
-        Page<MemberEntity> memberEntityPage = memberRepository.findByMTel(search,pageable);
+        Page<MemberEntity> memberEntityPage = memberRepository.findBymTelContaining(search,pageable);
 
         if (memberEntityPage.isEmpty()){
             return null;

@@ -28,12 +28,12 @@ public interface MemberRepository extends JpaRepository<MemberEntity,Long> {
 
     Page<MemberEntity> findAllBymDept(String mDept, Pageable pageable);
 
-    @Query(value = "select * from member where m_id=:search",nativeQuery = true)
-    Page<MemberEntity> findByMName(@Param("search") String search, Pageable pageable);
+//    @Query(value = "select * from member where m_name=:search order by m_create desc",nativeQuery = true)
+    Page<MemberEntity> findBymNameContaining(String search, Pageable pageable);
 
-    @Query(value = "select * from member where m_email like %:search%",nativeQuery = true)
-    Page<MemberEntity> findByMEmail(@Param("search") String search, Pageable pageable);
+//    @Query(value = "select * from member where m_email like %:search%",nativeQuery = true)
+    Page<MemberEntity> findBymEmailContaining(String search, Pageable pageable);
 
-    @Query(value = "select * from member where m_tel like %:search%",nativeQuery = true)
-    Page<MemberEntity> findByMTel(@Param("search") String search, Pageable pageable);
+//    @Query(value = "select * from member where m_tel like %:search%",nativeQuery = true)
+    Page<MemberEntity> findBymTelContaining(@Param("search") String search, Pageable pageable);
 }
