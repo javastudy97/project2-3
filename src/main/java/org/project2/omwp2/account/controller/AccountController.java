@@ -6,6 +6,7 @@ import org.project2.omwp2.dto.AccountDto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.repository.query.Param;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,7 +24,8 @@ public class AccountController {
     // 수입지출 내역 리스트(회계관련 메인페이지)
     @GetMapping("/list")
     public String accountList(Model model,
-                              @PageableDefault(page = 0, size = 4, sort = "acId", direction = Sort.Direction.DESC) Pageable pageable){
+                              @PageableDefault(page = 0, size = 8, sort = "acId", direction = Sort.Direction.DESC) Pageable pageable,
+                              @Param("acId") Long acId){
 
         Page<AccountDto> accountList = accountService.accountList(pageable);
 
