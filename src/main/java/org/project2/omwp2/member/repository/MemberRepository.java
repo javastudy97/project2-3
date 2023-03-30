@@ -35,5 +35,5 @@ public interface MemberRepository extends JpaRepository<MemberEntity,Long> {
     Page<MemberEntity> findBymEmailContaining(String search, Pageable pageable);
 
 //    @Query(value = "select * from member where m_tel like %:search%",nativeQuery = true)
-    Page<MemberEntity> findBymTelContaining(@Param("search") String search, Pageable pageable);
+    Page<MemberEntity> findBymTelContaining(String search, Pageable pageable);
 }
