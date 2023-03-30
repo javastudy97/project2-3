@@ -19,12 +19,12 @@
                 <h2>상세보기</h2>
                 <div class="right-con">
                     <div class="account-list">
-                        <!-- 등록 (관리자만 가능) -->
-                        <div class="btnZone">
-                            <a th:href="@{|/account/update/${acId}|}" class="updateBtn" sec:authorize="hasRole('ADMIN')">수정</a>
+                        <!-- 수정,삭제 (작성자만 가능) -->
+                        <div class="btnZone" th:if="${accountDto.mId}==${memberDto.mId}">
+                            <a th:href="@{|/account/update/${acId}|}" class="updateBtn">수정</a>
                             <form th:action="@{|/account/delete/${acId}|}" method="post" id="deleteForm">
                                 <input type="hidden" th:field="*{acId}" th:value="${acId}">
-                                <input type="submit" value="삭제" class="deleteBtn" sec:authorize="hasRole('ADMIN')">
+                                <input type="submit" value="삭제" class="deleteBtn">
                             </form>
                         </div> <!-- btnZone 끝 -->
 

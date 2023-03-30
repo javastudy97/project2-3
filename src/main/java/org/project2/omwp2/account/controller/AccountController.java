@@ -3,6 +3,8 @@ package org.project2.omwp2.account.controller;
 import lombok.RequiredArgsConstructor;
 import org.project2.omwp2.account.service.AccountService;
 import org.project2.omwp2.dto.AccountDto;
+import org.project2.omwp2.dto.MemberDto;
+import org.project2.omwp2.member.service.MemberService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -20,6 +22,7 @@ import java.security.Principal;
 public class AccountController {
 
     private final AccountService accountService;
+    private final MemberService memberService;
 
     // 수입지출 내역 리스트(회계관련 메인페이지)
     @GetMapping("/list")
@@ -65,11 +68,15 @@ public class AccountController {
 
     // 게시글 상세 페이지 이동
     @GetMapping("/detail/{acId}")
-    public String acDetail(@PathVariable Long acId, Model model){
+    public String acDetail(@PathVariable Long acId, Principal principal, Model model){
+
+        String mEmail = principal.getName();
+        MemberDto memberDto = memberService.getMemberDetail(mEmail);
 
         AccountDto accountDto = accountService.accountDetail(acId);
         if(accountDto != null){
             model.addAttribute("accountDto", accountDto);
+            model.addAttribute("memberDto", memberDto);
             return "account/accountDetail";
         }else{
             return "redirect:/account/list";

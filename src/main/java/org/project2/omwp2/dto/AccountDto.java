@@ -59,11 +59,15 @@ public class AccountDto {
     @UpdateTimestamp
     private LocalDateTime acUpdate;
 
-    // 작성자
+    // 작성자 이름
     private String mName;
+
+//    작성자 id
+    private Long mId;
 
     // 잔여금
     private int balance;
+
 
     // 변환
     public static AccountDto toAccountDto(AccountEntity accountEntity){
@@ -81,6 +85,7 @@ public class AccountDto {
         accountDto.setAcTotalPay(accountEntity.getAcTotalPay());
         accountDto.setAcCreate(accountEntity.getAcCreate());
         accountDto.setAcUpdate(accountEntity.getAcUpdate());
+        accountDto.setMId(accountEntity.getMemberEntity().getMId());
 
         return accountDto;
     }

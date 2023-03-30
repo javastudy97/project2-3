@@ -85,10 +85,14 @@
 }
 
 .container .approvalList ul li.division{
-  width: 80px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 
+}
+
+.container .approvalList ul li.division span:nth-child(1){
   border-bottom: 1px solid #000000;
-
 }
 
 .container .approvalList ul li span{

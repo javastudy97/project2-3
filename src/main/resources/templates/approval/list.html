@@ -21,6 +21,9 @@
                     <li class="division">
                         <!-- <span>구분 :</span> -->
                         <span th:text="${approval.appDivision}"></span>
+                        <span th:if="${approval.appStatus}==0" style="font-weight: bold;">결재대기</span>
+                        <span th:if="${approval.appStatus}==1" style="color: blue; font-weight: bold;">승인</span>
+                        <span th:if="${approval.appStatus}==2" style="color: red; font-weight: bold;">반려</span>
                     </li>
                     <li>
                         <a th:href="@{|/approval/listDetail/${approval.appId}|}"><span class="title"
