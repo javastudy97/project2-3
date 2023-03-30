@@ -66,6 +66,7 @@
     line-height: 26px;
     font-size: 14px;
     cursor: pointer;
+    border-radius: 2px;
 }
 
 /* 삭제버튼 */
@@ -78,6 +79,7 @@
     background-color: white;
     text-align: center;
     cursor: pointer;
+    border-radius: 2px;
 }
 
 /* 작성일, 수정일 */

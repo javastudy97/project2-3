@@ -45,7 +45,13 @@ public class AccountService {
     public Page<AccountDto> accountList(Pageable pageable) {
         Page<AccountEntity> accountEntityPage = accountRepository.findAll(pageable);
 
-        return accountEntityPage.map(AccountDto::toAccountDto);
+        Page<AccountDto> accountDtoPage = accountEntityPage.map(AccountDto::toAccountDto);
+
+        for(AccountDto accountDto :accountDtoPage) {
+            accountDto.setBalance(accountRepository.findByAcId(accountDto.getAcId()));
+        }
+
+        return accountDtoPage;
     }
 
     // 게시글 상세페이지
@@ -93,6 +99,6 @@ public class AccountService {
         return 1;
     }
 
-    // 게시글 삭제
+
 
 }

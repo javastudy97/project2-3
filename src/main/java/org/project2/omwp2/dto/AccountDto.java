@@ -3,7 +3,9 @@ package org.project2.omwp2.dto;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.project2.omwp2.account.repository.AccountRepository;
 import org.project2.omwp2.entity.AccountEntity;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
@@ -16,6 +18,8 @@ import java.time.LocalDateTime;
 @ToString
 public class AccountDto {
 
+    @Autowired
+    private static AccountRepository accountRepository;
 
     private Long acId;
 
@@ -35,7 +39,7 @@ public class AccountDto {
     @NotBlank
     private int acExpend;
 
-    // 잔여금(이월금)?
+    // 이월금
     private int acSurplus;
 
     // 총 수입 금액
@@ -55,10 +59,17 @@ public class AccountDto {
     @UpdateTimestamp
     private LocalDateTime acUpdate;
 
+    // 작성자
+    private String mName;
+
+    // 잔여금
+    private int balance;
+
     // 변환
     public static AccountDto toAccountDto(AccountEntity accountEntity){
         AccountDto accountDto = new AccountDto();
 
+        accountDto.setMName(accountEntity.getMemberEntity().getMName());
         accountDto.setAcId(accountEntity.getAcId());
         accountDto.setAcTitle(accountEntity.getAcTitle());
         accountDto.setAcContent(accountEntity.getAcContent());
