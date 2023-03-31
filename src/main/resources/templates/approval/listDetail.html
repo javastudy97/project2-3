@@ -142,7 +142,8 @@
 
                                 <div class="move">
                                     <li>
-                                        <th:block th:if="${approval.appStatus == 0}">
+                                        <th:block th:if="${approval.appStatus == 0 && approval.drafterEmail == memberDto.mEmail}">
+                                            <!-- 결재대기 상태고, 현재 로그인한 회원과 기안서 작성자가 일치할때만 활성화 -->
                                             <button><a th:href="@{|/approval/listUpdate/${approval.appId}|}">수정</a></button>
                                             <button><a th:href="@{|/approval/listDelete/${approval.appId}|}">삭제</a></button>
                                         </th:block>

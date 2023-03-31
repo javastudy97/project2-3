@@ -4,6 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.project2.omwp2.approval.service.ApprovalService;
 import org.project2.omwp2.document.service.DocumentService;
 import org.project2.omwp2.dto.ApprovalDto;
+import org.project2.omwp2.dto.MemberDto;
+import org.project2.omwp2.member.service.MemberService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -24,6 +26,7 @@ public class ApprovalController {
     
     private final ApprovalService approvalService;
     private final DocumentService documentService;
+    private final MemberService memberService;
     
     // 결재문서 작성
     @GetMapping("/write")
@@ -76,11 +79,13 @@ public class ApprovalController {
     public String listDetail(@PathVariable("id") Long addId, Principal principal, Model model){
 
         String mEmail = principal.getName();
+        MemberDto memberDto = memberService.getMemberDetail(mEmail);
+
         ApprovalDto approval = approvalService.findByApproval(addId);
 
         if (approval !=null) {
             model.addAttribute("approval", approval);
-            model.addAttribute("mEmail",mEmail);
+            model.addAttribute("memberDto",memberDto);
             return "approval/listDetail";
         }else{
             return "redirect:/approval/list";

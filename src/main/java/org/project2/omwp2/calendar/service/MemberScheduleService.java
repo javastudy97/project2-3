@@ -151,9 +151,9 @@ public class MemberScheduleService {
 
         MemberScheduleEntity memberScheduleEntity = MemberScheduleEntity.toMemberScheduleEntity(memberScheduleDto);
 
-        MemberEntity memberEntity = new MemberEntity();
+        MemberEntity memberEntity = memberRepository.findById(id).get();
 
-        memberEntity.setMId(id);
+//        memberEntity.setMId(id);
 
         memberScheduleEntity.setScheduleDone("N");
         memberScheduleEntity.setMemberEntity(memberEntity);
