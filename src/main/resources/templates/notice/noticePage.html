@@ -16,18 +16,6 @@
             <div class="right-con">
                 <div class="noticePage">
                     <h2>공지사항</h2>
-                    <div class="search">
-                        <form th:action="@{/notice/noticeSearch}" method="get">
-                            <select name="type" id="type">
-                                <option value="" selected>::검색기준::</option>
-                                <option value="noticeId">공지사항번호</option>
-                                <option value="noticeTitle">공지사항제목</option>
-                                <option value="noticeContent">공지사항내용</option>
-                            </select>
-                            <input type="text" name="search" id="search">
-                            <input type="submit" value="검색" class="button1">
-                        </form>
-                    </div>
                     <table>
                         <thead>
                             <tr>
@@ -55,19 +43,39 @@
                         </tbody>
                     </table>
                     <div class="nav">
+                        <div class="search">
+                            <form th:action="@{/notice/noticeSearch}" method="get">
+                                <select name="type" id="type">
+                                    <option value="" selected>::검색기준::</option>
+                                    <option value="noticeId">공지사항번호</option>
+                                    <option value="noticeTitle">공지사항제목</option>
+                                    <option value="noticeContent">공지사항내용</option>
+                                </select>
+                                <input type="text" name="search" id="search">
+                                <input type="submit" value="검색" class="button1">
+                            </form>
+                        </div>
                         <div class="page">
                             <div class="paging">
-                                <a
-                                    th:href="@{noticePage.first} ? '#' : @{/notice/noticePage(page=${noticePage.number-1})}">이전</a>
+                                <a th:href="@{noticePage.first} ? '#' : @{/notice/noticePage(page=${noticePage.number-2})}">
+                                    <span>《 </span>
+                                </a>
+                                <a th:href="@{noticePage.first} ? '#' : @{/notice/noticePage(page=${noticePage.number-1})}">
+                                    <span>〈 </span>
+                                </a>
                                 <th:block th:each="page : ${#numbers.sequence(startPage,endPage)}">
-                                    <span th:if="${page == nowPage}" th:text="${page}"
-                                        style="background-color: black"></span>
+                                    <span th:if="${page == nowPage}" th:text="${page}"></span>
                                     <span th:unless="${page == nowPage}">
-                                        <a th:href="@{/notice/noticePage(page=${page-1})}" th:text="${page}"></a>
+                                        <a th:href="@{/notice/noticePage(page=${page-1})}" th:text="${page}"
+                                           style="background-color: yellow;"></a>
                                     </span>
                                 </th:block>
-                                <a
-                                    th:href="${noticePage.last} ? '#' : @{/notice/noticePage(page=${noticePage.number+1})}">다음</a>
+                                <a th:href="${noticePage.last} ? '#' : @{/notice/noticePage(page=${noticePage.number+1})}">
+                                    <span> 〉</span>
+                                </a>
+                                <a th:href="${noticePage.last} ? '#' : @{/notice/noticePage(page=${noticePage.number+2})}">
+                                    <span> 》</span>
+                                </a>
                             </div>
                         </div>
                     </div>
