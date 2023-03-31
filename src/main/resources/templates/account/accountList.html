@@ -18,10 +18,24 @@
                 <h2>회계 목록</h2>
                 <div class="right-con">
                     <div class="account-list">
-                        <!-- 등록 (관리자만 가능) -->
-                        <div class="btnZone">
-                            <a th:href="@{/account/insert}" class="insertBtn" sec:authorize="hasRole('ADMIN')">등록</a>
-                        </div>
+                        <!-- 등록 (관리자만 가능), 검색 영역 -->
+                        <form th:action="@{/account/search}" method="get">
+                            <div class="btnZone">
+                                <div class="insertBtn1">
+                                    <a th:href="@{/account/insert}" class="insertBtn" sec:authorize="hasRole('ADMIN')">등록</a>
+                                </div>
+                                <div class="searchBtn">
+                                    <select name="type" id="type" style="position: relative;">
+                                        <option value="">검색기준</option>
+                                        <option value="acTitle">제목</option>
+                                        <option value="acContent">내용</option>
+                                        <!-- <option value="acTitleAcContent">제목+내용</option> -->
+                                        <input type="text" name="search" id="search">
+                                        <button type="submit" name="search_1" class="search_1" style="position: absolute;"></button>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
 
                         <!-- 지출, 수입 작성 글 리스트 -->
                         <div class="account-form">
