@@ -54,6 +54,46 @@ public class AccountService {
         return accountDtoPage;
     }
 
+    // 제목으로 검색
+    public Page<AccountDto> findTitle(String search, Pageable pageable) {
+
+        Page<AccountEntity> accountEntityPage = accountRepository.findByAcTitleContaining(search,pageable);
+
+        Page<AccountDto> accountDtoPage = accountEntityPage.map(AccountDto::toAccountDto);
+
+        for(AccountDto accountDto :accountDtoPage) {
+            accountDto.setBalance(accountRepository.findByAcId(accountDto.getAcId()));
+        }
+
+        return accountDtoPage;
+    }
+
+    // 내용으로 검색
+    public Page<AccountDto> findContent(String search, Pageable pageable) {
+        Page<AccountEntity> accountEntityPage = accountRepository.findByAcContentContaining(search,pageable);
+
+        Page<AccountDto> accountDtoPage = accountEntityPage.map(AccountDto::toAccountDto);
+
+        for(AccountDto accountDto :accountDtoPage) {
+            accountDto.setBalance(accountRepository.findByAcId(accountDto.getAcId()));
+        }
+
+        return accountDtoPage;
+    }
+
+    // 제목 또는 내용으로 검색
+/*    public Page<AccountDto> findTitleAndFindContent(String search, Pageable pageable) {
+        Page<AccountEntity> accountEntityPage = accountRepository.findByAcTitleAndAcContent(search, pageable);
+
+        Page<AccountDto> accountDtoPage = accountEntityPage.map(AccountDto::toAccountDto);
+
+        for(AccountDto accountDto :accountDtoPage) {
+            accountDto.setBalance(accountRepository.findByAcId(accountDto.getAcId()));
+        }
+
+        return accountDtoPage;
+    }*/
+
     // 게시글 상세페이지
     public AccountDto accountDetail(Long acId) {
         Optional<AccountEntity> accountEntity = accountRepository.findById(acId);
@@ -98,7 +138,5 @@ public class AccountService {
         accountRepository.delete(accountEntity);
         return 1;
     }
-
-
 
 }

@@ -13,6 +13,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
 
@@ -28,9 +29,24 @@ public class AccountController {
     @GetMapping("/list")
     public String accountList(Model model,
                               @PageableDefault(page = 0, size = 8, sort = "acId", direction = Sort.Direction.DESC) Pageable pageable,
-                              @Param("acId") Long acId){
+                              @Param("acId") Long acId,
+                              @RequestParam(value = "type",required = false) String type,
+                              @RequestParam(value = "search",required = false) String search){
 
         Page<AccountDto> accountList = accountService.accountList(pageable);
+
+        // 검색관련
+
+        if(type != null && search != null){
+            // 제목으로 검색
+            if(type.equals("acTitle")){
+                accountList = accountService.findTitle(search, pageable);
+            }else if(type.equals("acContent")) {
+                accountList = accountService.findContent(search, pageable);
+            }/*else if(type.equals("acTitleAcContent")){
+                accountList = accountService.findTitleAndFindContent(search, pageable);
+            }*/
+        }
 
         int totalPage = accountList.getTotalPages();
         int blockNum = 5;
@@ -45,6 +61,18 @@ public class AccountController {
         return "account/accountList";
     }
 
+    // 게시글 검색
+    @GetMapping("/search")
+    public String search(@RequestParam(value = "type",required = false) String type,
+                         @RequestParam(value = "search",required = false) String search,
+                         RedirectAttributes redirectAttributes){
+
+        redirectAttributes.addAttribute("type", type);
+        redirectAttributes.addAttribute("search", search);
+
+        return "redirect:/account/list";
+
+    }
 
     // 등록페이지 이동
     @GetMapping("/insert")
