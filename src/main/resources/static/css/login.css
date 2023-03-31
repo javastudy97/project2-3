@@ -25,6 +25,10 @@
   color: white;
 }
 
+input{
+  text-indent: 3px;
+}
+
 .wrap .login form{
   display: flex;
   flex-direction: column;

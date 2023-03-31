@@ -87,6 +87,23 @@ h2{
   height: 300px;
 }
 
+.board .con2 table{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.board .con2 table tr{
+  border-bottom: 1px solid !important;
+}
+
+.board .con2 table th{
+  padding: 5px 0;
+}
+
+.board .con2 table td{
+  padding: 10px 0;
+}
 
 /* fullCalender */
 
