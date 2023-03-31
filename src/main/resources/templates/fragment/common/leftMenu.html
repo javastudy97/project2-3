@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <link rel="stylesheet" href="/static/css/common/leftMenu.css">
-
+<link rel="stylesheet" th:href="@{/static/css/common/chat-bot.css}">
 
 <div class="left-menu" th:fragment="leftMenuFragment">
-
+    <!--챗봇 -->
+    <script th:src="@{/js/chat.js}"></script>
     <!-- 날씨 -->
     <th:block th:if="${key} == null">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js" defer></script>
@@ -147,6 +148,15 @@
                                 </li>
                             </ul>
                         </li>
+                        <!-- ChatBot -->
+                        <div class="bot-con">
+                            <div class="chat-bot">
+                                <div class="wrap">
+                                    <img th:src="@{/img/icon/chatbot.png}" id="btn-chat-open" onclick="openChat()">
+                                    <th:block th:insert="~{chatbot/chat-bot::#chat-disp}" />
+                                </div>
+                            </div>
+                        </div>
                     </ul>
                 </div>
             </div>
