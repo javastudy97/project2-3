@@ -28,9 +28,8 @@ public class WebSecurityConfig {
 
         // 권한 => GUEST(회원가입 후 관리자 승인 필요), MEMBER(일반회원), ADMIN(관리자), BLACK(정지회원)
         http.authorizeHttpRequests()
-                .antMatchers("/login","/join").permitAll()  // 모든 유저 접근 가능
+                .antMatchers("/","/index","/login","/join","/naver").permitAll()  // 모든 유저 접근 가능
                 .antMatchers("/css/**", "/js/**", "/img/**").permitAll()
-                .antMatchers("/","/index").hasAnyRole("ADMIN","MEMBER")
                 .antMatchers("/board/**").hasAnyRole("ADMIN","MEMBER")
                 .antMatchers("/admin/**").hasAnyRole("ADMIN")
                 .antMatchers("/member/**").hasAnyRole("ADMIN","MEMBER")
