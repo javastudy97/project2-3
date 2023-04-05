@@ -30,7 +30,7 @@ public class WebSecurityConfig {
         http.authorizeHttpRequests()
                 .antMatchers("/login","/join","/naver").permitAll()  // 모든 유저 접근 가능
                 .antMatchers("/css/**", "/js/**", "/img/**").permitAll()
-                .antMatchers("/","/index").authenticated()
+                .antMatchers("/","/index").hasAnyRole("ADMIN","MEMBER")
                 .antMatchers("/board/**").hasAnyRole("ADMIN","MEMBER")
                 .antMatchers("/admin/**").hasAnyRole("ADMIN")
                 .antMatchers("/member/**").hasAnyRole("ADMIN","MEMBER")
