@@ -7,9 +7,9 @@ os: linux
 
 files:
   - source: /
-    destination: /home/ec2-user/project2/
+    destination: /home/ec2-user/cicd_project3/
 permissions:
-  - object: /home/ec2-user/project2/
+  - object: /home/ec2-user/cicd_project3/
     owner: ec2-user
     group: ec2-user
     mode: 755

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-REPOSITORY=/home/ec2-user/project2
+REPOSITORY=/home/ec2-user/cicd_project3
 cd $REPOSITORY
 
 # 베폴더
