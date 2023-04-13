@@ -54,7 +54,7 @@
 .left-menu .left-con .dash-board .menu>ul>li {
   /* border: 1px solid #ff0000; */
   box-sizing: border-box;
-  padding: 20px 5px;
+  padding: 10px 5px;
   position: relative;
   font-size: 20px;
 }
