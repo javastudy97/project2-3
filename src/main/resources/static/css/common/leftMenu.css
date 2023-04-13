@@ -130,6 +130,16 @@
   gap: 5px;
 }
 
+.weather .search{
+  display: flex;
+  gap: 10px;
+}
+
+.weather .search input{
+  cursor: pointer;
+  padding: 0 5px;
+}
+
 /* 챗봇***************************************/
 .bot-con{
   width:100%;

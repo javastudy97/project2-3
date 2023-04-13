@@ -2,7 +2,7 @@ function youtubeFn(){
 
     $(document).ready(function () {
         const apiKey = "AIzaSyAumsnv5XSvOc-3XUz8hb8sCijOz93R8yo";
-        const keyword = "해외축구";
+        const keyword = "해외축구 소식";
         const maxResults = 50;
         const numVideos = 4; // 선택할 동영상 개수
         let selectedVideos = []; // 선택된 동영상들을 기록할 배열
