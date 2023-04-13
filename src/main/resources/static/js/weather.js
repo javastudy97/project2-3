@@ -1,4 +1,10 @@
-window.onload = function(){
+let city = $('#city');
+
+function searchCity(){
+  weather(city.val());
+}
+
+function weather(cityVal){
 
   //오늘 날짜출력
     $(document).ready(function () {
@@ -31,11 +37,11 @@ window.onload = function(){
       }
     
       let currentTime = convertTime();
-      $('.nowtime').append(currentTime);
+      $('.nowtime').text(currentTime);
     });
     
     //제이쿼리사용
-    $.getJSON('https://api.openweathermap.org/data/2.5/weather?q=Seoul,kr&appid=5a87979705c7dd0e87fc7cfda0976f92&lang=kr&units=metric',
+    $.getJSON(`https://api.openweathermap.org/data/2.5/weather?q=${cityVal},kr&appid=5a87979705c7dd0e87fc7cfda0976f92&lang=kr&units=metric`,
     function (WeatherResult) {
     
       // 파라미터
@@ -45,11 +51,11 @@ window.onload = function(){
       // units : 온도표시 방식 (metric : 섭씨)
     
       // 날씨정보 출력
-      Math.round
-      $('.SeoulWeatherDesc').append(WeatherResult.weather[0].description);
-      $('.SeoulNowtemp').append(Math.round(WeatherResult.main.temp,1)+'°C');
-      $('.SeoulLowtemp').append(Math.round(WeatherResult.main.temp_min,1)+'°C');
-      $('.SeoulHightemp').append(Math.round(WeatherResult.main.temp_max,1)+'°C');
+      $('.cityName').text(WeatherResult.name);
+      $('.weatherDesc').text(WeatherResult.weather[0].description);
+      $('.nowTemp').text(Math.round(WeatherResult.main.temp,1)+'°C');
+      $('.maxTemp').text(Math.round(WeatherResult.main.temp_max,1)+'°C');
+      $('.minTemp').text(Math.round(WeatherResult.main.temp_min,1)+'°C');
     
       //날씨아이콘출력
       //WeatherResult.weater[0].icon
@@ -58,7 +64,11 @@ window.onload = function(){
           + WeatherResult.weather[0].icon +
           '.png" alt="' + WeatherResult.weather[0].description + '"/>'
     
-      $('.SeoulIcon').html(weathericonUrl);
+      $('.icon').html(weathericonUrl);
     });
 
-};
+}
+
+(()=>{
+  weather('seoul');
+})()

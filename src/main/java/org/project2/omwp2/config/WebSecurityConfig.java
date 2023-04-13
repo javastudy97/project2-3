@@ -44,6 +44,7 @@ public class WebSecurityConfig {
                 .antMatchers("/notice/noticeInsert").hasAnyRole("ADMIN")
                 .antMatchers("/notice/noticeUpdate").hasAnyRole("ADMIN")
                 .antMatchers("/notice/noticeDelete").hasAnyRole("ADMIN")
+                .antMatchers("/movie/**").authenticated()
 
         ;
 

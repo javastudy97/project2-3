@@ -17,19 +17,30 @@
                 <div class="weather">
                     <div class="title">
                         <span class="nowtime"></span>
-                        <span>Seoul</span>
+                        <span class="cityName"></span>
                     </div>
                     <div class="desc">
-                        <h3 class="SeoulIcon"></h3>
+                        <h3 class="icon"></h3>
                         <div class="today">
-                            <h3 class="SeoulWeatherDesc"></h3>
-                            <h2 class="SeoulNowtemp"> </h2>
+                            <h3 class="weatherDesc"></h3>
+                            <h2 class="nowTemp"> </h2>
                         </div>
                     </div>
                     <div class="temp">
-                        <h4 class="SeoulHightemp"></h4>
+                        <h4 class="maxTemp"></h4>
                         <h4>/ </h4>
-                        <h4 class="SeoulLowtemp"></h4>
+                        <h4 class="minTemp"></h4>
+                    </div>
+                    <div class="search">
+                        <select name="city" id="city">
+                            <option value="seoul">서울</option>
+                            <option value="chuncheon">춘천</option>
+                            <option value="daejeon">대전</option>
+                            <option value="gwangju">광주</option>
+                            <option value="busan">부산</option>
+                            <option value="jeju">제주</option>
+                        </select>
+                        <input type="button" value="날씨조회" onclick="searchCity()">
                     </div>
                 </div>
                 <div class="menu">
