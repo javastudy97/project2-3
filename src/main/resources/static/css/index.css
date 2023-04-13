@@ -174,3 +174,18 @@ h2#fc-dom-1{
 .fc .fc-toolbar.fc-header-toolbar {
   margin-bottom: 0.5em !important;
 }
+
+/* 유튜브 api 영역 */
+.youtube {
+  padding-top: 10px;
+  box-sizing: border-box;
+}
+
+.youtube-con{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border: 1px solid;
+    box-sizing: border-box;
+}
+
