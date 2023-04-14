@@ -298,7 +298,7 @@ public class MemberService {
         return GaMemberDtoList;
     }
 
-    // 회원구분별 목록가져오기(MANAGER) - 매니저
+    // 회원구분별 목록가져오기(MANAGER) - 매니저!
     public List<MemberDto> ManagerMemberList(String mDept) {
 
         List<MemberEntity> ManagerMemberEntityList = memberRepository.findBymDeptDesc(mDept);
