@@ -57,7 +57,9 @@
 private final BoardService boardService;
     private final CommentService commentService;
 
-+ _게시판 조회페이지_
++ __게시판 조회페이지__
+
+
     @GetMapping("/boardList")
     public String boardPage(@PageableDefault(page = 0, size = 5, sort = "boardId",
             direction = Sort.Direction.DESC) Pageable pageable,
