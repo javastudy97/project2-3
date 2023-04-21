@@ -51,12 +51,13 @@
 
 ####공지사항, 커뮤니티 게시판 CRUD 구현 ###
 
-#### BoardControlle
+#### BoardController
 
 
 private final BoardService boardService;
     private final CommentService commentService;
 
++ _게시판 조회페이지_
     @GetMapping("/boardList")
     public String boardPage(@PageableDefault(page = 0, size = 5, sort = "boardId",
             direction = Sort.Direction.DESC) Pageable pageable,
