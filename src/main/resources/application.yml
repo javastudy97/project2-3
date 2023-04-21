@@ -4,24 +4,25 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/project2
-    username: root
-    password: 1234
+#    url: jdbc:mysql://localhost:3306/project2
+#    username: root
+#    password: 1234
 
 #    CI/CD용 EC2 DB
-#    url: jdbc:mysql://ec2-mysql-db1.c6l0kqlbscuy.ap-northeast-2.rds.amazonaws.com:3306/project2
-#    username:
-#    password:
+    url: jdbc:mysql://ec2-mysql-db1.c6l0kqlbscuy.ap-northeast-2.rds.amazonaws.com:3306/project2
+    username:
+    password:
 
   jpa:
-    database: mysql
-    database-platform: org.hibernate.dialect.MySQL8Dialect
+#    database: mysql
+#    database-platform: org.hibernate.dialect.MySQL8Dialect
     show-sql: true
     hibernate:
+      format_sql: true
       ddl-auto: update
-    properties:
-      hibernate:
-        format_sql: true
+#    properties:
+#      hibernate:
+#      format_sql: true
 
   thymeleaf:
     cache: false
@@ -35,4 +36,14 @@ spring:
 
 navar.api.client-id: H8paKKaUOVv57BJBdBm9
 navar.api.client-secret: r_8mQX3Nx3
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
 
