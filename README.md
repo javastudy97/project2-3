@@ -5,7 +5,7 @@
 # KICKOFF (킥오프)
 ## Open API와 챗봇을 활용한 축구 동호회 운영/관리 그룹웨어 
 ## [프로젝트 소개 PDF](https://drive.google.com/file/d/1hKRz8V7S5cDmN2NThJtAIUazAXCb3UvG/view)
-## [프로젝트 DB 명세서](https://drive.google.com/file/d/187f50y_fUM-Pkhs0hEeW8VLSJVCvn7U-/view?usp=share_link)
+## [프로젝트 DB](https://drive.google.com/file/d/1Sq_t-sHVyWNhHz1W7dYdbGJk2qUlsRTR/view)
 ## [프로젝트 DB ERD](https://drive.google.com/file/d/1JvddvhrdoV1i78wkrrgPDKJa1tq9k7LW/view?usp=share_link)
 
 ## 프로젝트 기간 - 2023.03.14 ~ 2023.04.26
