@@ -17,6 +17,7 @@
 - 네이티브쿼리 사용시 발생할 수 있는 컬럼인식 오류를 방지하고, 가급적 JPA의 기본 쿼리메소드(JPQL)만으로 비즈니스 로직이 구현 가능하도록 테이블간 연관관계를 설정하였습니다.
 - Komoran(한국어 형태소 분석기)을 활용한 시나리오형 챗봇을 구현하였습니다.
 - Github Actions와 AWS EC2를 기반으로 CI/CD(지속통합/지속배포) 환경을 구축하였습니다.
+- OpenWeather API, 영화진흥위원회 API, 공공테이터 포털을 이용해서 날씨, 영화, 버스 API 활용해서 날씨, 영화, 버스노선 정보 조회구현
 
 ## 개발 환경
 - `Language` : Java 11, HTML5, CSS3, JavaScript
@@ -33,24 +34,24 @@
 - 날씨(Openweathermap), 우편번호(다음 우편번호) API 연동
 - 결재서류 승인/반려 처리 구현 <br>
 
-#### 팀원 : 김** <br>
+#### 팀원 : 김현기 <br>
 - 회계내역(수입/지출) CRUD 구현
 - Naver API(workplace, work) 연동 <br>
-
-## 팀원 : 김홍록 <br>
-- 공지사항, 커뮤니티 게시판 CRUD 구현
-- 공통요소(fragment) 디자인
-- Github Actions, AWS EC2 기반 CI/CD 구현 <br>
 
 #### 팀원 : 이정모 <br>
 - 근태관리 구현
 - 공식일정, 개인일정 CRUD 구현 
 - 일정관리(fullcalender) API 연동 <br>
 
-#### 팀원 : 장 <br>
+#### 팀원 : 장기운 <br>
 - 결재관리 CRUD 구현
 - 조직관리 CRUD 구현
 - Komoran 기반 챗봇 구현 <br>
+
+## 팀원 : 김홍록 <br>
+- 공지사항, 커뮤니티 게시판 CRUD 구현
+- 공통요소(fragment) 디자인
+- Github Actions, AWS EC2 기반 CI/CD 구현 <br>
 
 ### 공지사항, 커뮤니티 게시판 CRUD 구현 화면<br>
 #### 공지사항 조회<br>
