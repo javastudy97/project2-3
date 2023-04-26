@@ -42,6 +42,13 @@
 - 공통요소(fragment) 디자인
 - Github Actions, AWS EC2 기반 CI/CD 구현 <br>
 
+### 공지사항, 커뮤니티 게시판 CRUD 구현 화면<br>
+#### 공지사항 조회<br>
+![image](https://user-images.githubusercontent.com/116870683/234513684-b7e949bf-f353-4aec-b39e-e4cb9eaace05.png)
+#### 공지사항 추가<br>
+![image](https://user-images.githubusercontent.com/116870683/234514035-a3eadf6d-4b4f-4ddc-92e0-4324da5225ae.png)
+
+
 
 #### 팀원 : 이** <br>
 - 근태관리 구현
