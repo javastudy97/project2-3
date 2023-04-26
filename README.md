@@ -4,7 +4,7 @@
 
 # KICKOFF (킥오프)
 ## Open API와 챗봇을 활용한 축구 동호회 운영/관리 그룹웨어 
-## [프로젝트 소개 PDF](https://drive.google.com/file/d/1hKRz8V7S5cDmN2NThJtAIUazAXCb3UvG/view)
+## [프로젝트 PDF](https://drive.google.com/file/d/1tsOQYQTAA-q8Qb5-PMADED-PYFJHSSGk/view)
 ## [프로젝트 DB](https://drive.google.com/file/d/1Sq_t-sHVyWNhHz1W7dYdbGJk2qUlsRTR/view)
 ## [프로젝트 DB ERD](https://drive.google.com/file/d/1JvddvhrdoV1i78wkrrgPDKJa1tq9k7LW/view?usp=share_link)
 
@@ -55,7 +55,8 @@
 
 ### 공지사항, 커뮤니티 게시판 CRUD 구현 화면<br>
 #### 공지사항 조회<br>
-![image](https://user-images.githubusercontent.com/116870683/234513684-b7e949bf-f353-4aec-b39e-e4cb9eaace05.png)
+<summary></summary>
+<p>![image](https://user-images.githubusercontent.com/116870683/234513684-b7e949bf-f353-4aec-b39e-e4cb9eaace05.png)</p>
 #### 공지사항 추가<br>
 ![image](https://user-images.githubusercontent.com/116870683/234514035-a3eadf6d-4b4f-4ddc-92e0-4324da5225ae.png)
 
