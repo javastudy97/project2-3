@@ -27,7 +27,7 @@
 - `ORM` : JPA <br>
 
 ## 팀 구성 및 역할
-#### 팀장 : 김** <br>
+#### 팀장 : 김필수 <br>
 - 프로젝트 일정 관리 및 발표준비
 - 소스 통합 및 형상관리
 - 날씨(Openweathermap), 우편번호(다음 우편번호) API 연동
@@ -42,6 +42,16 @@
 - 공통요소(fragment) 디자인
 - Github Actions, AWS EC2 기반 CI/CD 구현 <br>
 
+#### 팀원 : 이정모 <br>
+- 근태관리 구현
+- 공식일정, 개인일정 CRUD 구현 
+- 일정관리(fullcalender) API 연동 <br>
+
+#### 팀원 : 장 <br>
+- 결재관리 CRUD 구현
+- 조직관리 CRUD 구현
+- Komoran 기반 챗봇 구현 <br>
+
 ### 공지사항, 커뮤니티 게시판 CRUD 구현 화면<br>
 #### 공지사항 조회<br>
 ![image](https://user-images.githubusercontent.com/116870683/234513684-b7e949bf-f353-4aec-b39e-e4cb9eaace05.png)
@@ -50,12 +60,4 @@
 
 
 
-#### 팀원 : 이** <br>
-- 근태관리 구현
-- 공식일정, 개인일정 CRUD 구현 
-- 일정관리(fullcalender) API 연동 <br>
 
-#### 팀원 : 장** <br>
-- 결재관리 CRUD 구현
-- 조직관리 CRUD 구현
-- Komoran 기반 챗봇 구현 <br>
