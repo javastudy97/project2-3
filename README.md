@@ -38,22 +38,16 @@
 - Naver API(workplace, work) 연동 <br>
 
 ## 팀원 : 김홍록 <br>
-#### `java package` : notice / board / comment <br>
-#### `templates package` : notice / board <br>
 - 공지사항, 커뮤니티 게시판 CRUD 구현
 - 공통요소(fragment) 디자인
 - Github Actions, AWS EC2 기반 CI/CD 구현 <br>
 
 #### 팀원 : 이** <br>
-#### `java package` : calender <br>
-#### `templates package` : calender <br>
 - 근태관리 구현
 - 공식일정, 개인일정 CRUD 구현 
 - 일정관리(fullcalender) API 연동 <br>
 
 #### 팀원 : 장** <br>
-#### `java package` : member / approval <br>
-#### `templates package` : member / approval / management  <br>
 - 결재관리 CRUD 구현
 - 조직관리 CRUD 구현
 - Komoran 기반 챗봇 구현 <br>
