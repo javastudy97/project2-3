@@ -42,6 +42,7 @@
 - 공통요소(fragment) 디자인
 - Github Actions, AWS EC2 기반 CI/CD 구현 <br>
 
+
 #### 팀원 : 이** <br>
 - 근태관리 구현
 - 공식일정, 개인일정 CRUD 구현 
